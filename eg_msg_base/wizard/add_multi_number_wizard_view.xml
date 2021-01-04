@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="add_multi_number_wizard_form_view">
+            <field name="name">add.multi.number.wizard.form.view</field>
+            <field name="model">add.multi.number.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                           <field name="res_partner_ids"/>
+                        </group>
+                        <footer>
+                            <button name="add_multi_number" type="object" string="Add Multi Number" class="oe_highlight"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="add_multi_number_action">
+            <field name="name">Add Multi Number</field>
+            <field name="res_model">add.multi.number.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

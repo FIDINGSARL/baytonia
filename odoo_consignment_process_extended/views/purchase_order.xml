@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+        <field name="domain">[('state','not in',('draft','sent','bid', 'confirmed')),('is_consignment','=',False)]
+        </field>
+    </record>
+    <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+        <field name="domain">[('state','in',('draft','sent','bid','cancel',
+            'confirmed')),('is_consignment','=',False)]
+        </field>
+    </record>
+</odoo>

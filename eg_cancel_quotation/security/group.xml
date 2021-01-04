@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="res.groups" id="group_cancel_sale_order">
+        <field name="name">Cancel the Confirm Sale Order</field>
+    </record>
+
+    <record model="res.groups" id="group_confirm_sale_order">
+        <field name="name">Confirm Sales Quotation</field>
+    </record>
+
+    <record model="res.groups" id="group_confirm_cancel_sale_order">
+        <field name="name">Confirm the Cancel Sale Orders</field>
+        <field name="implied_ids" eval="[(4, ref('group_confirm_sale_order'))]"/>
+    </record>
+
+</odoo>

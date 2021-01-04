@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="msg_error_log_unifonic_form_view">
+            <field name="name">msg.error.log.unifonic.form.view</field>
+            <field name="model">msg.error.log</field>
+            <field name="inherit_id" ref="eg_msg_base.msg_error_log_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]/group" position="after">
+                    <group>
+                        <field name="order_detail"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

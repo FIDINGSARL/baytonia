@@ -1,0 +1,43 @@
+
+
+<odoo>
+    <data>
+         <record model="ir.ui.view" id="sale_auot_config_tree_view">
+            <field name="name">sale_auot_config_tree</field>
+            <field name="model">sale.auot.config</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="sale_auot_config_form_view">
+            <field name="name">sale.auot.config.form</field>
+            <field name="model">sale.auot.config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                      <group>
+                          <field name="name"/>
+                          <field name="journal_id"/>
+                      </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+       <record model="ir.actions.act_window" id="sale_auot_config_action">
+            <field name="name">Sale Auto Configuration</field>
+            <field name="res_model">sale.auot.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+<menuitem id="sale_auto_config_menu"
+            name="Sale Auto Configuration"
+            parent="sale.menu_sale_config"
+          action="sale_auot_config_action"
+           />
+    </data>
+</odoo>

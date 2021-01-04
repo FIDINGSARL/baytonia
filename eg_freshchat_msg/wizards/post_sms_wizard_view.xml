@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="post_sms_freshchat_wizard_form_view">
+            <field name="name">post.sms.freshchat.wizard.form.view</field>
+            <field name="model">post.sms.wizard</field>
+            <field name="inherit_id" ref="eg_msg_base.post_sms_wizard_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='message']" position="before">
+                    <field name="template_id" invisible="not context.get('show_tmpl')"/>
+                </xpath>
+                <xpath expr="//field[@name='send_msg_to']" position="attributes">
+                    <attribute name="invisible">context.get('show_tmpl')</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="launch_freshchat_post_sms_wizard">
+            <field name="name">FreshChat Post SMS</field>
+            <field name="res_model">post.sms.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'provider': 'freshchat_sms','show_tmpl':True}</field>
+            <field name="view_id" ref="eg_msg_base.post_sms_wizard_form_view"/>
+        </record>
+
+        <menuitem name="FreshChat Post SMS" id="menu_freshchat_post_sms_wizard"
+                  action="launch_freshchat_post_sms_wizard"
+                  parent="eg_msg_base.multiple_instance_menu"/>
+
+    </data>
+</odoo>

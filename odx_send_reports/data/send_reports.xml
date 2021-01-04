@@ -1,0 +1,14 @@
+<odoo noupdate="1">
+        <record model="ir.cron" id="auto_msg_email_cron">
+            <field name="name">Send Reports Attachment</field>
+            <field name="model_id" ref="model_toolbox_dashboard"/>
+            <field name="state">code</field>
+            <field name="code">model.send_reports()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+        </record>
+
+</odoo>

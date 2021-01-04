@@ -1,0 +1,85 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sms_instance_tree_view">
+            <field name="name">sms.instance.tree.view</field>
+            <field name="model">sms.instance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="priority"/>
+                    <field name="provider" invisible="1"/>
+                </tree>
+            </field>
+
+        </record>
+
+        <record model="ir.ui.view" id="sms_instance_form_view">
+            <field name="name">sms.instance.from.view</field>
+            <field name="model">sms.instance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="provider" widget="radio"/>
+                            </group>
+                            <group>
+                                <field name="priority"/>
+                                <field name="delivery_report"/>
+                            </group>
+                        </group>
+                        <separator string="Account Settings"/>
+                        <notebook>
+                            <page string="Msg Status">
+                                <field name="msg_status_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="is_last_status"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Msg Delivery Report">
+                                <field name="msg_delivery_report_ids">
+                                    <tree edit="0" create="0">
+                                        <field name="msg_status_id"/>
+                                        <field name="from_number"/>
+                                        <field name="to_number"/>
+                                        <field name="message_datetime"/>
+                                        <field name="body"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+
+        </record>
+        <record model="ir.ui.view" id="sms_instance_search_view">
+            <field name="name">sms.instance.search.view</field>
+            <field name="model">sms.instance</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="active" string="Active Instance" domain="[('active', '=', True)]"/>
+                    <filter name="active" string="Deactive Instance" domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="sms_instance_action">
+            <field name="name">SMS Instance</field>
+            <field name="res_model">sms.instance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="SMS Instance" id="sms_instance_menu" action="sms_instance_action" sequence="1"
+                  parent="msg_base_menu"/>
+    </data>
+</odoo>

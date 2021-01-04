@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <record model="ir.ui.view" id="sale_order_count_form">
+       <field name="name">stock_picking_form</field>
+       <field name="model">stock.picking</field>
+       <field name="inherit_id" ref="stock.view_picking_form"/>
+       <field name="arch" type="xml">
+           <xpath expr="//field[@name='partner_id']" position="after">
+               <field name='sale_order_count'/>
+           </xpath>
+       </field>
+   </record>
+
+    <record id="vpicktree" model="ir.ui.view">
+        <field name="name">stock.picking.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="sale_order_count"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

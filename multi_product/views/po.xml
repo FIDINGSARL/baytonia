@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="purchase_order_view_inherit">
+        <field name="name">purchase.order.view.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/field[@name='order_line']" position="before">
+                <button name="%(multi_product_wizard_action)d" type="action" string="Add Multi Products"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}" class="oe_highlight" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+    <record model="ir.ui.view" id="ticket_assign_history_tree_view">
+        <field name="name">ticket.assign.history.tree</field>
+        <field name="model">ticket.assign.history</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="user_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+<!--                <field name="months"/>-->
+                <field name="days"/>
+                <field name="hours"/>
+                <field name="minutes"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

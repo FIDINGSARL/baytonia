@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <!--Send To Ship Wizard View -->
+        <record id="wizard_view_whatsapp_message_wizard" model="ir.ui.view">
+            <field name="name">Whatsapp Message</field>
+            <field name="model">whatsapp.message.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Send To shipper Wizard">
+                    <group>
+                        <field name="picking_ids" invisible="1"/>
+                        <field name="to_number"/>
+                        <field name="message_type"/>
+                        <field name="picking_id" domain="[('id','in',picking_ids)]"
+                               attrs="{'invisible':[('message_type','=','bank_details')]}"/>
+                        <field name="msg"/>
+                    </group>
+                    <footer>
+                        <button string="Send Whatsapp Message" type="object" name="send_whatsapp_message"
+                                class="oe_highlight"/>
+                        <button string="_Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--Send To Ship Wizard Action -->
+        <record id="wizard_action_whatsapp_message_wizard" model="ir.actions.act_window">
+            <field name="name">Whatsapp Message</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">whatsapp.message.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="wizard_view_whatsapp_message_wizard"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

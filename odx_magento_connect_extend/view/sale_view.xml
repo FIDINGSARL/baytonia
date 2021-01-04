@@ -1,0 +1,13 @@
+<odoo>
+    <record model="ir.ui.view" id="view_order_form_gento_shipping">
+        <field name="name">sale.order.magento.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_policy']" position="after">
+                <field name="magento_shipment_status"/>
+                <field name="extra_fee" invisible="0"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

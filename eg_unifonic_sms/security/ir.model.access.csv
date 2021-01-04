@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_msg_records_user,msg.records.user,model_msg_records,eg_msg_base.msg_base_user_group,1,1,1,1
+access_msg_records_manager,msg.records.manager,model_msg_records,eg_msg_base.msg_base_manager_group,1,1,1,1
+access_msg_sender_user,msg.sender.user,model_msg_sender,eg_msg_base.msg_base_user_group,1,1,1,1
+access_msg_sender_manager,msg.sender.manager,model_msg_sender,eg_msg_base.msg_base_manager_group,1,1,1,1

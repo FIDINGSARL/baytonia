@@ -1,0 +1,15 @@
+<odoo>
+<record id="payment_gateway_id" model="ir.ui.view">
+    <field name="name">ship.track.payment.gateway</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_form"/>
+    <field name="arch" type="xml">
+
+        <field name="payment_term_id" position="after">
+            <!--<field name="payment_gateway_id"/>-->
+            <field name="eg_magento_payment_method_id"/>
+        </field>
+
+    </field>
+</record>
+</odoo>

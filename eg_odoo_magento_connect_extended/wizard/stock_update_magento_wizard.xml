@@ -1,0 +1,46 @@
+<odoo>
+    <record model="ir.ui.view" id="stock_update_magento_wizard_form_view">
+        <field name="name">stock.update.magento.wizard.form.view</field>
+        <field name="model">stock.update.magento.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_ids" attrs="{'invisible': [('is_success', '=', True)]}">
+                            <tree>
+                                <field name="pro_name"/>
+                                <field name="need_sync"/>
+                            </tree>
+                        </field>
+                        <field name="is_success" invisible="1"/>
+                    </group>
+                    <group>
+                        <group attrs="{'invisible': [('is_success', '=', True)]}">
+                            <field name="all_product"/>
+                            <field name="product_limit" attrs="{'invisible': [('all_product', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('is_success', '=', False)]}">
+                        <h1>Process successfully done!!!</h1>
+                    </group>
+                    <footer>
+                        <button name="update_stock_in_magento" string="Update Stock" type="object"
+                                class="oe_highlight" attrs="{'invisible': [('is_success', '=', True)]}"/>
+                        <button string="Cancel" class="btn-default" special="cancel"
+                                attrs="{'invisible': [('is_success', '=', True)]}"/>
+                        <button string="Okay" class="btn-default" special="cancel"
+                                attrs="{'invisible': [('is_success', '=', False)]}"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_stock_update_magento_wizard">
+        <field name="name">Update Stock Magento</field>
+        <field name="res_model">stock.update.magento.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem name="Update Stock to Magento" id="menu_stock_update_magento_wizard"
+              action="action_stock_update_magento_wizard" parent="stock.menu_stock_inventory_control"/>
+</odoo>

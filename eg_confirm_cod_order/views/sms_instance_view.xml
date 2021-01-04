@@ -1,0 +1,18 @@
+<odoo>
+    <record model="ir.ui.view" id="sms_instance_cod_order_form_view">
+        <field name="name">sms.instance.cod.order.form.view</field>
+        <field name="model">sms.instance</field>
+        <field name="inherit_id" ref="eg_unifonic_sms.sms_instance_unifonic_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h3" position="after">
+                <separator string="Confirm COD Order Message"/>
+                <group>
+                    <field name="cod_order_msg"
+                           attrs="{'invisible': [('provider', '!=', 'unifonic_sms')]}"/>
+                    <field name="bank_msg"
+                           attrs="{'invisible': [('provider', '!=', 'unifonic_sms')]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<odoo>
+ 
+    <record id="view_delivery_carrier_form_fl" model="ir.ui.view">
+        <field name="name">delivery.carrier.form.inherited.fl</field>
+        <field name="model">delivery.carrier</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+        	<notebook  position="inside">
+            	<page string="Kasper SAEE" attrs="{'invisible':[('delivery_type','not in', ['saee'])]}">
+                	<group>
+                    	<group>
+                        	<field name= 'saee_test' attrs="{'required':[('delivery_type','in', ['saee'])]}"/>
+                            <field name= 'saee_live' attrs="{'required':[('delivery_type','in', ['saee'])]}"/>
+                       	</group>
+                       	<group>
+                            <field name= 'saee_secret' attrs="{'required':[('delivery_type','in', ['saee'])]}"/>
+                       	</group>
+                     </group>
+
+                     <group name="general">
+                     	<field name="price_rule_ids" nolabel="1"/>
+                     </group>
+            	</page>
+        	</notebook>
+        </field>
+    </record>
+    
+    <!-- <record id="view_picking_form_fl" model="ir.ui.view">
+    	<field name="name">delivery.stock.saee.form.view.fl</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+        	<data>
+            	<xpath expr="/form/header/button[last()]" position="after">
+                	<button name="send_to_kasper_saee" string="Send to SAEE" class='btn-primary' type="object" attrs="{'invisible':['|',('carrier_tracking_ref','!=',False),('state','not in',('done'))]}"/>
+                </xpath>
+       		</data>
+       	</field>
+    </record> -->
+    
+    <!--<record id="invoice_form_inherit_fl" model="ir.ui.view">-->
+	    <!--<field name="name">account.invoice.form.inherit.fl</field>-->
+	    <!--<field name="model">account.invoice</field>-->
+	    <!--<field name="inherit_id" ref="account.invoice_form"/>-->
+	    <!--<field name="arch" type="xml">-->
+	    	<!--<xpath expr="//header" position="inside">-->
+		    	<!--<button name="send_to_kasper_saee" type="object"-->
+		    		<!--string="Send to SAEE" class="oe_highlight"-->
+		    		<!--attrs="{'invisible':['|','|',('saee_button_visible','=',False),('origin','=', False),('state','not in',['open','paid'])]}"-->
+		    		<!--groups="account.group_account_invoice"/>-->
+	    	<!--</xpath>-->
+	    	<!--<xpath expr="//field[@name='partner_id']" position="after">-->
+            	<!--<field name="saee_button_visible" invisible="1"/>-->
+            <!--</xpath>-->
+        <!--</field>-->
+   	<!--</record>    -->
+    
+    
+    <!--<record id="view_order_form_inherit_fl" model="ir.ui.view">-->
+	    <!--<field name="name">view.order.form.inherit.fl</field>-->
+	    <!--<field name="model">sale.order</field>-->
+	    <!--<field name="inherit_id" ref="sale.view_order_form"/>-->
+	    <!--<field name="arch" type="xml">-->
+	    	<!--<xpath expr="//header" position="inside">-->
+		    	<!--<button name="send_to_kasper_saee" type="object"-->
+		    		<!--string="Send to SAEE" class="oe_highlight"-->
+		    		<!--attrs="{'invisible':['|','|',('saee_button_visible','=',False),('name','=', False),('state','not in',['sale'])]}"-->
+		    		<!--groups=""/>-->
+		    	<!---->
+		    	<!--<button name="saee_check_delivery_status" type="object"-->
+		    		<!--string="SAEE Delivery Status" class="oe_highlight"-->
+		    		<!--attrs="{'invisible':['|','|',('saee_button_visible','=',True),('name','=', False),('state','not in',['sale'])]}"-->
+		    		<!--groups=""/>-->
+		    	<!---->
+	    	<!--</xpath>-->
+	    	<!--<xpath expr="//field[@name='partner_id']" position="after">-->
+            	<!--<field name="saee_button_visible" invisible="1"/>-->
+            <!--</xpath>-->
+        <!--</field>-->
+   	<!--</record>   -->
+    
+    <data noupdate="1">
+    	<record id="product_product_delivery_kasper_saee" model="product.product">
+        	<field name="name">Kasper SAEE Shipping charge</field>
+            <field name="default_code">Delivery</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="list_price">20.0</field>
+    	</record>
+	</data>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_partner_filter_phone" model="ir.ui.view">
+        <field name="name">res.partner.search.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="child_ids" string="Phone" filter_domain="['|','|','|',('child_ids.phone','ilike',self),('child_ids.mobile','ilike',self),('phone','ilike',self),('mobile','ilike',self)]"/>
+            </field>
+        </field>
+    </record>
+    <record id="sale_order_view_search_inherit_quotation_phone" model="ir.ui.view">
+        <field name="name">sale.order.search.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="partner_id" string="Phone" filter_domain="['|','|','|',('partner_id.child_ids.phone','ilike',self),('partner_id.child_ids.mobile','ilike',self),('partner_id.phone','ilike',self),('partner_id.mobile','ilike',self)]"/>
+            </field>
+        </field>
+    </record>
+    <record id="sale_order_view_search_inherit_sale_phone" model="ir.ui.view">
+        <field name="name">sale.order.sale.search.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="partner_id" string="Phone" filter_domain="['|','|','|',('partner_id.child_ids.phone','ilike',self),('partner_id.child_ids.mobile','ilike',self),('partner_id.phone','ilike',self),('partner_id.mobile','ilike',self)]"/>
+            </field>
+        </field>
+    </record>
+</odoo>
+
+<!--view_sales_order_filter-->
+
+

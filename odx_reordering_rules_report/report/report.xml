@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <report
+            id="reordering_rule_report_xlsx"
+            model="reordering.rule.report"
+            string="Reordering Rule Report"
+            report_type="xlsx"
+            name="reordering.rule.report.xlsx"
+            file="Reordering Rule"
+            attachment_use="False"
+            menu="False"
+        />
+    </data>
+</odoo>

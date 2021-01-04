@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_supplierinfo_add_note_form_view">
+            <field name="name">product.supplierinfo.add.note.form.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group[2]/div[3]" position="after">
+                    <field name="note"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="product_supplierinfo_add_note_tree_view">
+            <field name="name">product.supplierinfo.add.note.tree.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="field[@name='date_end']" position="after">
+                    <field name="note"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

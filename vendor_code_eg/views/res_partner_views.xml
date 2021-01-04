@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add action entry in the Action Menu for Partners -->
+    <record id="partner_form_vendor_code_form_view" model="ir.ui.view">
+        <field name="name">res.partner.form.vendor.code</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="before">
+                <field name="vendor_code" attrs="{'invisible':[('supplier','=',False)]}"/>
+                <field name="route_ids" domain="[('product_selectable', '=', True)]" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

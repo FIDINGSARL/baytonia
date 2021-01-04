@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="stock_scrap_form_view_inherit" model="ir.ui.view">
+            <field name="name">sale.order.inherit.do_amount.form.view</field>
+            <field name="model">stock.scrap</field>
+            <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group[1]" position="inside">
+                    <field name="cause_of_damage" invisible="1"/>
+                    <field name="cause_damage_id"/>
+                    <field name="shipping_company_id"/>
+                    <field name="attachment_ids" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+<!--        <record id="action_scrap_report" model="ir.actions.server">-->
+<!--            <field name="name">Scrap Report</field>-->
+<!--            <field name="type">ir.actions.server</field>-->
+<!--            <field name="model_id" ref="model_stock_scrap"/>-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">-->
+<!--                action = model.print_report()-->
+<!--            </field>-->
+<!--        </record>-->
+<!--        <menuitem id="menu_stock_report" name="Scrap Report"-->
+<!--                  parent="stock.menu_warehouse_report" sequence="110" action="action_scrap_report"/>-->
+    </data>
+</odoo>

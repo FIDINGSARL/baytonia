@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                string="Picking Operations"
+                id="action_report_picking"
+                model="picking.barcode"
+                report_type="qweb-pdf"
+                name="eg_barcode.report_picking"
+                file="eg_barcode.report_picking_operations"
+                print_report_name="'Picking Operations - %s - %s' % (object.picking_id.partner_id.name or '', object.picking_id.name)"
+        />
+        <report
+                string="Delivery Slip"
+                id="action_report_delivery"
+                model="picking.barcode"
+                report_type="qweb-pdf"
+                name="eg_barcode.report_deliveryslip"
+                file="eg_barcode.report_deliveryslip"
+                print_report_name="'Delivery Slip - %s - %s' % (object.picking_id.partner_id.name or '', object.picking_id.name)"
+        />
+    </data>
+</odoo>

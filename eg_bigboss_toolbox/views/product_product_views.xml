@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="product_product_form_view" model="ir.ui.view">
+            <field name="name">product.product.form.view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div[2]/div/div[2]" position="after">
+                    <div>
+                        <field name="exclude_from_report"/>
+                        <label for="exclude_from_report"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

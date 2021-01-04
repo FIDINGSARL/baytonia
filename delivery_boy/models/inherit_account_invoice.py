@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+#################################################################################
+# Author      : Webkul Software Pvt. Ltd. (<https://webkul.com/>)
+# Copyright(c): 2015-Present Webkul Software Pvt. Ltd.
+# All Rights Reserved.
+#
+#
+#
+# This program is copyright property of the author mentioned above.
+# You can`t redistribute it and/or modify it.
+#
+#
+# You should have received a copy of the License along with this program.
+# If not, see <https://store.webkul.com/license.html/>
+#################################################################################
+
+import logging
+_logger = logging.getLogger(__name__)
+
+from odoo import models,fields,api, _
+
+class InheritAccountInvoice(models.Model):
+    _inherit="account.invoice"
+
+    delivery_boy_invoice = fields.Boolean()
+    delivery_boy_picking_ids = fields.One2many(
+    string="Reports",
+    comodel_name="delivery.boy.pickings",
+    inverse_name="invoice_id")
+
+    @api.multi
+    def action_invoice_paid(self):
+        res = super(InheritAccountInvoice, self).action_invoice_paid()
+        to_pay_invoices = self.filtered(lambda inv: inv.state != 'paid')
+        # change delivery boy pickings state to paid when the invoice get paid by invoice model
+        for invoice in self:
+            for picking in invoice.delivery_boy_picking_ids:
+                if picking:
+                    picking.picking_state = 'paid'
+        return res

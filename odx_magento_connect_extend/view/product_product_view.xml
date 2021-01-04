@@ -1,0 +1,30 @@
+<odoo>
+   <record model="ir.ui.view" id="product_product_magento_form_view">
+        <field name="name">product.product.magento.form.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="update_magento_product_type" type="object" string="Update Magento Product Type"
+                        class="oe_highlight" />
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_magento_form_view">
+        <field name="name">product.magento.form.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+
+            <field name="default_code" position="after">
+                <field name="magento_product_type"/>
+            </field>
+            <xpath expr="//sheet/div[2]/div" position="inside">
+                <div>
+                    <field name="is_extra_fee"/>
+                    <label for="is_extra_fee"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

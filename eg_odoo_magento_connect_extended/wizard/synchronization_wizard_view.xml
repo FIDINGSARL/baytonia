@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+
+        <record id="id_synchronization_wizard_form_inherited" model="ir.ui.view">
+            <field name="name">Synchronization Wizard Inherited</field>
+            <field name="model">synchronization.wizard</field>
+            <field name="inherit_id" ref="odoo_magento_connect.id_synchronization_wizard_form"/>
+            <field name="arch" type="xml">
+                <button name="start_category_synchronization" position="after">
+                    <button name="start_bulk_product_product_synchronization"
+                            string="Synchronize Now"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="not context.get('product') == 'product'"/>
+                </button>
+            </field>
+        </record>
+
+    </data>
+</odoo>

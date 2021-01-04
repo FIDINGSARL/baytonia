@@ -1,0 +1,84 @@
+<odoo>
+    <template id="non_moving_product_template">
+        <t t-set="data_report_dpi" t-value="300"/>
+        <t t-call="web.external_layout">
+            <t class="page">
+                <center>
+                    <h3>
+                        <strong>Non Moving Product</strong>
+                    </h3>
+                </center>
+                <br/>
+                <center>
+                    <h3>
+                        <strong><span t-esc="date_from"/> To <span t-esc="date"/> </strong>
+                    </h3>
+                </center>
+                <br/>
+
+                <table width="100%" class="table table-bordered mt32">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Serial No</th>
+                             <th class="text-center">Image</th>
+                            <th class="text-center">Product Id</th>
+                            <th class="text-center">Product Code</th>
+                            <th class="text-center">Product Name</th>
+                            <th class="text-center">Available Qty</th>
+                            <th class="text-center">Rack Location</th>
+                            <th class="text-center">Last Sale Date</th>
+                            <th class="text-center">Duration from Last sale\n(In days)</th>
+                            <th class="text-center">Last Purchase Date</th>
+                            <th class="text-center">Unit Cost</th>
+                            <th class="text-center">Total Cost</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <t t-foreach="data_dict" t-as="data_dict">
+                            <tr t-foreach="data_dict_value" t-as="product_data">
+
+                            <td class="text-center">
+                                <span t-esc="product_data.get('serial_no')"/>
+                            </td>
+                                 <td><span  t-if="product_data.get('image')" t-esc="product_data.get('image')" t-options='{"widget": "image"}'/></td>
+                                 <td class="text-center">
+                                <span t-esc="product_data.get('product_id')"/>
+                            </td>
+                                 <td class="text-center">
+                                <span t-esc="product_data.get('default_code')"/>
+                            </td>
+                                 <td class="text-center">
+                                <span t-esc="product_data.get('name')"/>
+                            </td>
+                                <td class="text-center">
+                                <span t-esc="product_data.get('qty_available')"/>
+                            </td>
+                                 <td class="text-center">
+                                <span t-esc="product_data.get('rack_location')"/>
+                            </td>
+                                 <td class="text-center">
+                                <span t-esc="product_data.get('last_sale_date')"/>
+                            </td>
+                                 <td class="text-center">
+                                <span t-esc="product_data.get('last_day_oldest')"/>
+                            </td>
+                                <td class="text-center">
+                                <span t-esc="product_data.get('last_purchase_date')"/>
+                            </td>
+                                 <td class="text-center">
+                                <span t-esc="product_data.get('cost_of_product')"/>
+                            </td>
+                                 <td class="text-center">
+                                <span t-esc="product_data.get('total_cost')"/>
+                            </td>
+
+                        </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+            </t>
+        </t>
+    </template>
+</odoo>

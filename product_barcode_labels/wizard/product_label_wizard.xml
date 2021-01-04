@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record id="product_label_wizard_form_view" model="ir.ui.view">
+            <field name="name">product.label.wizard.form</field>
+            <field name="model">product.label.wizard</field>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div>
+                        <span class="oe_inline" style="color:#558B2F;font-size: 20px;margin-bottom: 10px;" attrs="{'invisible':[('preview','=',True)]}">
+                            Please select the type of label that you want to download
+                        </span>
+                        <span class="oe_inline" style="color:#558B2F;font-size: 20px;margin-bottom: 10px;" attrs="{'invisible':[('preview','=',False)]}">
+                            Please select the product for preview
+                        </span>
+                        <field class="oe_inline" name="l_config" style="margin-left: 8px;" options="{'no_create_edit':True,'no_create':True}" attrs="{'invisible':[('preview','=',True)]}"/>
+                        <field class="oe_inline" name="product_id" style="margin-left: 8px;" options="{'no_create_edit':True,'no_create':True}" attrs="{'invisible':[('preview','=',False)]}"/>
+                        <field name="preview" invisible="1"/>
+                    </div>
+                    <footer>
+                        <button name="download_product_labels" type="object" string="Download" class="oe_highlight"/>
+                        <!-- <button special="cancel" string="Cancel"/> -->
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,40 @@
+<odoo>
+    <record model="ir.ui.view" id="stock_picking_extend_form_view">
+        <field name="name">stock.picking.extend.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='scheduled_date']" position="before">
+                <field name="responsible_id"/>
+                <field name="fully_reserved" invisible="1"/>
+                <field name="partial_reserved" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="stock_picking_extend_search_view">
+        <field name="name">stock.picking.extend.search.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter string="Responsible Person" name="group_responsible" context="{'group_by': 'responsible_id'}"/>
+            </xpath>
+            <xpath expr="//filter[@name='draft']" position="after">
+                <filter string="My Records" name="responsible_id" domain="[('responsible_id', '=', uid)]"/>
+                <filter string="Fully Reserved" name="fully_reserved" domain="[('fully_reserved', '=', True)]"/>
+                <filter string="Partial Reserved" name="partial_reserved" domain="[('partial_reserved', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="stock_picking_extended_tree_view">
+        <field name="name">stock.picking.extended.tree.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='backorder_id']" position="before">
+                <field name="responsible_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

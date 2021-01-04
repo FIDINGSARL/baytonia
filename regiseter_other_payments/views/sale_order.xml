@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="action_registe_payment_with_payteabs_cc" model="ir.actions.server">
+        <field name="name">Register Payment -- Paytabs CC</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">action = records.register_payment_paytabs_credit_card_action()</field>
+    </record>
+    <record id="action_register_payment_mada" model="ir.actions.server">
+        <field name="name">Register Payment -- MADA</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">action = records.register_payment_mada_action()</field>
+    </record>
+
+</odoo>

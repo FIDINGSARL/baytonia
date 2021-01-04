@@ -1,0 +1,13 @@
+<odoo noupdate="1">
+    <record model="ir.cron" id="cron_for_fetch_product_media">
+        <field name="name">Fetch Product media for cron</field>
+        <field name="model_id" ref='model_product_product'/>
+        <field name="state">code</field>
+        <field name="code">model.cron_for_fetch_product_image()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="False"/>
+    </record>
+</odoo>

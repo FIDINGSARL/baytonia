@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_carrier_form_inhert" model="ir.ui.view">
+        <field name="name">delivery.carrier.form.view</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="ship_track.view_delivery_carrier_form_fl"/>
+        <field name="arch" type="xml">
+            <field name="tracking_url" position="after">
+                <group>
+                    <field name="eg_magento_payment_method_id"  widget="many2many_tags"/>
+                </group>
+            </field>
+        </field>
+    </record>
+</odoo>

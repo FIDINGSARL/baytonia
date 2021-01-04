@@ -1,0 +1,50 @@
+<odoo>
+    <template id="barcode_buttom">
+        <t t-set="data_report_dpi" t-value="300"/>
+        <t t-call="web.external_layout">
+            <t class="page">
+                <div class="row">
+                    <div class="col-xs-6">
+
+                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Submit
+
+                <h3>
+                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', 'O-BTN.Submit', 600, 100)"
+                         style="width:350px;height:60px"/>
+                </h3>
+                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;O-BTN.Submit
+                    </div>
+                    <div class="col-xs-6">
+
+                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Next
+                <h3>
+                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', 'O-BTN.next_state', 600, 100)"
+                         style="width:350px;height:60px"/>
+                </h3>
+                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;O-BTN.next_state
+                    </div>
+                </div>
+
+            </t>
+        </t>
+    </template>
+    <record id="barcode_paper_format" model="report.paperformat">
+        <field name="name">Barcode label</field>
+        <field name="default" eval="True"/>
+        <field name="format">A6</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">7</field>
+        <field name="dpi">50</field>
+    </record>
+
+    <report
+            string="Button Barcode"
+            id="barcode_button"
+            model="tracking.barcode"
+            report_type="qweb-pdf"
+            name="odx_barcode.barcode_buttom"
+            file="odx_barcode.barcode_buttom"
+            paperformat="odx_barcode.barcode_paper_format"
+            menu="False"
+    />
+</odoo>

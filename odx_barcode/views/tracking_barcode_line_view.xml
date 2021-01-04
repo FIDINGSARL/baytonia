@@ -1,0 +1,40 @@
+<odoo>
+    <record id="tracking_barcode_line_tree_view" model="ir.ui.view">
+        <field name="name">tracking.barcode.line.tree.view</field>
+        <field name="model">tracking.barcode.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="barcode_id"/>
+                <field name="product_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="tracking_barcode_line_form_view" model="ir.ui.view">
+        <field name="name">tracking.barcode.line.form.view</field>
+        <field name="model">tracking.barcode.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="barcode_id"/>
+                            <field name="move_id"/>
+                            <field name="reserved_availability"/>
+                        </group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="product_uom_qty"/>
+                            <field name="quantity_done"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="tracking_picking_barcode_line" model="ir.actions.act_window">
+        <field name="name">Tracking Barcode Line</field>
+        <field name="res_model">tracking.barcode.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

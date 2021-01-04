@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <report
+            id="suport_ticket_report"
+            model="website.support.ticket"
+            string="Support Ticket"
+            report_type="qweb-pdf"
+            name="odx_custom_support_ticket.support_tikcet_template"
+            file="odx_custom_support_ticket.support_tikcet_template"
+            attachment_use="False"
+            menu="False"
+        />
+        <report
+            id="suport_ticket_report_xlsx"
+            model="support.ticket.report.wiz"
+            string="Support Ticket"
+            report_type="xlsx"
+            name="ticket.report.report.xlsx"
+            file="Support Ticket"
+            attachment_use="False"
+            menu="False"
+        />
+         <report
+            id="suport_ticket_report_user"
+            model="website.support.ticket"
+            string="Support Ticket User"
+            report_type="qweb-pdf"
+            name="odx_custom_support_ticket.support_tikcet_user_template"
+            file="odx_custom_support_ticket.support_tikcet_user_template"
+            attachment_use="False"
+            menu="False"
+        />
+        <report
+            id="suport_ticket_report_user_xlsx"
+            model="support.user.report.wiz"
+            string="Support Ticket User"
+            report_type="xlsx"
+            name="ticketuser.report.report.xlsx"
+            file="Support Ticket User"
+            attachment_use="False"
+            menu="False"
+        />
+
+        <report
+            id="customer_satisfactory_report_xlsx"
+            model="website.support.ticket"
+            string="Customer Satisfactory Report"
+            report_type="xlsx"
+            name="customer.satisfactory.report.xlsx"
+            file="Customer Satisfactory Report"
+            attachment_use="False"
+            menu="False"
+        />
+    </data>
+</odoo>

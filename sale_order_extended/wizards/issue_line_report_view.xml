@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="issue_line_report_form_view">
+            <field name="name">issue.line.report.form.view</field>
+            <field name="model">issue.line.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button type="object" name="generate_issue_line_report" string="Excel Report"
+                                class="oe_highlight"/>
+                        <button type="object" name="generate_issue_line_on_screen_report"
+                                string="Generate On Screen Report" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="launch_issue_line_report">
+            <field name="name">Issue Line Report</field>
+            <field name="res_model">issue.line.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem name="Issue Line Report" id="menu_issue_line_report" action="launch_issue_line_report"
+                  parent="sale.menu_sale_report"/>
+        <menuitem name="Issue Line Report" id="menu_issue_line_report_bigboss" action="launch_issue_line_report"
+                  parent="eg_bigboss_toolbox.sale_report_menu"/>
+    </data>
+</odoo>

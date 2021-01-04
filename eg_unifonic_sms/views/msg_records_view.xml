@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <record id="msg_records_tree_view" model="ir.ui.view">
+            <field name="name">msg.records.tree.view</field>
+            <field name="model">msg.records</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="to_number"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="msg_records_form_view">
+            <field name="name">msg.records.form.view</field>
+            <field name="model">msg.records</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,send,failed"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="to_number"/>
+                                <field name="current_date"/>
+                            </group>
+                            <group>
+                                <field name="message"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="msg_records_search_view">
+            <field name="name">msg.records.search.view</field>
+            <field name="model">msg.records</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="to_number"/>
+                    <group>
+                        <filter name="group_by_state" string="State"
+                                context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.server" id="msg_records_server_action">
+            <field name="name">Send SMS</field>
+            <field name="model_id" ref="model_msg_records"/>
+            <field name="binding_model_id" ref="model_msg_records"/>
+            <field name="state">code</field>
+            <field name="code">records.send_msg_by_manual()</field>
+        </record>
+
+
+        <record id="action_msg_records" model="ir.actions.act_window">
+            <field name="name">Msg Records</field>
+            <field name="res_model">msg.records</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Msg Records" id="menu_msg_records" action="action_msg_records"
+                  parent="eg_msg_base.msg_base_menu"
+                  sequence="7"/>
+    </data>
+</odoo>

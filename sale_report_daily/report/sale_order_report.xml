@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+<report
+        id="report_actions"
+        model="sale.report.wizard"
+        string="Sale Report Print"
+        name="sale_report_daily.report_action_to_template"
+        file="sale_report_daily.report_action_to_template"
+        report_type="qweb-pdf" />
+    </data>
+</odoo>

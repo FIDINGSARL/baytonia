@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+         <record id="view_order_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="credit_status" invisible="1"/>
+                    <field name="credit_amount" sum="Total Credit Amount" widget="monetary"/>
+                </field>
+            </field>
+         </record>
+
+</odoo>

@@ -1,0 +1,12 @@
+<odoo>
+    <record model="ir.ui.view" id="customer_support_form_view_for_delivery_order">
+        <field name="name">customer.support.form.for.delivery.order</field>
+        <field name="model">website.support.ticket</field>
+        <field name="inherit_id" ref="website_support.website_support_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="stock_picking_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

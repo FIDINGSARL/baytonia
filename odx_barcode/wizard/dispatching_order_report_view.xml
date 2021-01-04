@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="dispatching_order_report_form_view">
+            <field name="name">dispatching.order.report.form.view</field>
+            <field name="model">dispatching.order.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+<!--                        <field name="vendor_ids" domain="[('supplier','=',True)]"/>-->
+                    </group>
+                    <group>
+                        <group>
+                            <label string="End Date"/>
+                            <div>
+                                <field name="from_date" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="to_date" class="oe_inline"/>
+                            </div>
+
+                        </group>
+                    </group>
+                    <footer>
+                        <button type="object" name="generate_dispaching_barcode_report" string="Generate XLS Report"
+                                class="oe_highlight"/>
+<!--                        <button type="object" name="generate_stock_product_on_screen_report"-->
+<!--                                string="Generate On Screen Report" class="oe_highlight"/>-->
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_date_batch_report"
+                    name="Dispatching Report"
+                    res_model="dispatching.order.report"
+                    view_mode="form"
+                    target="new"/>
+
+        <menuitem name="Reporting" id="menu_dispatching_barcode_report"
+                  parent="main_menu_tracking_barcode"/>
+        <menuitem name="Date-Batch" id="menu_date_batch_report" action="launch_date_batch_report"
+                  parent="menu_dispatching_barcode_report"/>
+
+    </data>
+</odoo>

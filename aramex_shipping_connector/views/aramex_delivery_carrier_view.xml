@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_carrier_aramex_form_view" model="ir.ui.view">
+        <field name="name">delivery.carrier.aramex.form.view</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='destination']" position='before'>
+                <page string="Configuration" name="Aramex_configuration"
+                      attrs="{'invisible': [('delivery_type', '!=', 'Aramex')]}">
+                    <group>
+                        <field name="aramex_service_type" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+                        <field name="aramex_weight_uom" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+
+                        <field name="aramex_payment_type" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+                        <field name="aramex_payment_options"/>
+                        <field name="aramex_services"/>
+                        <field name="aramex_unit" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+                        <!--<field name="aramex_insurance_amount"/>-->
+                        <!--<field name="aramex_customs_value"/>-->
+                    </group>
+                </page>
+                <page string="Credential" name="Aramex_credential"
+                      attrs="{'invisible': [('delivery_type', '!=', 'Aramex')]}">
+                    <group>
+                        <field name="aramex_username" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+                        <field name="aramex_password" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+                        <field name="aramex_account_number" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+                        <field name="aramex_version" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+                        <field name="aramex_account_pin" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+                        <field name="aramex_account_entity" attrs="{'required': [('delivery_type', '=', 'Aramex')]}"/>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//field[@name='company_id']" position='after'>
+                <field name="is_fixed_price" attrs="{'invisible': [('delivery_type', '!=', 'Aramex')]}"/>
+                <field name="fixed_amount" attrs="{'invisible': ['|',('is_fixed_price', '=', False),('delivery_type', '!=', 'Aramex')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+<!--    <record id="view_order_aramex" model="ir.ui.view">-->
+<!--        <field name="name">view.order.aramex</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='partner_id']" position="after">-->
+<!--                <field name="aramex_button_visible" invisible="1"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//header" position="inside">-->
+<!--                <button name="send_to_Aramex" type="object"-->
+<!--                        string="Send to Aramex" class="oe_highlight"-->
+<!--                        attrs="{'invisible':['|','|',('aramex_button_visible','=',False),('name','=', False),('state','not in',['sale'])]}"-->
+<!--                        groups=""/>-->
+
+<!--                <button name="aramex_check_delivery_status" type="object"-->
+<!--			    		string="Aramex Delivery Status" class="oe_highlight"-->
+<!--			    		attrs="{'invisible':['|','|',('aramex_button_visible','=',True),('name','=', False),('state','not in',['sale'])]}"-->
+<!--			    		groups=""/>-->
+
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>

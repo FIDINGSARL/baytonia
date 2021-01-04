@@ -1,0 +1,5 @@
+<odoo>
+    <record model="res.groups" id="stock_manager_cancel_order_group">
+        <field name="name">Cancel DO</field>
+    </record>
+</odoo>

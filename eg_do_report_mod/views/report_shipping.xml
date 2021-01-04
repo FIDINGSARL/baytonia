@@ -1,0 +1,24 @@
+<odoo>
+    <template id="report_shipping_inherit" inherit_id="stock.report_picking">
+        <xpath expr="//table[@t-if='o.move_line_ids']/thead/tr" position="inside">
+            <th>Image</th>
+            <th width="15%">Rack</th>
+
+        </xpath>
+        <xpath expr="//table[@t-if='o.move_line_ids']/tbody/tr" position="inside">
+            <td>
+                <span t-field="move.product_id.image_small" t-field-options='{"widget": "image"}'/>
+            </td>
+            <td>
+                <span t-field="move.product_id.rack"/>
+            </td>
+        </xpath>
+        <xpath expr="//table[@t-if='o.move_line_ids']/thead/tr[1]/th[3]" position="replace">
+
+        </xpath>
+        <xpath expr="//table[@t-if='o.move_line_ids']/tbody/tr[1]/td[3]" position="replace">
+
+        </xpath>
+
+    </template>
+</odoo>

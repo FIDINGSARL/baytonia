@@ -1,0 +1,15 @@
+<odoo>
+    <record model="ir.ui.view" id="sms_instance_return_disclaimer_form_view">
+        <field name="name">sms.instance.return.disclaimer.form.view</field>
+        <field name="model">sms.instance</field>
+        <field name="inherit_id" ref="eg_unifonic_sms.sms_instance_unifonic_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h3" position="after">
+                <separator string="Return Disclaimer Message"/>
+                <group>
+                    <field name="return_disclaimer_msg" attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

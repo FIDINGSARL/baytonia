@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<report id="action_report_top_growing_product" model="top.growing.product.report.ept"
+		string="Top Growing Product" report_type="qweb-pdf"
+		name="top_growing_product_ept.category_wise_report" file="top_growing_product_ept.category_wise_report" />
+
+	<template id="report_rfp">
+		<t t-name="top_growing_product_ept.report_rfp">
+			<div>
+				<h2 width="100%" class="table table-bordered text-center">All Category</h2>
+				<table width="100%" class="table table-bordered text-center">
+					<tr>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">No.</th>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Internal Reference</th>
+						<div class="act_as_cell right">
+							<th class="act_as_cell" style="vertical-align:middle;background-color:#DDDCDC;">Product Name</th>
+						</div>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Category</th>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Average Sale Price</th>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Average Cost Price</th>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Current Stock</th>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Total Sales</th>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Total Purchase</th>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Last Period Sales</th>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Selected Period Sales</th>
+						<th class="act_as_cell"
+							style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Growth Ratio (%)</th>
+					</tr>
+
+					<tr t-foreach="docs._context['final_data']" t-as="t"
+						style="page-break-inside: avoid;">
+						<td class="text-left">
+							<span t-esc="t['no']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-left">
+							<span t-esc="t['default_code']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-left" width="20%">
+							<span t-esc="t['product_name']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-left">
+							<span t-esc="t['categories']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-right">
+							<span t-esc="t['average_sale_price']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-right">
+							<span t-esc="t['average_cost_price']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+
+						<td class="text-right">
+							<span t-esc="t['current_stock']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-right">
+							<span t-esc="t['total_sale']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-right">
+							<span t-esc="t['total_purchase']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-right" width="5%">
+							<span t-esc="t['average_sale']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-right" width="5%">
+							<span t-esc="t['selected_period_sales']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+						<td class="text-right">
+							<span t-esc="t['growth_ratio']"
+								style="font-family:Poppins;color:brown;font-weight:bold" />
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div style="page-break-after:always;" />
+			<t t-set="product_category" t-value="[]" />
+			<t t-foreach="docs._context['data']" t-as="l">
+				<t t-set="product_category" t-value="product_category+[l['categories']]" />
+			</t>
+			<div class="header" style="text-align:center">
+				<h2>Top Growing Product</h2>
+			</div>
+			<t t-foreach="set(product_category)" t-as="category">
+				<div>
+					<h2 width="100%" class="table table-bordered text-center">
+						<span t-esc="category" />
+					</h2>
+					<table width="100%" class="table table-bordered text-center">
+						<tr>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">No.</th>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Internal Reference</th>
+							<div class="act_as_cell right">
+								<th class="act_as_cell" style="vertical-align:middle;background-color:#DDDCDC;">Product Name</th>
+							</div>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Category</th>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Average Sale Price</th>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Average Cost Price</th>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Current Stock</th>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Total Sales</th>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Total Purchase</th>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Last Period Sales</th>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Selected Period Sales</th>
+							<th class="act_as_cell"
+								style="text-align:center;vertical-align:middle;background-color:#DDDCDC;">Growth Ratio (%)</th>
+						</tr>
+						<tr t-foreach="docs._context['data']" t-as="t"
+							style="page-break-inside: avoid;">
+							<t t-if="category==t['categories']">
+								<td class="text-left">
+									<span t-esc="t['no']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-left">
+									<span t-esc="t['default_code']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-left" width="20%">
+									<span t-esc="t['product_name']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-left">
+									<span t-esc="t['categories']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-right">
+									<span t-esc="t['average_sale_price']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-right">
+									<span t-esc="t['average_cost_price']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+
+								<td class="text-right">
+									<span t-esc="t['current_stock']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-right">
+									<span t-esc="t['total_sale']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-right">
+									<span t-esc="t['total_purchase']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-right" width="5%">
+									<span t-esc="t['average_sale']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-right" width="5%">
+									<span t-esc="t['selected_period_sales']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+								<td class="text-right">
+									<span t-esc="t['growth_ratio']"
+										style="font-family:Poppins;color:brown;font-weight:bold" />
+								</td>
+							</t>
+						</tr>
+					</table>
+				</div>
+				<div style="page-break-after:always;" />
+			</t>
+		</t>
+	</template>
+	<template id="category_wise_report">
+		<t t-call="web.html_container">
+			<t t-call="top_growing_product_ept.internal_layout">
+				<t t-call="top_growing_product_ept.report_rfp" />
+			</t>
+		</t>
+	</template>
+</odoo> 

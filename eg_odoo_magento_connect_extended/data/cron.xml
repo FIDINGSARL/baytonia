@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <!-- Odoo Magento - Update product -->
+        <record model="ir.cron" id="ir_cron_update_product_on_magento">
+            <field name="name">Odoo Magento -- Update Product on Magento</field>
+            <field name="model_id" ref="model_product_template"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_update_product_on_magento()</field>
+            <field name="interval_number">24</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="False"/>
+        </record>
+
+        <!-- Odoo Magento - Export product -->
+        <record model="ir.cron" id="ir_cron_export_product_on_magento">
+            <field name="name">Odoo Magento -- Export Product on Magento</field>
+            <field name="model_id" ref="model_product_template"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_export_product_on_magento()</field>
+            <field name="interval_number">24</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="False"/>
+        </record>
+
+        <!--        Odoo Fetch prepaid Order status from magento-->
+        <record model="ir.cron" id="ir_cron_fetch_order_status_from_magento">
+            <field name="name">Odoo Magento -- Fetch order status from Magento</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_for_fetch_order_status()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>

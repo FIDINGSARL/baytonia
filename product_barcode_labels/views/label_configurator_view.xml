@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record id="label_layout_lines_form_view" model="ir.ui.view">
+            <field name="name">Label Layout Lines Form</field>
+            <field name="model">label.layout.lines</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="pdf_type" required="1"/>
+                                <field name="label_config_id" invisible="1"/>
+                            </group>
+                            <group col="1">
+                                <div class="alert alert-info alert-normal-info oe_edit_only" style="margin-left: -24px;margin-top: -6px;padding:5px;margin-bottom: 0px;">
+                                    <ul style="list-style-type:square;margin-left:-17px;">
+                                        <li>
+        								    <h6 class="oe_inline oe_grey">For small size Image, Sale and Picking Description can't be used.</h6>
+        							    </li>
+                                        <li>
+        								    <h6 class="oe_inline oe_grey">For medium size Image can't be used.</h6>
+        							    </li>
+                                        <li>
+        								    <h6 class="oe_inline oe_grey">For large size all fields can be used.</h6>
+        							    </li>
+                                    </ul>
+                                </div>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="width" required="1"/>
+                                <field name="height" required="1"/>
+                            </group>
+                            <group col="1">
+                                <div class="alert alert-info alert-normal-info oe_edit_only" style="margin-left: -24px;margin-top: -6px;padding:5px;margin-bottom: 0px;"
+                                    attrs="{'invisible': [('pdf_type','=',False)]}">
+                                    <ul style="list-style-type:square;margin-left:-17px;">
+                                        <div attrs="{'invisible':[('pdf_type','!=','small')]}">
+                                            <li>
+            								    <h6 class="oe_inline oe_grey">For landscape pdf Width x Height will be in range (450-550)x(50-100).</h6>
+            							    </li>
+                                            <li>
+            								    <h6 class="oe_inline oe_grey">For portrait pdf Width x Height will be in range (300-400)x(100-200).</h6>
+            							    </li>
+                                        </div>
+                                        <div attrs="{'invisible':[('pdf_type','!=','medium')]}">
+                                            <li>
+            								    <h6 class="oe_inline oe_grey">For landscape pdf Width x Height will be in range (800-900)x(50-100).</h6>
+            							    </li>
+                                            <li>
+            								    <h6 class="oe_inline oe_grey">For portrait pdf Width x Height will be in range (400-500)x(600-700).</h6>
+            							    </li>
+                                        </div>
+                                        <div attrs="{'invisible':[('pdf_type','!=','large')]}">
+                                            <li>
+            								    <h6 class="oe_inline oe_grey">For landscape pdf Width x Height will be in range (900-1100)x(200-300).</h6>
+            							    </li>
+                                            <li>
+            								    <h6 class="oe_inline oe_grey">For portrait pdf Width x Height will be in range (700-800)x(700-900).</h6>
+            							    </li>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </group>
+                        </group>
+                        <separator string="Configure Product Fields For Barcode Labels"/>
+                        <group>
+                            <group>
+                                <field name="image" attrs="{'readonly':[('pdf_type','in',['small','medium'])]}"/>
+                                <field name="description_sale" attrs="{'readonly':[('pdf_type','=','small')]}"/>
+                                <field name="description_pick" attrs="{'readonly':[('pdf_type','=','small')]}"/>
+                                <field name="default_code"/>
+                            </group>
+                            <group>
+                                <!-- <field name="attributes"/> -->
+                                <field name="weight"/>
+                                <field name="expiry_date"/>
+                                <field name="batch_no"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="price"/>
+                                <div>
+                                    <field name="price" class="oe_inline"/>
+                                    <field name="pricelist_id" class="oe_inline"  attrs="{'required':[('price','=',True)]}" options="{'no_create_edit':True,'no_create':True}"/>
+                                </div>
+                                <field name="human_readable"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="label_layout_lines_tree_view" model="ir.ui.view">
+            <field name="name">Label Layout Lines Tree</field>
+            <field name="model">label.layout.lines</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="pdf_type"/>
+                    <field name="width"/>
+                    <field name="height"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="label_layout_lines_action_view" model="ir.actions.act_window">
+            <field name="name">Label Layout Lines Action</field>
+            <field name="res_model">label.layout.lines</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="label_configurator_form_view" model="ir.ui.view">
+            <field name="name">Label Configurator Form</field>
+            <field name="model">label.configurator</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="pl_button_box">
+                            <button class="oe_stat_button" name="get_product_labels_preview" icon="fa-search-plus" string="Preview" type="object" target="new"/>
+                        </div>
+                        <div class="oe_title">
+							<label class="oe_edit_only" for="name" string="PDF Name"/>
+							<h1><field name="name"  required="1" placeholder="PDF Name"/></h1>
+						</div>
+                        <group>
+                            <group>
+                                <field name="orientation" required="1" attrs="{'readonly': [('id','!=',False)]}"/>
+                                <field name="barcode_field" required="1"/>
+                                <field name="barcode_type" required="1"/>
+                                <field name="id" invisible="1"/>
+                            </group>
+                            <group attrs="{'invisible': [('id','!=',False)]}">
+                                <div class="alert alert-info" style="margin: 0;padding: 10px;">
+                                    <i class="fa fa-info-circle" style="margin-right: 2px;font-size: 15px;"/>
+                                    Please Ensure before selecting the orientation, as once the orientation is selected and saved it will become readonly and will not be editable.
+                                </div>
+                            </group>
+                        </group>
+                        <separator string="Label Layouts"/>
+                        <group>
+                            <field name="label_layout_ids" nolabel="1" attrs="{'readonly':[('orientation','=',False)]}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="label_configurator_tree_view" model="ir.ui.view">
+            <field name="name">Label Configurator Tree</field>
+            <field name="model">label.configurator</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="orientation"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="label_configurator_action_view" model="ir.actions.act_window">
+            <field name="name">Label Configuration</field>
+            <field name="res_model">label.configurator</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Barcode Labels"
+            id="product_label_configurator_main_menu"
+            parent="stock.menu_stock_root"
+            groups="stock.group_stock_manager"
+            sequence="4"
+        />
+        <menuitem
+            name="Configuration"
+            id="label_configurator_menu"
+            parent="product_barcode_labels.product_label_configurator_main_menu"
+            action="label_configurator_action_view"
+            groups="stock.group_stock_manager"
+            sequence="1"
+        />
+    </data>
+</odoo>

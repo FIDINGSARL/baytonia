@@ -1,0 +1,13 @@
+<odoo noupdate="1">
+    <record model="ir.cron" id="update_moyasar_status_crone">
+        <field name="name">Update Sale Status Based on Moyasar Status</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">model.moyasar_payment_status()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="launch_unifonic_post_sms_wizard">
+            <field name="name">Unifonic Post SMS</field>
+            <field name="res_model">post.sms.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'provider': 'unifonic_sms'}</field>
+            <field name="view_id" ref="eg_msg_base.post_sms_wizard_form_view"/>
+        </record>
+
+        <menuitem name="Unifonic Post SMS" id="menu_unifonic_post_sms_wizard" action="launch_unifonic_post_sms_wizard"
+                  parent="eg_msg_base.multiple_instance_menu"/>
+
+    </data>
+</odoo>

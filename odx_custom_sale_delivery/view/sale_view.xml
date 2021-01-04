@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_order_form_payment_id" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!--                <xpath expr="/form" position="attributes">-->
+                <!--                    <attribute name="edit">false</attribute>-->
+                <!--                </xpath>-->
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="payments_widget" colspan="2" nolabel="1" widget="payment"/>
+                </xpath>
+                <xpath expr="//field[@name='client_order_ref']" position="after">
+                    <field name="order_confirmation"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="is_auto_payment"/>
+                    <field name="payment_method_id"
+                           attrs="{'invisible':[('is_auto_payment','!=',True)],'required':[('is_auto_payment','=',True)]}"/>
+                    <field name="account_payment_id" attrs="{'invisible':[('is_auto_payment','!=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_order_form_magento" model="ir.ui.view">
+            <field name="model">magento.payment.method</field>
+            <field name="inherit_id" ref="eg_odoo_magento_connect_extended.magento_payment_method_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='charges']" position="after">
+                    <field name="english_name"/>
+                    <field name="is_auto_payment"/>
+                    <field name="payment_method_id"
+                           attrs="{'invisible':[('is_auto_payment','!=',True)],'required':[('is_auto_payment','=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="edit_button_access">
+            <field name="name">edit_button</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="groups_id"
+                   eval="[(4,ref('odx_custom_sale_delivery.group_edit_sale'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form" position="attributes">
+                    <attribute name="edit">false</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+

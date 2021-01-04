@@ -1,0 +1,50 @@
+<odoo>
+    <record model="ir.ui.view" id="paytabs_configuration_tree_view">
+        <field name="name">paytabs.configuration.tree.view</field>
+        <field name="model">paytabs.configuration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="paytabs_configuration_form_view">
+        <field name="name">paytabs.configuration.form.view</field>
+        <field name="model">paytabs.configuration</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                    <separator string="Account Settings"/>
+                    <group>
+                        <group>
+                            <field name="email"/>
+                            <field name="secret_key"/>
+                        </group>
+                        <group>
+                            <field name="site_url"/>
+                            <field name="return_url"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_paytabs_configuration">
+        <field name="name">Paytabs Configuration</field>
+        <field name="res_model">paytabs.configuration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Paytabs Configuration" action="action_paytabs_configuration"
+              id="menu_payment_configuration" parent="sale.menu_sale_config"/>
+</odoo>

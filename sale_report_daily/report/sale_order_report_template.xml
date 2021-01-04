@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="report_action_to_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+
+                    <br>
+                        <h3><center><span t-esc="report_name"/></center></h3>
+                        <h3><span t-esc="report_date"/></h3>
+
+                    </br>
+                    <div t-if="list_of_qoutation" class="page">
+
+                        <br><h3><center><u>Quotations</u></center></h3></br>
+
+                        <table name="qoutation_table" class="table table-bordered mb64">
+                            <tr>
+                                         <th class="text-right"><center>Order Number</center></th>
+                                        <th class="text-right"><center>Order Date</center></th>
+                                       <th class="text-right"><center>Customer</center></th>
+                                        <th class="text-right"><center>Sales Person</center></th>
+                                        <th class="text-right"><center>Total</center></th>
+                                        <!--<th class="text-right"><center>Invoice Status</center></th>-->
+                            </tr>
+                                       <tr t-foreach="list_of_qoutation" t-as="dat">
+
+                                         <td><center><span t-esc="dat.get('order')"/></center></td>
+                                         <td><center><span t-esc="dat.get('date')"/></center></td>
+                                         <td><center><span t-esc="dat.get('customer')"/></center></td>
+                                        <td><center><span t-esc="dat.get('salesperson')"/></center></td>
+                                        <td><center><span t-esc="dat.get('total')"/></center></td>
+                                         <!--<td><center><span t-esc="dat.get('status')"/></center></td>-->
+
+                                     </tr>
+
+
+                        </table>
+                    </div>
+                    <div t-if="list_of_sale_order" class="page">
+                        <br><h3><center><u>Sale Orders</u></center></h3></br>
+                        <table name="sale_order_table" class="table table-bordered mb64">
+                            <tr>
+                                         <th class="text-right"><center>Order Number</center></th>
+                                        <th class="text-right"><center>Order Date</center></th>
+                                       <th class="text-right"><center>Customer</center></th>
+                                        <th class="text-right"><center>Sales Person</center></th>
+                                        <th class="text-right"><center>Total</center></th>
+                                        <th class="text-right"><center>Sale Confirm Delay</center></th>
+                                         <th class="text-right"><center>Delivery Confirm Delay</center></th>
+                            </tr>
+                                       <tr t-foreach="list_of_sale_order" t-as="dat">
+
+                                         <td><center><span t-esc="dat.get('order')"/></center></td>
+                                         <td><center><span t-esc="dat.get('date')"/></center></td>
+                                         <td><center><span t-esc="dat.get('customer')"/></center></td>
+                                        <td><center><span t-esc="dat.get('salesperson')"/></center></td>
+                                        <td><center><span t-esc="dat.get('total')"/></center></td>
+                                         <td><center><span t-esc="dat.get('waiting_time')"/></center></td>
+                                           <td><center><span t-esc="dat.get('waiting_time_delivery')"/></center></td>
+
+
+                                     </tr>
+
+
+                        </table>
+                    </div>
+                </t>
+                </t>
+        </template>
+    </data>
+</odoo>

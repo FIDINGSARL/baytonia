@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data>
+
+    <record id="stock_picking_view_form_inherit_barcode_button_eg" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.barcode.button.eg</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_validate']" position="attributes">
+                <attribute name="barcode_trigger">validate</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</data></odoo>

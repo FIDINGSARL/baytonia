@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="view_picking_form_transfer_note" model="ir.ui.view">
+            <field name="name">stock.picking.form.transfer.note</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field eval="12" name="priority"/>
+            <field name="arch" type="xml">
+                <field name="priority" position="after">
+                    <field name="transfer_note"/>
+                </field>
+            </field>
+        </record>
+        <record id="transfer_note_vpicktree" model="ir.ui.view">
+            <field name="name">stock.picking.tree.transfer.note</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+
+                <field name="origin" position="after">
+                    <field name="transfer_note"/>
+                    <!--                    <button icon="fa fa-comment" name="view_transfer_note" type="object" string="View Note"-->
+                    <!--                            class="btn-link" attrs="{'invisible': [('transfer_note', 'in', [False,''])]}"-->
+                    <!--                            context="{'picking_id':id}"/>-->
+
+                </field>
+
+            </field>
+        </record>
+    </data>
+</odoo>

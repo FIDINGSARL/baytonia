@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="sale_order_msg_field" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="msg_body" invisible="1" placeholder="you can use $name$ for customer name and
+                     $order_number$ for order reference"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

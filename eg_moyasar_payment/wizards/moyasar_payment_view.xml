@@ -1,0 +1,55 @@
+<odoo>
+    <record model="ir.ui.view" id="moyasar_payment_form_view">
+        <field name="name">moyasar.payment.form.view</field>
+        <field name="model">moyasar.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="partner_id"
+                           domain="['|',('parent_id', '=', sale_partner_id), ('id', '=', sale_partner_id)]"/>
+                    <field name="sale_partner_id" invisible="1"/>
+                    <field name="phone" required="1"/>
+                    <field name="total_amount" required="1"/>
+                    <field name="message" required="1"/>
+                    <field name="moyasar_config_id" required="1"/>
+                </group>
+                <footer>
+                    <button name="generate_and_send_payment_url" string="Send URL SMS"
+                            type="object" class="oe_highlight" context="{'sms': 'yes'}"/>
+                    <button name="generate_and_send_payment_url" string="Send URL Whatsapp"
+                            type="object" class="oe_highlight" context="{'whatsapp': 'yes'}"/>
+                    <button name="generate_and_send_payment_url" string="Copy"
+                            type="object" class="oe_highlight" context="{'copy': 'yes'}"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_moyasar_payment">
+        <field name="name">Moyasar Payment</field>
+        <field name="res_model">moyasar.payment</field>
+        <field name="view_id" ref="moyasar_payment_form_view"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record model="ir.ui.view" id="moyasar_payment_new_form_view">
+        <field name="name">moyasar.payment.new.form.view</field>
+        <field name="model">moyasar.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <h5>URL Send Successfully</h5>
+                </group>
+                <footer>
+                    <button string="Close" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_moyasar_payment_new">
+        <field name="name">Moyasar Payment</field>
+        <field name="res_model">moyasar.payment</field>
+        <field name="view_id" ref="moyasar_payment_new_form_view"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

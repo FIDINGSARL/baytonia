@@ -1,0 +1,13 @@
+<odoo>
+    <template id="invoice_report_inherited" inherit_id="account.report_invoice_document_with_payments">
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="before">
+            <th>SKU</th>
+        </xpath>
+
+        <xpath expr="//tbody[@class='invoice_tbody']/tr/td[1]" position="before">
+            <td>
+                <span t-field="l.product_id.default_code"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

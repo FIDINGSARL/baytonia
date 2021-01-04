@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_saee_remove_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.smsa.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="kasper_saee.view_order_form_inherit_smsa_fl"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='saee_check_delivery_status']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_delivery_smsa_remove_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.smsafl.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="smsa_delivery.view_order_form_inherit_smsa_fl"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='smsa_check_delivery_status']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_delivery_vaal_remove_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.smsafl.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="vaal_delivery.view_order_form_inherit_smsa_fl"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='vaal_check_delivery_status']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_picking_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.inherit.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_dest_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="consignment_form_stock_picking_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.inherit.consignment.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="odoo_consignment_process.consignment_form_stock_picking"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_consignment']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="eg_vendor_form_stock_picking_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.inherit.eg_vendor.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="eg_vendor_in_do.stock_picking_new_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="odoo_magento_connect_view_picking_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.inherit.magneto.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="odoo_magento_connect.odoo_magento_connect_view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='magento_shipment']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

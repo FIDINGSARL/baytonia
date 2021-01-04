@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_cancel_sale_order_wizard" model="ir.ui.view">
+        <field name="name">cancel.sale.order.wizard</field>
+        <field name="model">sale.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order">
+                <p>
+                    <b style="color:Red;">Are you sure you want to cancel the selected sale orders?</b>
+                </p>
+                <footer>
+                    <button name="cancel_quotation_order" string="Cancel Sale Order" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_confirm_sale_order_wizard" model="ir.ui.view">
+        <field name="name">confirm.sale.order.wizard</field>
+        <field name="model">sale.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order">
+                <p>
+                    <b style="color:Green;">Are you sure you want to confirm the selected sale orders?</b>
+                </p>
+                <footer>
+                    <button name="confirm_sale_order" string="Confirm Sale Order" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window name="❌Quotation Cancel❌" res_model="sale.order.wizard"
+                src_model="sale.order" view_mode="form" view_type="form"
+                target="new" multi="True" key2="client_action_multi"
+                id="action_cancel_quotation_order_wizard"
+                view_id="view_cancel_sale_order_wizard"
+    />
+
+    <act_window name="✔️Confirm Sale Order✔️" res_model="sale.order.wizard"
+                src_model="sale.order" view_mode="form" view_type="form"
+                target="new" multi="True" key2="client_action_multi"
+                id="action_confirm_sale_order_wizard"
+                view_id="view_confirm_sale_order_wizard"
+    />
+</odoo>

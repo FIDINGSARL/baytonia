@@ -1,0 +1,29 @@
+<odoo>
+    <record model="ir.ui.view" id="set_user_do_form_view">
+        <field name="name">set.user.do.form.view</field>
+        <field name="model">set.user.do</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="stock_picking_ids" domain="[('picking_type_code', '=', 'outgoing')]"
+                               context="{'search_default_group_responsible': 1}"/>
+                        <field name="user_id"/>
+                    </group>
+                    <footer>
+                        <button name="set_user_do" type="object" string="Set User"
+                                class="oe_highlight"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="set_user_do_action">
+        <field name="name">Responsible for DO</field>
+        <field name="res_model">set.user.do</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem name="Responsible for DO" id="set_user_do_menu" action="set_user_do_action"
+              parent="stock.menu_stock_inventory_control" groups="eg_do_user_assignment.set_user_do_group"/>
+</odoo>

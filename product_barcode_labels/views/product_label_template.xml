@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <template id="product_label_sale_desc_temp">
+            <div>
+                <t t-if="rec.description_sale">
+                    <t t-if="len(rec.description_sale) &gt; 300" t-esc="rec.description_sale[:300]+'...'"/>
+                    <t t-if="len(rec.description_sale) &lt; 301" t-esc="rec.description_sale"/>
+                </t>
+            </div>
+            <br/>
+        </template>
+
+        <template id="product_label_pic_desc_temp">
+            <div>
+                <t t-if="rec.description_picking">
+                    <t t-if="len(rec.description_picking) &gt; 300" t-esc="rec.description_picking[:300]+'...'"/>
+                    <t t-if="len(rec.description_picking) &lt; 301" t-esc="rec.description_picking"/>
+                </t>
+            </div>
+            <br/>
+        </template>
+
+        <template id="product_label_barcode_temp">
+            <div>
+                <t t-if="c_line.human_readable">
+                    <center><img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1' % (l_config.barcode_type, rec.barcode, 3000, 1000)" t-att-style="'width:200px;height:60px;' if c_line.pdf_type == 'small' else 'width:350px;height:90px;'"/></center>
+                </t>
+                <t t-if="not c_line.human_readable">
+                    <center><img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=0' % (l_config.barcode_type, rec.barcode, 3000, 1000)" t-att-style="'width:200px;height:60px;' if c_line.pdf_type == 'small' else 'width:350px;height:90px;'"/></center>
+                </t>
+            </div>
+        </template>
+
+        <template id="product_label_data_temp">
+            <style>
+                .text-fix1{
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            </style>
+            <div t-if="c_line.weight and rec.weight" class="row">
+                <span class="col-xs-5"><strong>Gross weight: </strong></span>
+                <span class="col-xs-7" style="padding: 0px;"><t t-esc="'%.2f'%(rec.weight)"/> <t t-esc="rec.uom_id.name"/></span>
+            </div>
+            <div t-if="c_line.batch_no and rec.batch_no" class="row">
+                <span class="col-xs-5"><strong>Batch N°: </strong></span>
+                <div class="col-xs-7 text-fix1" style="padding: 0px;"><t t-esc="rec.batch_no"/></div>
+            </div>
+            <div t-if="c_line.expiry_date and rec.expiry_date" class="row">
+                <span class="col-xs-5"><strong>Expiry date: </strong></span>
+                <span class="col-xs-7" style="padding: 0px;"><span t-field="rec.expiry_date" t-options ='{"format": "dd/MM/yyyy"}'/></span>
+            </div>
+            <div t-if="c_line.price and c_line.currency" class="row">
+                <span class="col-xs-5"><strong>Price: </strong></span>
+                <span class="text-fix1 text-center" t-field="rec.with_context(pricelist=c_line.pricelist_id.id).price" style="white-space: nowrap;" t-options='{
+                       "widget": "monetary",
+                       "display_currency": c_line.pricelist_id.currency_id,
+                   }'/>
+            </div>
+            <div t-if="c_line.price and not c_line.currency" class="row">
+                <span class="col-xs-5"><strong>Price: </strong></span>
+                <span class="text-fix1 text-center" t-field="rec.lst_price"/>
+            </div>
+        </template>
+
+        <template id="product_label_report_template1">
+    		<t t-call="web.basic_layout">
+                <t t-set="l_config" t-value="docs._context['label_config']"/>
+                <t t-foreach="docs" t-as="rec">
+                    <t t-foreach="l_config.label_layout_ids" t-as="c_line">
+                        <div class="page">
+                            <style>
+                                .border {
+                                    border: 1px solid black;
+                                }
+                                .border-bottom-0 {
+                                    border-bottom: 0!important;
+                                }
+                                .border-top-0 {
+                                    border-top: 0!important;
+                                }
+                                .border-left-0 {
+                                    border-left: 0!important;
+                                }
+                                .border-right-0 {
+                                    border-right: 0!important;
+                                }
+                                .text-fix1{
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                }
+                                .img-container1{
+                                    height: 450px;
+                                    padding: 5px;
+                                    text-align: center;
+                                }
+                                .img-container1:before {
+                                    content: ' ';
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                    height: 100%;
+                                }
+                                .img-div1{
+                                    max-height: 100%;
+                                    max-width: 90%;
+                                    border-radius: 4px;
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                }
+                                .img-container2{
+                                    height: 300px;
+                                    text-align: center;
+                                }
+                                .img-container2:before {
+                                    content: ' ';
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                    height: 100%;
+                                }
+                                .img-div2{
+                                    max-height: 300px;
+                                    max-width: 90%;
+                                    border-radius: 4px;
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                }
+                            </style>
+                            <div t-att-style="'width:'+str(c_line.width)+'px;height:'+str(c_line.height)+'px;background-color:white;margin:auto;margin-top:50px;font-size:medium;'">
+                                <div class="row border" style="padding: 10px;background-color:white;">
+                                    <div class="col-xs-10 col-xs-offset-1">
+                                        <div class="text-center text-fix1" style="font-size:x-large;font-weight: 700;">
+                                            <t t-esc="rec.name"/>
+                                        </div>
+                                        <div t-if="c_line.default_code and rec.default_code" class="text-center text-fix1" style="font-size:large;">
+                                            <t t-esc="rec.default_code"/>
+                                        </div>
+                                        <!-- <div t-if="c_line.attributes and rec.default_code" class="text-center text-fix1" style="font-size:large;font-weight: 700;margin-left:30px;margin-right:30px;">
+                                            <t t-esc="rec.default_code"/>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div t-if="l_config.orientation == 'Landscape'" class="row border border-top-0 lan" style="background-color:white;padding: 25px;">
+                                    <div t-if="c_line.image" class="col-xs-6 img-container1">
+                                        <img t-attf-src="/web/image/product.product/#{rec.id}/image" class="img-div1" t-att-alt="rec.name" title="Product"/>
+                                    </div>
+                                    <div t-if="c_line.pdf_type != 'small'" class="col-xs-6" style="padding-top: 10px;">
+                                        <t t-if="c_line.description_sale" t-call="product_barcode_labels.product_label_sale_desc_temp"/>
+                                        <t t-if="c_line.description_pick" t-call="product_barcode_labels.product_label_pic_desc_temp"/>
+                                        <div t-if="c_line.pdf_type == 'large'">
+                                            <div style="height:130px;">
+                                                <div style="width:300px;float:left;">
+                                                    <t t-call="product_barcode_labels.product_label_data_temp"/>
+                                                </div>
+                                            </div>
+                                            <t t-call="product_barcode_labels.product_label_barcode_temp"/>
+                                        </div>
+                                    </div>
+                                    <div t-if="c_line.pdf_type != 'large'" class="col-xs-6" style="padding-top: 10px;">
+                                        <div style="height:130px;" class="l_data">
+                                            <div style="width:300px;float:left;">
+                                                <t t-call="product_barcode_labels.product_label_data_temp"/>
+                                            </div>
+                                        </div>
+                                        <div t-if="c_line.pdf_type == 'medium'">
+                                            <t t-call="product_barcode_labels.product_label_barcode_temp"/>
+                                        </div>
+                                    </div>
+                                    <div t-if="c_line.pdf_type == 'small'" class="col-xs-6" style="padding-top: 30px;">
+                                        <t t-call="product_barcode_labels.product_label_barcode_temp"/>
+                                    </div>
+                                </div>
+                                <div t-if="l_config.orientation == 'Portrait'" class="row border border-top-0" style="background-color:white;padding: 25px;">
+                                    <div t-if="c_line.image" class="img-container2" style="padding: 10px;">
+                                        <img t-attf-src="/web/image/product.product/#{rec.id}/image" class="img-div2" t-att-alt="rec.name" title="Product"/>
+                                    </div>
+                                    <div style="padding: 10px;">
+                                        <t t-if="c_line.description_sale" t-call="product_barcode_labels.product_label_sale_desc_temp"/>
+                                        <t t-if="c_line.description_pick" t-call="product_barcode_labels.product_label_pic_desc_temp"/>
+                                        <div style="height:130px;">
+                                            <div style="width:300px;float:left;">
+                                                <t t-call="product_barcode_labels.product_label_data_temp"/>
+                                            </div>
+                                        </div>
+                                        <t t-call="product_barcode_labels.product_label_barcode_temp"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="page-break-before:always;"> </p>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record model="ir.actions.server" id="product_label_server_action">
+            <field name="name">Generate Labels</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="model_product_product"/>
+            <field name="binding_model_id" ref="model_product_product"/>
+            <field name="code">
+                action = records.get_product_labels()
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_tracking_line,access_delivery_tracking_line_user,model_delivery_tracking_line,stock.group_stock_user,1,1,1,1
+access_delivery_carrier_status_manager,access_delivery_carrier_status_manager,model_delivery_carrier_status,stock.group_stock_manager,1,1,1,1
+access_delivery_carrier_status_user,access_delivery_carrier_status_user,model_delivery_carrier_status,stock.group_stock_user,1,1,1,0

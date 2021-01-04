@@ -1,0 +1,41 @@
+<odoo>
+    <record model="ir.ui.view" id="number_list_tree_view">
+        <field name="name">number.list.tree.view</field>
+        <field name="model">number.list</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="number"/>
+                <field name="calling_code_id"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="number_list_form_view">
+        <field name="name">number.list.tree.view</field>
+        <field name="model">number.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="group_msg_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <label string="Number"/>
+                        <div>
+                            <field name="calling_code_id" class="oe_inline"/>
+                            <field name="number" class="oe_inline"/>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="number_list_action">
+        <field name="name">Number List</field>
+        <field name="res_model">number.list</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

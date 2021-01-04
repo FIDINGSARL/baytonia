@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_picking_form_return_delivery" model="ir.ui.view">
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="is_return_do" invisible="1"/>
+                </xpath>
+                <xpath expr="//button[@name='button_validate']" position="after">
+                    <button name="return_delivery" string="Failed Order" type="object" class="oe_highlight" attrs="{'invisible': [('is_return_do', '=', True)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="attributes">
+                <attribute name="groups">odx_delivery_return.group_returns</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

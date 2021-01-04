@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_delivery_company_report_eg_form" model="ir.ui.view">
+        <field name="name">delivery.company.report.wizard.form</field>
+        <field name="model">delivery.company.report.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Shipment Manifest">
+                <field name="delivery_report_printed" invisible="1"/>
+
+                <group attrs="{'invisible':[('delivery_report_printed','=',True)]}">
+                    <field name="delivery_carrier"/>
+                </group>
+                <group col="4" attrs="{'invisible':[('delivery_report_printed','=',True)]}">
+                    <field name="date_from" required="1"/>
+                    <field name="date_to" required="1"/>
+                </group>
+                <group attrs="{'invisible':[('delivery_report_printed','=',False)]}">
+                    <field name="file_name" invisible="1"/>
+                    <field name="delivery_report_file" readonly="1" filename="file_name"/>
+                </group>
+                <footer>
+                    <button string='Print' name="action_delivery_report_eg"
+                            type="object" class="btn-primary"
+                            attrs="{'invisible':[('delivery_report_printed','=',True)]}"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_delivery_company_report_eg" model="ir.actions.act_window">
+        <field name="name">Shipment Manifest</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">delivery.company.report.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="menu_delivery_company_report_report" action="action_delivery_company_report_eg"
+              sequence="205" parent="stock.menu_warehouse_report"/>
+     <menuitem id="menu_delivery_company_report_report_bigboss" action="action_delivery_company_report_eg"
+              sequence="205" parent="eg_bigboss_toolbox.inventory_report_menu"/>
+
+
+</odoo>

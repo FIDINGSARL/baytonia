@@ -1,0 +1,23 @@
+<odoo>
+    <record model="ir.ui.view" id="cancel_warning_wizard_form_view">
+        <field name="name">cancel.warning.wizard.form.view</field>
+        <field name="model">cancel.warning.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <h3>Are you sure you want to cancel this order ?</h3>
+                </group>
+                <footer>
+                    <button name="cancel_order_warning" string="Yes" type="object" class="oe_highlight"/>
+                    <button string="No" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_cancel_warning_wizard" model="ir.actions.act_window">
+        <field name="name">Cancel</field>
+        <field name="res_model">cancel.warning.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

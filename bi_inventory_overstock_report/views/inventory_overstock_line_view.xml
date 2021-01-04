@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_inventory_overstock_line_tree" model="ir.ui.view">
+        <field name="name">inventory.overstock.line.tree</field>
+        <field name="model">inventory.overstock.line</field>
+        <field name="arch" type="xml">
+            <tree string="Inventory Overstock Lines" create="false" edit="false" editable="bottom">
+                <field name="product_id" readonly="1"/>
+                <field name="image_small" widget="image" class="o_image_40_cover" readonly="1"/>
+                <field name="qty_available" readonly="1"/>
+                <field name="incoming_qty" readonly="1"/>
+                <field name="outgoing_qty" readonly="1"/>
+                <field name="on_hand_qty" readonly="1"/>
+                 <field name="sales_count" readonly="1"/>
+                <field name="avg_daily_sale" readonly="1"/>
+                 <field name="recent_purchase_date" readonly="1"/>
+                <field name="recent_purchase_qty" readonly="1"/>
+                 <field name="recent_purchase_cost" readonly="1"/>
+                 <field name="vendor" readonly="1"/>
+                 <field name="stock_coverage" readonly="1"/>
+                <field name="expected_stock" readonly="1"/>
+                <field name="overstock_qty" readonly="1" sum="Total Overstock Qty"/>
+                <field name="overstock_value" readonly="1" sum="Overstock Value"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_inventory_overstock_line" model="ir.actions.act_window">
+        <field name="name">Inventory Overstock Report</field>
+        <field name="res_model">inventory.overstock.line</field>
+        <field name="context">{}</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_inventory_overstock_line_tree"/>
+        <field name="target">current</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,5 @@
+<odoo>
+    <record model="res.groups" id="set_user_do_group">
+        <field name="name">Assign user to DO</field>
+    </record>
+</odoo>

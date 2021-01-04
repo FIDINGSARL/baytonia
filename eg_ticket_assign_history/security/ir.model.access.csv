@@ -1,0 +1,2 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+ticket_assign_history_user,ticket.assign.history.user,model_ticket_assign_history,,1,1,1,0

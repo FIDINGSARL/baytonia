@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="wizard_send_to_shipper_add_supplier">
+            <field name="name">wizard.send.to.shipper.add.supplier</field>
+            <field name="model">wizard.send.to.shipper</field>
+            <field name="inherit_id" ref="eg_send_to_shipper.wizard_view_wizard_send_to_shipper"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]" position="before">
+                    <field name="supplier_ids" readonly="1">
+                        <tree string="Vendors">
+                            <field name="product_tmpl_id"/>
+                            <field name="product_id"/>
+                            <field name="note"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

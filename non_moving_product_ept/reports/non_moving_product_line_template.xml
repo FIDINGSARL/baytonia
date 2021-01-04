@@ -1,0 +1,129 @@
+<odoo>
+    <data>
+        <template id="non_moving_product_line_report">
+            <t t-call="web.internal_layout">
+
+                <div class="page">
+                    <h1 style="text-align: center;">Non Moving Products Report</h1>
+                    <div class="col-xs-3 pull-left">
+                        <div>
+                            <span style="font-size: 18px;">Start Date -
+                                <span t-field="docs[0].start_date"/>
+                            </span>
+                            <br/>
+                            <span style="font-size: 18px;">End Date -
+                                <span t-field="docs[0].end_date"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 pull-right">
+                        <div>
+                            <span style="font-size: 18px;">
+                                Warehouse -
+                                <span t-field="docs[0].warehouse_id"/>
+                            </span>
+                        </div>
+                    </div>
+                    <table class="table table-condensed" name="worksheet_details">
+
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Image</th>
+                                <th>Available Qty</th>
+                                <th>Rack Location</th>
+                                <!--                                <th>Last Sale Date</th>-->
+                                <th>Duration from Last sale(In Days)</th>
+                                <th>Days (Last Purchase Date)</th>
+                                <!--                                <th>Last Purchase Date</th>-->
+                                <!--                                <th>Unit Cost</th>-->
+                                <th>Total Cost</th>
+                                <!--                                <th>Sales Price</th>-->
+                                <th>Total Sales Price</th>
+                                <th>Sales Of Duration</th>
+                                <th>Total Sales</th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="docs" t-as="o">
+                            <tbody class="commission_worksheet_body">
+                                <td>
+                                    <span t-field="o.product_id"/>
+                                </td>
+                                <td style="height:20px !important;width:20px !important;">
+                                    <span t-field="o.product_id.image_small" t-options='{"widget": "image"}'/>
+                                </td>
+                                <td>
+                                    <span t-field="o.qty_available"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.rack_location"/>
+                                </td>
+<!--                                <td>-->
+<!--                                    <span t-field="o.last_sale_date"/>-->
+<!--                                </td>-->
+                                <td>
+                                    <span t-field="o.last_day_oldest"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.days_lpd"/>
+                                </td>
+<!--                                <td>-->
+<!--                                    <span t-field="o.last_purchase_date"/>-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <span t-field="o.cost_of_product"/>-->
+<!--                                </td>-->
+                                <td>
+                                    <span t-field="o.total_cost"/>
+                                </td>
+<!--                                <td>-->
+<!--                                    <span t-field="o.sales_price"/>-->
+<!--                                </td>-->
+                                <td>
+                                    <span t-field="o.total_sales_price"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.sales_of_duration"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.total_sales"/>
+                                </td>
+                            </tbody>
+                        </t>
+                    </table>
+                </div>
+
+            </t>
+        </template>
+    </data>
+
+    <!--    <template id="non_moving_multiple_report">-->
+    <!--        <t t-foreach="docs" t-as="o">-->
+    <!--            <t t-call="non_moving_product_ept.non_moving_product_line_report"/>-->
+    <!--        </t>-->
+    <!--    </template>-->
+    <record id="eg_paperformat_euro" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+    <report
+            id="main_non_moving_product_line_report"
+            model="non.moving.product.line"
+            string="Print Report"
+            report_type="qweb-pdf"
+            name="non_moving_product_ept.non_moving_product_line_report"
+            file="non_moving_product_ept.non_moving_product_line_report"
+            paperformat="non_moving_product_ept.eg_paperformat_euro"
+    />
+</odoo>

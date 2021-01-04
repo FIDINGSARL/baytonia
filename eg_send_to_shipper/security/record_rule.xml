@@ -1,0 +1,8 @@
+<odoo>
+    <record model="res.groups" id="send_to_shipper_manager">
+        <field name="name">Manual COD</field>
+    </record>
+     <record model="res.groups" id="send_to_shipper_restriction">
+        <field name="name">Restrict Shipping</field>
+    </record>
+</odoo>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- ################### INFOBIP history START ##################### -->
+		
+		<record id="view_infobip_sms_history_tree" model="ir.ui.view">
+            <field name="name">fl.infobip.sms.historytree</field>
+            <field name="model">fl.infobip.sms.history</field>
+            <field name="arch" type="xml">
+                <tree string="Infobip SMS" decoration-danger="state=='fail'" decoration-success="state=='sent'">
+                    <field name="send_to"/>
+                    <field name="send_body"/>
+                    <field name="create_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_infobip_sms_history_form" model="ir.ui.view">
+        	<field name="name">fl.infobip.sms.history.form</field>
+            <field name="model">fl.infobip.sms.history</field>
+            <field name="arch" type="xml">
+            	<form string="Infobip SMS">
+            		<header>
+	                    <button name="resend_sms" type="object" string="Re-send" class="oe_highlight" />
+	                    <field name="state" widget="statusbar" statusbar_visible=""/>
+	                </header>
+                	<sheet>
+	                    <group>
+	                    	<group>
+			                    <field name="send_to"/>
+			                    <field name="create_date"/>
+	                    	</group>
+	                    	<group>
+			                    <field name="send_body"/>
+	                    	</group>
+	                    </group>
+	                    <label for="api_response"/>
+	                    <field name="api_response"/>
+                	</sheet>
+           		</form>
+        	</field>
+		</record>
+		
+		<record id="view_sms_history_search" model="ir.ui.view">
+            <field name="name">fl.infobip.sms.history.search</field>
+            <field name="model">fl.infobip.sms.history</field>
+            <field name="arch" type="xml">
+                <search string="SMS History">
+                    <field name="send_to" filter_domain="[('send_to','ilike',self)]" string="Send To"/>
+                    <filter string="Draft" domain="[('state','=','draft')]"/>
+                    <filter string="Sent" domain="[('state','=','sent')]"/>
+                    <filter string="Rejected" domain="[('state','=','reject')]"/>
+                    <filter string="Failed" domain="[('state','=','fail')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Send To" domain="" context="{'group_by':'send_to'}"/>
+                        <filter string="State" domain="" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+		
+		<record id="action_infobip_sms_history" model="ir.actions.act_window">
+            <field name="name">Infobip SMS History</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fl.infobip.sms.history</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_sms_history_search"/>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                </p>
+            </field>
+        </record>
+        
+        
+        <menuitem id="menu_action_infobip_sms_history" name="SMS History" action="action_infobip_sms_history"
+        	parent="menu_action_infobip_sms" sequence="1"/>
+		
+		<!-- ###################  INFOBIP history END ##################### -->
+		
+	</data>
+</odoo>

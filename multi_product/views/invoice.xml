@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="account_invoice_view_inherit">
+        <field name="name">account.invoice.view.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/field[@name='invoice_line_ids']" position="before">
+                <button name="%(multi_product_wizard_action)d" type="action" string="Add Multi Products"
+                         attrs="{'invisible': [('state', '!=', 'draft')]}" class="oe_highlight" />
+            </xpath>
+        </field>
+    </record>
+
+	
+	<record model="ir.ui.view" id="account_invoice_supplier_view_inherit">
+        <field name="name">account.invoice.view.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/field[@name='invoice_line_ids']" position="before">
+                <button name="%(multi_product_wizard_action)d" type="action" string="Add Multi Products"
+                         attrs="{'invisible': [('state', '!=', 'draft')]}" class="oe_highlight" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

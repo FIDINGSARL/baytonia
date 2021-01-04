@@ -1,0 +1,32 @@
+<odoo>
+    <record model="ir.ui.view" id="sale_report_wizard_id">
+        <field name="name">sale.wizard.form</field>
+        <field name="model">sale.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sale Report">
+                <group>
+                    <field name="typesel"/>
+                </group>
+                <footer>
+                    <button name="button_print" type="object"
+                            string="Print" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <act_window id="launch_wizard"
+                name="Sale Report Print"
+                src_model="sale.report.wizard"
+                res_model="sale.report.wizard"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"/>
+
+    <menuitem id="menu_to_launch_wizard" action="launch_wizard" parent="sale.menu_sale_report"
+              sequence="100"/>
+    <menuitem id="menu_to_launch_wizard_bigboss" action="launch_wizard" parent="eg_bigboss_toolbox.sale_report_menu"
+              sequence="100"/>
+</odoo>

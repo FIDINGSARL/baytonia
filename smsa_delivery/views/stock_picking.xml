@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form_inherit_smsa_fl" model="ir.ui.view">
+            <field name="name">view.order.form.inherit.smsa.fl</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='send_to_shipper']" position="before">
+                    <button name="smsa_check_delivery_status" type="object"
+                            string="SMSA Delivery Status" class="oe_highlight"
+                            attrs="{'invisible':['|',('carrier_tracking_ref','=',False),('state','!=','done')]}"
+                            groups=""/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

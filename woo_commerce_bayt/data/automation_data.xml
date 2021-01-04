@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--<record id="auto_complete_woo_order" model="base.automation">-->
+        <!--<field name="name">Auto Complete Woo order</field>-->
+        <!--<field name="model_id" ref="sale.model_sale_order"/>-->
+        <!--<field name="state">code</field>-->
+        <!--<field name="code" eval="'record.complete_order_in_woo()'"/>-->
+        <!--<field name="trigger">on_write</field>-->
+        <!--<field name="active" eval="True"/>-->
+        <!--<field name="filter_pre_domain">[('picking_done', '=', False)]</field>-->
+        <!--<field name="filter_domain">[('picking_done', '=', True)]</field>-->
+    <!--</record>-->
+</odoo>

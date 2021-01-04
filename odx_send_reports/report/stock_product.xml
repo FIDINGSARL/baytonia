@@ -1,0 +1,75 @@
+<odoo>
+    <template id="stock_product_template">
+        <t t-set="data_report_dpi" t-value="300"/>
+        <t t-call="web.external_layout">
+            <t class="page">
+                <center>
+                    <h3>
+                        <strong>List Of Stock Product</strong>
+                    </h3>
+                </center>
+                <br/>
+                <center>
+                    <h3>
+                        <strong><span t-esc="date"/></strong>
+                    </h3>
+                </center>
+                <br/>
+
+                <table width="100%" class="table table-bordered mt32">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Serial No</th>
+                            <th class="text-center">Image</th>
+                            <th class="text-center">Product Name</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Make to Order</th>
+                            <th class="text-center">Sale Price</th>
+                            <th class="text-center">Cost Price</th>
+                            <th class="text-center">Forcasted Profit</th>
+                            <th class="text-center">Sale Qty</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data" t-as="result">
+                            <td class="text-center">
+                                <span t-esc="result.get('serial_no')"/>
+                            </td>
+                            <td>
+                                <span t-if="result.get('image')" t-esc="result['image']" t-options='{"widget": "image"}'/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="result.get('product_name')"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="result.get('qoh')"/>
+                            </td>
+                            <td>
+                                <span t-esc="result.get('make_to_order')"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="result.get('lstprice')"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="result.get('std_price')"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="result.get('profit')"/>
+                            </td>
+                            <td>
+                                <span t-esc="result.get('forcasted_profit')"/>
+                            </td>
+
+                            <td class="text-center">
+                                <span t-esc="result.get('sale_qty')"/>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </t>
+        </t>
+    </template>
+</odoo>

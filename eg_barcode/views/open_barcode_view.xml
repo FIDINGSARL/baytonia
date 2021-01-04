@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="from_open_record" model="ir.ui.view">
+        <field name="name">open.record.form</field>
+        <field name="model">open.record</field>
+        <field name="arch" type="xml">
+            <form string="Barcode">
+                <sheet>
+                    <h1>Scan Barcode to open Record</h1>
+                    <field name="_barcode_scanned" widget="barcode_handler" invisible="True"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_eg_open_record" model="ir.actions.act_window">
+        <field name="name">Picking Barcode</field>
+        <field name="res_model">open.record</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem name="Scan Barcode" parent="main_menu_eg_barcode"
+              id="menu_eg_open_record" action="action_eg_open_record" sequence="1"/>
+</odoo>

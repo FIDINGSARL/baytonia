@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <!--Send To Ship Wizard View -->
+        <record id="wizard_view_wizard_send_to_shipper" model="ir.ui.view">
+            <field name="name">send to shipper eg wizard</field>
+            <field name="model">wizard.send.to.shipper</field>
+            <field name="arch" type="xml">
+                <form string="Send To shipper Wizard">
+                    <group>
+                        <field name="picking_carrier_id" readonly="1" class="alert-danger" style="width: 100%;height: 30px;font-size: 27px;color:red;"/>
+                        <field name="partner_id" readonly="1" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                        <field name="carrier_id"/>
+                        <field name="cod_amount" attrs="{'invisible': [('invisible_cod', '=', False)]}"/>
+                        <field name="invisible_cod" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button string="Send To Shipper" type="object" name="send_to_ship"
+                                class="oe_highlight" context="{'button':True}"/>
+                        <button string="_Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--Send To Ship Wizard Action -->
+        <record id="wizard_action_wizard_send_to_shipper" model="ir.actions.act_window">
+            <field name="name">Carrier selection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.send.to.shipper</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="wizard_view_wizard_send_to_shipper"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

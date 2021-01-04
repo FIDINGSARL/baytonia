@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_stock_picking_status_form" model="ir.ui.view">
+        <field name="name">stock.picking.status.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="delivery_status_id" options='{"no_create": 1, "no_create_edit": 1}'/>
+            </field>
+        </field>
+    </record>
+</odoo>

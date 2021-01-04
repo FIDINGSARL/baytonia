@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ticket_timeline,access_ticket.timeline,model_ticket_timeline,,1,1,1,0
+access_ticket_category_path,access_ticket.category.path,model_ticket_category_path,,1,1,1,0
+access_user_state,access_user.state,model_user_state,,1,1,1,0

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="view_res_users_inherit_form" model="ir.ui.view">
+      <field name="name">view.res.users.inherit.detail.form</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_form" />
+      <field name="arch" type="xml">
+
+        <xpath expr="//sheet/div/button" position="before">
+          <button name="toggle_is_delivery_boy" type="object" class="oe_stat_button" icon="fa-male">
+            <field
+              name="is_delivery_boy"
+              widget="boolean_button"
+              options="{'terminology': {
+                'string_true': 'Delivery Boy',
+                'hover_true': 'Deactivate',
+                'string_false': 'Inactive',
+                'hover_false': 'Delivery Boy'
+             }}"/>
+          </button>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<record id="view_report_top_growing_product_report_ept_search"
+			model="ir.ui.view">
+			<field name="name">report.top.growing.product.ept.search</field>
+			<field name="model">report.top.growing.product.ept</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Top Growing Product Reports">
+					<field name="product_id" />
+					<field name="total_sale" />
+					<field name="categ_id" />
+					<group expand="0" string="Group By...">
+						<filter string="Product" name="product_id" context="{'group_by':'product_id'}" />
+						<filter string="Sale Order" name="total_sale"
+							context="{'group_by':'total_sale'}" />
+						<filter string="Category" name="categ_id" context="{'group_by':'categ_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Pivot View Section -->
+		<record id="view_report_top_growing_product_report_ept_pivot"
+			model="ir.ui.view">
+			<field name="name">report.top.growing.product.ept.pivot</field>
+			<field name="model">report.top.growing.product.ept</field>
+			<field name="arch" type="xml">
+				<pivot>
+					<field name="default_code" />
+					<field name="product_id" type="row" />
+					<field name="categ_id" />
+					<field name="average_sale_price" type="measure" />
+					<field name="average_cost_price" type="measure" />
+					<field name="current_stock" type="measure" />
+					<field name="total_sale" type="measure" />
+					<field name="total_purchase" type="measure" />
+					<field name="average_sale" type="measure" />
+					<field name="past_period_sales" type="measure"/>
+					<field name="current_period_sales" type="measure"/>
+					<field name="growth_ratio" type="measure" />
+				</pivot>
+			</field>
+		</record>
+
+		<!-- Tree View Section -->
+		<record id="view_report_top_growing_product_report_ept_tree"
+			model="ir.ui.view">
+			<field name="name">report.top.growing.product.ept.tree</field>
+			<field name="model">report.top.growing.product.ept</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree create="false">
+					<field name="default_code" />
+					<field name="product_id" />
+					<field name="categ_id" />
+					<field name="average_sale_price" />
+					<field name="average_cost_price" />
+					<field name="current_stock" />
+					<field name="total_sale" />
+					<field name="total_purchase" />
+					<field name="average_sale" />
+					<field name="past_period_sales" />
+					<field name="current_period_sales" />
+					<field name="growth_ratio" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Actions Section -->
+		<!-- <record id="action_report_top_growing_product_report_ept"
+			model="ir.actions.act_window">
+			<field name="name">Top Growing Product</field>
+			<field name="res_model">report.top.growing.product.ept</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">pivot,tree</field>
+			<field name="context">{'create': False}</field>
+			<field name="view_id" ref="view_report_top_growing_product_report_ept_pivot" />
+			<field name="search_view_id" ref="view_report_top_growing_product_report_ept_search" />
+			<field name="help">
+				Top Growing Products
+			</field>
+		</record> -->
+		
+		<record id="action_report_top_growing_product_report_ept" model="ir.actions.act_window">
+			<field name="name">Top Growing Product</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">top.growing.product.report.ept</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="context" eval="{'is_onscreen': True}"/>
+		</record>
+
+		<!-- Child Menus Section -->
+		<menuitem id="menu_report_top_growing_product_report_ept"
+			name="Top Growing Product" action="action_report_top_growing_product_report_ept"
+			parent="sale.menu_sale_report" sequence="4" />
+		<menuitem id="menu_report_top_growing_product_report_ept_bigboss"
+			name="Top Growing Product" action="action_report_top_growing_product_report_ept"
+			parent="eg_bigboss_toolbox.sale_report_menu" sequence="4" />
+	</data>
+</odoo>

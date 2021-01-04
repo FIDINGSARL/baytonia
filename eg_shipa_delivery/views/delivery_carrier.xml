@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_carrier_ups"
+            model="ir.ui.view">
+        <field name="name">delivery.carrier.ups</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='destination']" position='before'>
+                <page string="Configuration" name="UPS_configuration"
+                      attrs="{'invisible': [('delivery_type', '!=', 'shipa_delivery')]}">
+                    <group>
+                        <field name="shipa_payment_method"
+                               attrs="{'required': [('delivery_type', '=', 'shipa_delivery')]}"/>
+                        <field name="shipa_type_delivery"
+                               attrs="{'required': [('delivery_type', '=', 'shipa_delivery')]}"/>
+                        <field name="shipa_print_mode"
+                               attrs="{'required': [('delivery_type', '=', 'shipa_delivery')]}"/>
+                        <field name="shipa_print_template"
+                               attrs="{'required': [('delivery_type', '=', 'shipa_delivery')]}"/>
+                    </group>
+                </page>
+                <page string="Credential" name="Shipa_Dilivery_credential"
+                      attrs="{'invisible': [('delivery_type', '!=', 'shipa_delivery')]}"
+                      group='stock.group_stock_manager'>
+                    <group>
+                        <field name="shipa_prod_url"
+                               attrs="{'invisible':[('prod_environment','=',False)],'required':[('prod_environment','=',True)]}"/>
+                        <field name="shipa_test_url"
+                               attrs="{'invisible':[('prod_environment','=',True)],'required':[('prod_environment','=',False)]}"/>
+                        <field name="shipa_api_key"
+                               attrs="{'invisible': [('delivery_type', 'not in', ['shipa_delivery'])], 'required': [('delivery_type', '=', 'shipa_delivery')]}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

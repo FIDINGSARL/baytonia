@@ -1,0 +1,50 @@
+<odoo>
+    <record model="ir.ui.view" id="product_product_magento_form_view">
+        <field name="name">product.product.magento.form.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button" position="after">
+                <button name="get_product_media" type="object" string="Get Media" class="oe_highlight"/>
+                <button name="update_product_odoo_to_magento" type="object" string="Update to Magento"
+                        class="oe_highlight" context="{'update': True}"/>
+                <!--                <button name="update_back_order_magento" type="object" string="Update Back Order" class="oe_highlight"/>-->
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_magento_form_view">
+        <field name="name">product.magento.form.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[2]/div/div[1]" position="after">
+                <div>
+                    <field name="back_order"/>
+                    <label for="back_order"/>
+                </div>
+                <div>
+                    <field name="magento_publish"/>
+                    <label for="magento_publish"/>
+                </div>
+            </xpath>
+            <field name="default_code" position="after">
+                <field name="threshold_qty"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="action_update_qty_to_magento" model="ir.actions.server">
+        <field name="name">Update QTY to Magento</field>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_update_product_qty_to_magento()</field>
+    </record>
+    <record id="action_update_qty_and_status_to_magento" model="ir.actions.server">
+        <field name="name">Update to Magento</field>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="state">code</field>
+        <field name="code">action = records.update_product_odoo_to_magento()</field>
+    </record>
+</odoo>

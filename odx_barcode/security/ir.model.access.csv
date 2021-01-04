@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tracking_barcode,tracking.barcode,model_tracking_barcode,,1,1,1,1
+access_tracking_barcode_line,tracking.barcode.line,model_tracking_barcode_line,,1,1,1,1
+access_create_tracking_barcode,create.tracking.barcode,model_create_tracking_barcode,,1,1,1,1
+

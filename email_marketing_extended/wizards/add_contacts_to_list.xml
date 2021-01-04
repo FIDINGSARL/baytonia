@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="add_contacts_to_list_form" model="ir.ui.view">
+            <field name="name">add.contacts.to.list.form</field>
+            <field name="model">add.contacts.to.list</field>
+            <field name="arch" type="xml">
+                <form string="Update Contacts to Mailing List">
+                    <group>
+                        <field name="mailing_list_id"/>
+                        <field name="add_all_except_opt_out"/>
+                    </group>
+                    <field name="recipient_ids" attrs="{'invisible':[('add_all_except_opt_out','=',True)]}"/>
+                    <footer>
+                        <button name="add_to_mailing_list" string="Add to Mail List" type="object"
+                                class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_add_contacts_to_list" model="ir.actions.act_window">
+            <field name="name">Update Contacts to Mailing List</field>
+            <field name="res_model">add.contacts.to.list</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_add_to_mailing_list" name="Update Mailing List"
+                  parent="mass_mailing.mass_mailing_contact_menu" sequence="15" action="action_add_contacts_to_list"/>
+
+    </data>
+</odoo>

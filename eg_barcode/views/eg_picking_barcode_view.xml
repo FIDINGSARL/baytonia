@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_eg_picking_barcode_tree" model="ir.ui.view">
+        <field name="name">picking.barcode.tree</field>
+        <field name="model">picking.barcode</field>
+        <field name="arch" type="xml">
+            <tree string="Barcode">
+                <field name="picking_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_eg_picking_barcode_form" model="ir.ui.view">
+        <field name="name">picking.barcode.form</field>
+        <field name="model">picking.barcode</field>
+        <field name="arch" type="xml">
+            <form string="Barcode">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="open,validate"/>
+                    <button string="Update Lines" type="object" name="get_barcode_lines" barcode_trigger="updt"
+                            class="oe_highlight" attrs="{'invisible':[('state','not in',['new','open'])]}"/>
+                    <button string="Scan Barcode" type="object" name="get_scanned_barcode_details"
+                            class="oe_highlight" groups="base.group_no_one"
+                            attrs="{'invisible':[('state','!=','open')]}"/>
+                    <!--                    <button string="Proceed Done Qty" type="object" name="update_done_quantity"-->
+                    <!--                            barcode_trigger="prcd"-->
+                    <!--                            class="oe_highlight" attrs="{'invisible':[('state','!=','open')]}"/>-->
+                    <button string="Check Availability" type="object" name="check_available_stock"
+                            barcode_trigger="check"
+                            class="oe_highlight" attrs="{'invisible':[('state','!=','open')]}"/>
+                    <button string="Validate Picking" type="object" name="validate_picking" barcode_trigger="val"
+                            class="oe_highlight" attrs="{'invisible':[('state','!=','open')]}"/>
+                    <button string="Done" name="change_done_picking_state" type="object" barcode_trigger="done"
+                            attrs="{'invisible':[('state','!=','validate')]}"/>
+                    <button string="Cancel" class="btn btn-secondary" name="action_cancel" type="object"
+                            barcode_trigger="cancel"
+                            attrs="{'invisible':['|',('state','=','done'),('state','=','cancel')]}"/>
+                    <button name="do_print_picking" string="Print" groups="stock.group_stock_user" type="object"
+                            attrs="{'invisible': [('state', '!=', 'validate')]}"/>
+                    <button name="%(action_report_delivery)d" string="Print"
+                            attrs="{'invisible': [('state', '!=', 'done')]}" type="action" groups="base.group_user"/>
+                    <button string="Send to Shipper" type="object" name="send_to_shipper" barcode_trigger="snd-shpr"
+                            class="oe_highlight" attrs="{'invisible':[('state','!=','validate')]}"/>
+
+                </header>
+                <sheet>
+                    <group>
+                        <field name="picking_id" required="1" attrs="{'readonly': [('state', '!=', 'new')]}"
+                               domain="[('picking_type_code', '=', 'outgoing'),('state','not in',('cancel','done'))]"/>
+                        <field name="_barcode_scanned" widget="barcode_handler" invisible="True"/>
+                    </group>
+                    <group>
+                        <field name="backorder_id" readonly="1" attrs="{'invisible': [('backorder_id', '=', False)]}"/>
+                    </group>
+                    <notebook>
+                        <page string="Operations">
+                            <field name="barcode_line_ids"
+                                   attrs="{'readonly': [('state', '!=', 'open')]}">
+                                <tree string="Barcode Lines" create="false" delete="0"
+                                      decoration-success="product_uom_qty==quantity_done">
+                                    <field name="product_id"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="reserved_availability"/>
+                                    <field name="quantity_done"/>
+<!--                                    <field name="picking_barcode_editable" invisible="0"/>-->
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Tracking Lines">
+                            <field name="delivery_tracking_lines_ids"
+                                   attrs="{'readonly': [('state', '!=', 'open')]}">
+                                <tree editable="bottom">
+                                    <field name="carrier_id"/>
+                                    <field name="tracking_ref"/>
+                                    <field name="status_id" readonly="1"/>
+                                    <field name="is_return"/>
+                                    <button type="object" name="check_delivery_status" class="oe_stat_button"
+                                            icon='fa-play'
+                                            string="Fetch Status"/>
+                                    <button type="object" name="open_website_url" class="oe_stat_button" icon='fa-truck'
+                                            string="Tracking"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_eg_barcode" model="ir.actions.act_window">
+        <field name="name">Picking Barcode</field>
+        <field name="res_model">picking.barcode</field>
+        <field name="context">{}</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_eg_picking_barcode_tree"/>
+    </record>
+
+    <menuitem name="Barcode" web_icon="eg_barcode,static/description/icon.png"
+              id="main_menu_eg_barcode" sequence="21"/>
+
+    <menuitem name="Picking Barcode" parent="main_menu_eg_barcode"
+              id="menu_eg_barcode" action="action_eg_barcode" sequence="2"/>
+</odoo>

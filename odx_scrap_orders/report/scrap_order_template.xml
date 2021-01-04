@@ -1,0 +1,74 @@
+<odoo>
+    <template id="scrap_order_report_template">
+        <t t-set="data_report_dpi" t-value="300"/>
+        <t t-call="web.external_layout">
+            <t class="page">
+                <center>
+                    <h3>
+                        <strong>Scrap Orders</strong>
+                    </h3>
+                </center>
+                <br/>
+                <table width="100%" class="table table-bordered mt32" style="page-break-inside: avoid;">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Reference</th>
+                            <th class="text-center">Product</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Cost</th>
+                            <th class="text-center">Cause Of Damage</th>
+                            <th class="text-center">Shipping Company</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Picking</th>
+                            <th class="text-center">Responsible Person</th>
+                            <th class="text-center">Images</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="result">
+                            <td class="text-center">
+                                <span t-field="result.name"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="result.product_id"/>
+                            </td>
+                            <td class="text-center">
+                                <t t-if="result.product_id">
+                                    <span t-field="result.product_id.lst_price"/>
+                                </t>
+                            </td>
+                            <td class="text-center">
+                                <t t-if="result.product_id">
+                                    <span t-field="result.product_id.standard_price"/>
+                                </t>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="result.cause_damage_id"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="result.shipping_company_id"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="result.scrap_qty"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="result.picking_id"/>
+                            </td>
+                            <td class="text-center">
+                                <t t-if="result.picking_id">
+                                    <span t-field="result.picking_id.responsible_id"/>
+                                </t>
+                            </td>
+                            <td class="text-center">
+                                <t t-foreach="result.attachment_ids" t-as="attachment">
+                                    <span t-if="attachment.datas" t-field="attachment.datas"
+                                          t-options='{"widget": "image"}'/>
+                                </t>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+</odoo>

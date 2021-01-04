@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- tracking number for special deliveryb method -->
+        <record id="custom_delivery_tracking" model="ir.sequence">
+            <field name="name">Custom Delivery Tracking Number</field>
+            <field name="code">custom.delivery.tracking</field>
+            <field name="prefix">60</field>
+            <field name="padding">10</field>
+        </record>
+    </data>
+</odoo>

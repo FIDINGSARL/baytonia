@@ -1,0 +1,15 @@
+<odoo>
+    <record model="ir.ui.view" id="account_invoice_delivery_form_view">
+        <field name="name">account.invoice.delivery.form.view</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[1]" position="inside">
+                <button name="view_action_delivery_order" class="oe_stat_button"
+                        type="object" icon="fa-truck" attrs="{'invisible': [('picking_count', '=', 0)]}">
+                    <field name="picking_count" widget="statinfo" string="Delivery"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

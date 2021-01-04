@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <template id="payment_method_picking" inherit_id="stock.report_picking">
+            <xpath expr="//t/t/t/div/div/div[hasclass('col-xs-6')]" position="before">
+                <div class="col-xs-6" name="mapymanet">
+                    <span>
+                        <strong>M Payment Method:</strong>
+                    </span>
+                    <p>
+                        <span t-field="o.eg_magento_payment_method_id"/>
+                    </p>
+                </div>
+            </xpath>
+            <xpath expr="//div[@name='partner_header']" position="replace">
+                <div t-if="o.partner_id" name="partner_header">
+                    <span t-field="o.partner_id.name"/>
+                    <br/>
+                    <span t-field="o.partner_id.street"/>
+                    <t t-if="o.partner_id.street">,</t>
+                    <span t-field="o.partner_id.street2"/>
+                    <t t-if="o.partner_id.street2">,</t>
+                    <br/>
+                    <span t-field="o.partner_id.city"/>
+                    <t t-if="o.partner_id.city">,</t>
+                    <span t-field="o.partner_id.state_id"/>
+                    <t t-if="o.partner_id.state_id">,</t>
+                    <br/>
+                    <span t-field="o.partner_id.country_id"/>
+                    <t t-if="o.partner_id.country_id">
+                    </t>
+                    <span t-field="o.partner_id.zip"/>
+                    <span t-field="o.partner_id.phone"/>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="top_growing_product_view_wizard" model="ir.ui.view">
+            <field name="name">top.growing.product.report.ept.wizard.view</field>
+            <field name="model">top.growing.product.report.ept</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Top Growing Product Report">
+                    <group>
+                        <field name="vendor_id" domain="[('supplier','=',True)]"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="from_date" required="1"/>
+                        </group>
+                        <group>
+                            <field name="to_date" required="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="product_ids" widget="many2many_tags"
+                               options="{'no_create_edit':True,'no_open':True}"/>
+                        <field name="product_category_ids" widget="many2many_tags"
+                               options="{'no_create_edit':True,'no_open':True}"/>
+                    </group>
+                    <group>
+                        <field name="period_to_check_in" required="1"/>
+                    </group>
+
+                    <footer>
+                        <button string="Generate" type="object"
+                                name="view_onscreen_report" class="oe_highlight"
+                                invisible="context.get('reports', False)"/>
+
+                        <button string="Download Report XLS" type="object"
+                                name="print_top_growing_report_xls" class="oe_highlight"
+                                invisible="context.get('is_onscreen', False)"/>
+
+                        <button string="Download Report PDF" type="object"
+                                name="print_top_growing_report_pdf" class="oe_highlight"
+                                invisible="context.get('is_onscreen', False)"/>
+
+                        <button string="_Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="top_growing_product_report_action" model="ir.actions.act_window">
+            <field name="name">Top Growing Product Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">top.growing.product.report.ept</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context" eval="{'reports': True}"/>
+        </record>
+
+        <menuitem action="top_growing_product_report_action" id="menu_top_growing_product_report"
+                  parent="sale.menu_sale_report"
+                  sequence="5"/>
+        <menuitem action="top_growing_product_report_action" id="menu_top_growing_product_report_bigboss"
+                  parent="eg_bigboss_toolbox.sale_report_menu"
+                  sequence="5"/>
+    </data>
+</odoo>

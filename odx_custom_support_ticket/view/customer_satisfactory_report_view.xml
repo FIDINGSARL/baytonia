@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+
+        <record id="customer_satisfactory_report_action_server" model="ir.actions.server">
+            <field name="name">Customer Satisfactory Report</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_website_support_ticket"/>
+            <field name="state">code</field>
+            <field name="code">action = model.print_satisfactory_xls_report()</field>
+        </record>
+
+        <menuitem id="menu_customer_satisfactory_report" name="Customer Support Satisfactory Report"
+                  parent="menu_customer_support_report_main" sequence="112" action="customer_satisfactory_report_action_server"/>
+    </data>
+</odoo>

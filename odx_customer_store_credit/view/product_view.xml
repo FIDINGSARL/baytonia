@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_store_credit_form_view">
+            <field name="name">product.store.credit.form.view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div[2]/div" position="inside">
+                    <div>
+                        <field name="is_store_credit"/>
+                        <label for="is_store_credit"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="product_template_only_form_view_store_credit">
+            <field name="name">product.store.credit.form.view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div[2]/div" position="inside">
+                    <div>
+                        <field name="is_store_credit"/>
+                        <label for="is_store_credit"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

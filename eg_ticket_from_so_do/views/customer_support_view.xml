@@ -1,0 +1,26 @@
+<odoo>
+    <record model="ir.ui.view" id="customer_support_form_view_for_sale_order">
+        <field name="name">customer.support.form.for.sale.order</field>
+        <field name="model">website.support.ticket</field>
+        <field name="inherit_id" ref="website_support.website_support_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="sale_order_id"/>
+                <field name="stock_picking_id"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="website_support_ticket_view_tree_eg_ticket_from_so_do" model="ir.ui.view">
+        <field name="name">website.support.ticket tree view</field>
+        <field name="model">website.support.ticket</field>
+        <field name="inherit_id" ref="website_support.website_support_ticket_view_tree"/>
+        <field name="arch" type="xml">
+
+            <field name="sla_timer" position="after">
+                <field name="eg_magento_payment_method_id"/>
+                <field name="partner_ids" widget="many2many_tags"/>
+            </field>
+
+        </field>
+    </record>
+</odoo>

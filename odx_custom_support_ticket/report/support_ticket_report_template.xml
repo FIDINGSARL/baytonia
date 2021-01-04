@@ -1,0 +1,92 @@
+<odoo>
+    <template id="support_tikcet_template">
+        <t t-set="data_report_dpi" t-value="300"/>
+        <t t-call="web.external_layout">
+            <t class="page">
+                <center>
+                    <h3>
+                        <strong>Support Tickets</strong>
+                    </h3>
+                    <t t-if="date_from and date_to">
+                        <span t-if="date_from"
+                              t-esc="date_from"/>
+                        To
+                        <span t-if="date_to"
+                              t-esc="date_to"/>
+                    </t>
+
+                </center>
+                <br/>
+                <br/>
+
+                <table width="100%" class="table table-bordered mt32">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Sl No</th>
+                            <th class="text-center">Ticket Number</th>
+                            <th class="text-center">Person Name</th>
+                            <th class="text-center">Category</th>
+                            <th class="text-center">Sub Category</th>
+                            <th class="text-center">User</th>
+                            <th class="text-center">Days</th>
+                            <th class="text-center">Hours</th>
+                            <th class="text-center">Minutes</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="duration" t-value="0"/>
+                        <t t-foreach="tickets" t-as="result">
+
+                            <tr>
+                                <td class="text-center">
+                                    <span t-esc="result_index + 1"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="result.ticket_number"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="result.partner_id"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="result.category"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="result.sub_category_id"/>
+                                </td>
+                            </tr>
+                            <tr t-foreach="result.ticket_assign_history_ids" t-as="history">
+                                <td colspan="5"/>
+                                <td>
+                                    <span t-field="history.user_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="history.days"/>
+<!--                                    <span>&#160;&#160;Days</span>-->
+<!--                                    <t t-set="duration" t-value="duration+history.duration"/>-->
+                                </td>
+                                <td>
+                                    <span t-field="history.hours"/>
+<!--                                    <span>&#160;&#160;Hours</span>-->
+<!--                                    <t t-set="duration" t-value="duration+history.duration"/>-->
+                                </td>
+                                <td>
+                                    <span t-field="history.minutes"/>
+<!--                                    <span>&#160;&#160;Minutes</span>-->
+<!--                                    <t t-set="duration" t-value="duration+history.duration"/>-->
+                                </td>
+                            </tr>
+                        </t>
+<!--                        <tr>-->
+<!--                            <th colspan="6" class="text-center">Total</th>-->
+<!--                            <th class="text-center">-->
+<!--                                <span t-esc="duration"/>-->
+<!--                                <span>&#160;&#160;Days</span>-->
+<!--                            </th>-->
+<!--                        </tr>-->
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+</odoo>

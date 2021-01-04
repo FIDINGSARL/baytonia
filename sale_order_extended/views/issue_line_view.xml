@@ -1,0 +1,47 @@
+<odoo>
+    <record id="issue_line_tree_view" model="ir.ui.view">
+        <field name="name">issue.line.tree.view</field>
+        <field name="model">issue.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reason_id"/>
+                <field name="product_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="issue_line_form_view" model="ir.ui.view">
+        <field name="name">issue.line.form.view</field>
+        <field name="model">issue.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="reason_id"/>
+                            <field name="order_id"/>
+                            <field name="sale_line_id"/>
+                            <field name="generate_date"/>
+                            <field name="carrier_id"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="order_qty"/>
+                            <field name="unit_price"/>
+                            <field name="responsible_id"/>
+                            <field name="confirm_person_id"/>
+                            <field name="image_small"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_issue_line" model="ir.actions.act_window">
+        <field name="name">Issue Line</field>
+        <field name="res_model">issue.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--    <menuitem name="Issue line" id="menu_issue_line" parent="sale.menu_sales_config" action="action_issue_line"/>-->
+
+</odoo>

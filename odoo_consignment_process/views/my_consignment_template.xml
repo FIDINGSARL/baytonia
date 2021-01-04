@@ -1,0 +1,198 @@
+<odoo>
+
+    <template id="portal_my_home_menu_stock_picking_consignment" name="Portal layout : sales menu entries" inherit_id="portal.portal_layout" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'consignment_picking'">
+                <a t-if="consignment_picking" t-attf-href="/my/consignment_pickings?{{ keep_query() }}">Consignments</a>
+                <t t-else="">Consignments</t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_menu_stock_picking_consignment_product" name="Portal layout : sales menu entries" inherit_id="portal.portal_layout" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'consignment_product_page'">
+                <a t-if="consignment_product" t-attf-href="/my/consignment_product_list?{{ keep_query() }}">My Consignment Products</a>
+                <t t-else="">Consignment Items</t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_stock_picking" name="Portal My Stock Picking: stock picking" inherit_id="portal.portal_my_home" priority="28">
+        <xpath expr="//ul[hasclass('o_portal_docs')]" position="inside">
+             <li t-if="picking_count" class="list-group-item">
+                <span class="badge" t-esc="picking_count"/>
+                <a href="/my/consignment_pickings">Consignments</a>
+            </li>
+            <li t-if="consignment_products" class="list-group-item">
+                <span class="badge" t-esc="consignment_products"/>
+                <a href="/my/consignment_product_list">Consignment Items</a>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="display_stock_pickings" name="Display Stock Pickings">
+        <t t-call="portal.portal_layout">
+        <h3 class="page-header">Consignments<t t-call="portal.portal_searchbar"/></h3>
+            <table class="table table-hover o_my_status_table">
+                <thead>
+                  <tr class="active">
+                    <th>Number</th>
+                    <th>Vendor</th>
+                    <th>Owner</th>
+                    <th>Consignee</th>
+                    <th>Date</th>
+                    <th>Stage</th>
+                  </tr>
+                </thead>
+                <t t-foreach="pickings" t-as="picking">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/my/consignment_pickings/#{picking.id}?#{keep_query()}"><t t-esc="picking.name"/></a>
+                        </td>
+                        <td>
+                            <span t-field="picking.partner_id.name"/>
+                        </td>
+                        <td>
+                            <span t-field="picking.owner_id.name"/>
+                        </td>
+                        <td>
+                            <span t-field="picking.location_id.name"/>
+                        </td>
+                        <td>
+                            <span t-field="picking.scheduled_date"/>
+                        </td>
+                         <td>
+                            <span t-field="picking.state"/>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+            <div t-if="pager" class="o_portal_pager text-center">
+              <t t-call="portal.pager"/>
+            </div>
+             </t>
+    </template>
+
+    <template id="display_my_consignment_detail" name="display myconsignment_detail">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="oe_structure">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb mt8">
+                                    <li><a href="/my/home"><i class="fa fa-home"/></a></li>
+                                    <li><a t-attf-href="/my/consignment_pickings?#{keep_query()}">Consignments</a></li>
+                                    <li><span t-field="picking.name"/></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>
+                                            <span t-field="picking.name"/>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class='row'>
+                                    <div class="col-md-6">
+                                        <div class="mb8">
+                                            <strong>Vendor:</strong> <span t-field="picking.partner_id"/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong>Consignee :</strong> <span t-field="picking.location_id"/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong>Owner:</strong> <span t-field="picking.owner_id"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                       <div class="mb8">
+                                            <strong>Date:</strong> <span t-field="picking.scheduled_date"/>
+                                        </div>
+                                         <div class="mb8">
+                                            <strong>Origin :</strong> <span t-field="picking.origin"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <table class="table table-bordered" width="100%">
+                                <thead>
+                                  <tr class="active">
+                                    <th width="80%">Product</th>
+                                    <th width="20%">Quantity</th>
+                                  </tr>
+                                </thead>
+                                <t t-foreach="picking.sudo().move_lines" t-as="ol">
+                                    <tr>
+                                        <td>
+                                            <span t-field="ol.product_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="ol.product_uom_qty"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                          <hr/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="display_consignment_product" name="Display Consignment Products">
+        <t t-call="portal.portal_layout">
+        <h3 class="page-header">Consignment Items <t t-call="portal.portal_searchbar"/></h3>
+            <table class="table table-hover o_my_status_table">
+                <thead>
+                  <tr class="active">
+                    <td><b>Product</b></td>
+                    <td><b>Purchase Order</b></td>
+                    <td><b>Quantity</b></td>
+                    <td align="right"><b>Price</b></td>
+                    <td align="right"><b>Subtotal</b></td>
+                    <td><b>Status</b></td>
+                  </tr>
+                </thead>
+                <t t-foreach="consignment_products" t-as="consignment">
+                    <tr t-att-class="consignment.sale_state == 'sold' and 'alert-success' or 'alert-danger'">
+                        <td style="vertical-align:middle;">
+                            <div id='product_name' class="col-lg-9 ">
+                              <span t-esc="consignment.name"/>
+                            </div>
+                        </td>
+                        <td style="vertical-align:middle;">
+                            <span t-field="consignment.purchase_order_line_id.order_id"/>
+                        </td>
+                        <td style="vertical-align:middle;">
+                            <span t-field="consignment.purchase_qty"/>
+                        </td>
+                        <td style="vertical-align:middle;" align="right">
+                            <span t-field="consignment.purchase_price" t-options='{"widget": "monetary", "display_currency": consignment.purchase_order_line_id.company_id.currency_id}'/>
+                        </td>
+                        <td style="vertical-align:middle;" align="right">
+                            <span t-field="consignment.purchase_price_total" t-options='{"widget": "monetary", "display_currency": consignment.purchase_order_line_id.company_id.currency_id}'/>
+                        </td>
+                        <td style="vertical-align:middle;">
+                            <span t-field="consignment.sale_state"/>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+            <div t-if="pager" class="o_portal_pager text-center">
+                <t t-call="portal.pager"/>
+            </div>
+             </t>
+    </template>
+
+</odoo>

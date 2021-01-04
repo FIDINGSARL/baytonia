@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="stock_scrap_report_form_view">
+            <field name="name">stock.scrap.report.form.view</field>
+            <field name="model">stock.scrap.report.wiz</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <label string="Duration"/>
+                            <div>
+                                <field name="date_from" class="oe_inline"/>
+                                <label string="To" class="oe_inline"/>
+                                <field name="date_to" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button type="object" name="print_report_xlsx" string="XLSX Report" class="oe_highlight"/>
+                        <button type="object" name="print_report_pdf" string="PDF Report" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="stock_scrap_report_acton"
+                    name="Scrap Report"
+                    res_model="stock.scrap.report.wiz"
+                    view_mode="form"
+                    target="new"/>
+
+        <menuitem id="menu_stock_report" name="Scrap Report"
+                  parent="stock.menu_warehouse_report" sequence="110" action="stock_scrap_report_acton"/>
+    </data>
+</odoo>

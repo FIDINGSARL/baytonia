@@ -1,0 +1,26 @@
+{
+    'name': 'Tracking Barcode',
+    'version': '10.0.1.0.0',
+    'author': 'Odox SoftHub',
+    'website': 'http://www.odoxsofthub.com',
+    'license': 'GPL-3',
+    'category': 'Barcode',
+    'depends': ['base', 'eg_odoo_magento_connect_extended', 'sale_stock', 'eg_custom_delivery', 'sale_order_extended'],
+    "data": [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'data/email_template.xml',
+        'views/tracking_barcode_view.xml',
+        'views/create_tracking_view.xml',
+        'report/report.xml',
+        'report/dispatching_report_templte.xml',
+        'views/button_barcode.xml',
+        'data/delivery_carrier_status.xml',
+        'views/tracking_barcode_line_view.xml',
+        'views/button_barcode.xml',
+        'wizard/dispatching_order_report_view.xml'
+    ],
+    'application': True,
+    'installable': True,
+    'autoinstall': False,
+}

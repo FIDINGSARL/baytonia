@@ -1,0 +1,92 @@
+<odoo>
+    <record id="sale_order_form_inherited_magento" model="ir.ui.view">
+        <field name="name">sale.order.form.inherited.magento</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="eg_magento_payment_method_id"/>
+                <field name="magento_order_amount" readonly="1"/>
+            </field>
+            <xpath expr="//group[@name='technical']" position="inside">
+                <button type="object" name="update_magento_order_status" string="Update Status on Magento"
+                        icon="fa-paper-plane"
+                        class="oe_inline oe_link"/>
+            </xpath>
+            <button name="action_cancel" position="after">
+                <button type="action" name="%(eg_odoo_magento_connect_extended.wizard_action_whatsapp_message_wizard)d"
+                        class="oe_highlight" string="Whatsapp Message"/>
+                <field name="register_popup" invisible="1"/>
+                <button type="action" name="%(eg_odoo_magento_connect_extended.wizard_action_register_payment_wizard)d"
+                        class="oe_highlight" string="Register Payment"
+                        attrs="{'invisible':[('register_popup','=',False)]}"/>
+            </button>
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <button name="set_tax_on_product" type="object" string="Set Tax" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//group[@name='sale_pay']" position="inside">
+                <field name="eg_invoice_policy" class="o_light_label" widget="radio"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="get_magento_sale_order" type="object"
+                        string="Update from Magento" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_tree_inherited_magento" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherited.magento</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="eg_magento_payment_method_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_magento" model="ir.ui.view">
+        <field name="name">sale.order.tree.magento</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="eg_magento_payment_method_id" readonly="1"/>
+                <field name="need_update_from_magento" invisible="1"/>
+            </field>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-danger">need_update_from_magento == True</attribute>
+                <attribute name="decoration-success">need_update_from_magento == False</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_fetch_magento_order_status_from_magento" model="ir.actions.server">
+        <field name="name">Fetch order status</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_fetch_magento_order_status_from_magento()</field>
+    </record>
+    <record id="action_sale_order_set_tax_product" model="ir.actions.server">
+        <field name="name">Set Tax to lines</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">records.set_tax_product_action()</field>
+    </record>
+    <record id="action_sale_order_verify" model="ir.actions.server">
+        <field name="name">Verify Order</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">records.verify_sale_order()</field>
+    </record>
+    <record id="action_fetch_order_line_from_magento" model="ir.actions.server">
+        <field name="name">Fetch Line from magento</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">records.get_magento_sale_order()</field>
+    </record>
+</odoo>

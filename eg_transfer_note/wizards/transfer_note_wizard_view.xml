@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <!--Send To Ship Wizard View -->
+        <record id="wizard_view_transfer_note_wizard" model="ir.ui.view">
+            <field name="name">Transfer note wizard</field>
+            <field name="model">transfer.note.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Transfer Note">
+                    <h2>
+                        <field name="transfer_note"/>
+                    </h2>
+                    <footer>
+                        <button string="Save" type="object" name="update_transfer_note"
+                                class="oe_highlight" />
+                        <button string="_Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--Send To Ship Wizard Action -->
+        <record id="wizard_action_transfer_note_wizard" model="ir.actions.act_window">
+            <field name="name">Carrier selection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">transfer.note.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="wizard_view_transfer_note_wizard"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

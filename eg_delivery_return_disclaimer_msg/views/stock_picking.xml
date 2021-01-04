@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="stock_picking_return_disclaimer_form_view">
+        <field name="name">stock.picking.return.disclaimer.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <!--            <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="attributes">-->
+            <!--                <attribute name="invisible">[('return_accepted', '=', False)]</attribute>-->
+            <!--            </xpath>-->
+<!--            <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="replace">-->
+<!--                <button name="%(stock.act_stock_return_picking)d" string="Return"-->
+<!--                        attrs="{'invisible': ['|', ('state', '!=', 'done'), '|', ('is_locked', '=', False), ('return_accepted', '=', False)]}"-->
+<!--                        type="action"-->
+<!--                        groups="base.group_user"/>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="return_accepted"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="%(eg_delivery_return_disclaimer_msg.msg_by_unifonic_action)d"
+                        string="Return Disclaimer Msg" type="action" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

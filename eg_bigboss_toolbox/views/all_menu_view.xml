@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <menuitem name="Sales Report" id="sale_report_menu" parent="eg_bigboss_toolbox.bigboss_menu"
+                  sequence="1"/>
+<!--        <menuitem id="menu_report_top_growing_product_report_ept_big"-->
+<!--                  name="Top Growing Product"-->
+<!--                  action="top_growing_product_ept.action_report_top_growing_product_report_ept"-->
+<!--                  parent="sale_report_menu" sequence="1"/>-->
+<!--        <menuitem action="top_growing_product_ept.top_growing_product_report_action"-->
+<!--                  id="menu_top_growing_product_report" sequence="2"-->
+<!--                  parent="sale_report_menu" name="Top Growing Product Report"/>-->
+<!--        <menuitem id="menu_invoice_report_eg_report" action="invoice_report_eg.action_invoice_report_eg"-->
+<!--                  parent="sale_report_menu" name="Invoice Report" sequence="3"/>-->
+<!--        <menuitem id="menu_to_launch_wizard" action="sale_report_daily.launch_wizard" parent="sale_report_menu"-->
+<!--                  name="Sale Report Print" sequence="4"/>-->
+<!--        <menuitem name="Hero Product Mto Report" id="menu_hp_mto_report" action="eg_hero_product_report.launch_hp_mto_report"-->
+<!--                  parent="sale_report_menu" sequence="5"/>-->
+<!--        <menuitem name="Hero Product Stock Report" id="menu_hp_stock_report" action="eg_hero_product_report.launch_hp_stock_report"-->
+<!--                  parent="sale_report_menu" sequence="6"/>-->
+        <menuitem name="Inventory Report" id="inventory_report_menu" parent="eg_bigboss_toolbox.bigboss_menu"
+                  sequence="2"/>
+        <menuitem name="Cron Emails" id="root_cron_emails" parent="eg_bigboss_toolbox.bigboss_menu"
+                  sequence="3"/>
+<!--        <menuitem id="non_moving_product_wizard_ept_menu" parent="inventory_report_menu"-->
+<!--                  name="Non Moving Products" sequence="1"-->
+<!--                  action="non_moving_product_ept.non_moving_product_wizard_ept_action"/>-->
+<!--        <menuitem name="Barcode Scan Report" id="menu_stock_picking_report"-->
+<!--                  action="barcode_stock.launch_picking_barcode_report"-->
+<!--                  parent="inventory_report_menu" sequence="2"/>-->
+<!--        <menuitem name="Inventory Overstock Report" id="inventory_overstock_menu" parent="inventory_report_menu"-->
+<!--                  action="bi_inventory_overstock_report.inventory_overstock_action" sequence="3"/>-->
+<!--        <menuitem id="menu_vendor_product_sales_report_eg"-->
+<!--                  action="vendor_product_sales_report_eg.action_vendor_product_sales_report_eg"-->
+<!--                  sequence="4" parent="inventory_report_menu" name="Vendor Sales report"/>-->
+<!--        <menuitem id="menu_vendor_detail_report_eg" action="eg_vendor_detail_report.action_vendor_detail_report_eg"-->
+<!--                  sequence="5" parent="inventory_report_menu" name="Vendor Detail Report"/>-->
+        <menuitem id="menu_valuation" name="Inventory" parent="inventory_report_menu" sequence="6"
+                  action="stock.action_stock_quantity_history"/>
+        <menuitem id="menu_valuation" name="Inventory Valuation" parent="inventory_report_menu" sequence="7"
+                  action="stock_account.action_stock_inventory_valuation"/>
+<!--        <menuitem id="menu_delivery_company_report_report"-->
+<!--                  action="delivery_company_report_eg.action_delivery_company_report_eg"-->
+<!--                  sequence="8" parent="inventory_report_menu" name="Shipment Manifest"/>-->
+<!--        <menuitem name="List Product without Vendor" id="menu_product_supplier_report"-->
+<!--                  action="eg_product_supplier_report.launch_product_supplier_report"-->
+<!--                  parent="inventory_report_menu" sequence="9"/>-->
+    </data>
+</odoo>

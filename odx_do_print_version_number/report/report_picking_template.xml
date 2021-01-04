@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <template id="payment_method_picking_version" inherit_id="stock.report_picking">
+            <xpath expr="//div[@name='mapymanet']" position="inside">
+                <div class="col-xs-6">
+                    <span>
+                        <strong>Version :
+                            <span t-field="o.report_version_number"/>
+                        </strong>
+                    </span>
+                </div>
+            </xpath>
+            <xpath expr="//t/t/t/div" position="inside">
+                <br/>
+                <br/>
+                <div t-if="o.delivery_note_eg" class='pull-right'>
+                    <strong>Note : <span t-field="o.delivery_note_eg"/></strong>
+                </div>
+                <div t-if="o.responsible_id" class='pull-left'>
+                    <strong>Responsible Person : <span t-field="o.responsible_id"/></strong>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>
+

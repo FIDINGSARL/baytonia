@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sale_order_report_form_view">
+            <field name="name">sale.order.report.form.view</field>
+            <field name="model">sale.order.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button type="object" name="generate_report_for_sale" string="Print" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_sale_order_report"
+                    name="COGS Report"
+                    src_model="sale.order"
+                    res_model="sale.order.report"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"/>
+        <menuitem name="COGS Report" id="menu_cogs_report" action="launch_sale_order_report"
+                  parent="sale.menu_sale_report"/>
+        <menuitem name="COGS Report" id="menu_cogs_report_bigboss" action="launch_sale_order_report"
+                  parent="eg_bigboss_toolbox.sale_report_menu"/>
+    </data>
+</odoo>

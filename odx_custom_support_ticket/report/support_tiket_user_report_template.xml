@@ -1,0 +1,77 @@
+<odoo>
+    <template id="support_tikcet_user_template">
+        <t t-set="data_report_dpi" t-value="300"/>
+        <t t-call="web.external_layout">
+            <t class="page">
+                <center>
+                    <h3>
+                        <strong>Support Tickets</strong>
+                    </h3>
+                    <t t-if="date_from and date_to">
+                        <span t-if="date_from"
+                              t-esc="date_from"/>
+                        To
+                        <span t-if="date_to"
+                              t-esc="date_to"/>
+                    </t>
+
+                </center>
+                <br/>
+                <br/>
+
+                <table width="100%" class="table table-bordered mt32">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Sl No</th>
+                            <th class="text-center">User</th>
+                            <th class="text-center">Number Of Ticket Created</th>
+                            <th class="text-center">Number Of Ticket Assigned</th>
+                            <th class="text-center">Number Of Ticket Closed</th>
+                            <th colspan="3" class="text-center">Average Duration</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5"></th>
+                            <th class="text-center">Days</th>
+                            <th class="text-center">hours</th>
+                            <th class="text-center">minutes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="result" t-as="result">
+                            <tr>
+                                <td>
+                                    <span t-esc="result_index + 1"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="result.get('user')"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="result.get('created')"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="result.get('assigned')"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="result.get('closed')"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="result.get('duration')"/>
+<!--                                    <span>&#160;&#160;days</span>-->
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="result.get('hours')"/>
+<!--                                    <span>&#160;&#160;hours</span>-->
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="result.get('minutes')"/>
+<!--                                    <span>&#160;&#160;minutes</span>-->
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,30 @@
+<odoo>
+    <record model="ir.ui.view" id="template_integration_wizard_form_view">
+        <field name="name">template.integration.wizard.form.view</field>
+        <field name="model">template.integration.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="template_id" domain="[('model_id.model', '=', context.get('active_model'))]"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="body"/>
+                    </group>
+                    <footer>
+                        <button name="post_msg_by_template" string="Send SMS" type="object"
+                                class="oe_highlight"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_template_integration_wizard">
+        <field name="name">Template Integration</field>
+        <field name="res_model">template.integration.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

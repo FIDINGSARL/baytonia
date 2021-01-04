@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="approve_stock_picking_wizard_view" model="ir.ui.view">
+            <field name="name">approve stock picking</field>
+            <field name="model">approve.stock.picking.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Approve conformation">
+                    <group>
+                        <field name="approve_user_id" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="password" password="True"/>
+                    </group>
+                    <footer>
+                        <button name="approve_stock_picking" string="Approve" type="object" class="oe_highlight"/>
+                        <button type='special' special='cancel' string='Cancel'/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_approve_stock_picking_wizard_view" model="ir.actions.act_window">
+            <field name="name">Approve Stock Picking</field>
+            <field name="res_model">approve.stock.picking.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="approve_stock_picking_wizard_view"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

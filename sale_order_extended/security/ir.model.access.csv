@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_issue_reason,issue.reason,model_issue_reason,base.group_user,1,1,1,1
+access_issue_line,issue.line,model_issue_line,base.group_user,1,1,1,1
+access_issue_line_screen_report,issue.line.screen.report,model_issue_line_screen_report,base.group_user,1,1,1,1

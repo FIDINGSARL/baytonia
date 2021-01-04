@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="eg_product_wizard_form_view">
+            <field name="name">eg.product.wizard.form.view</field>
+            <field name="model">eg.product.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="product_ids"/>
+                            <field name="sale_ok"/>
+                        </group>
+                        <footer>
+                            <button name="save_wizard_data" type="object" string="Save" class="oe_highlight"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_eg_product_wizard"
+                    name="Product Wizard"
+                    src_model="product.template"
+                    res_model="eg.product.wizard"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"/>
+
+        <menuitem name="Edit Product Bulk" id="menu_eg_product_wizard" action="launch_eg_product_wizard"
+                  parent="stock.menu_stock_inventory_control"/>
+    </data>
+</odoo>

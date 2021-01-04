@@ -1,0 +1,13 @@
+<odoo>
+    <record model="ir.ui.view" id="msg_delivery_report_freshchat_form_view">
+        <field name="name">msg.delivery.report.freshchat.form.view</field>
+        <field name="model">msg.delivery.report</field>
+        <field name="inherit_id" ref="eg_msg_base.msg_delivery_report_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[2]/group[2]" position="inside">
+                <field name="provider" invisible="1"/>
+                <field name="order_id" attrs="{'invisible': [('provider', '!=', 'freshchat_sms')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View -->
+        <record id="order_inherit_survey_user_input_line_form" model="ir.ui.view">
+            <field name="name">add upload to user input</field>
+            <field name="model">survey.user_input_line</field>
+            <field name="inherit_id" ref="survey.survey_user_input_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='value_free_text']" position="after">
+                    <field name="order" colspan='2'
+                           attrs="{'invisible': [('answer_type','!=','order')]}"/>
+                    <field name="ticket" colspan='2'
+                           attrs="{'invisible': [('answer_type','!=','ticket')]}"/>
+
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="customer_support_survey_view_inherit">
+            <field name="name">Customer Survey Field</field>
+            <field name="model">survey.question</field>
+            <field name="inherit_id" ref="survey.survey_question_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="customer_support_survey"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

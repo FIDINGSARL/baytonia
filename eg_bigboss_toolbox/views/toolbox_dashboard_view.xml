@@ -1,0 +1,18 @@
+<odoo>
+    <record model="ir.actions.act_window" id="toolbox_dashboard">
+        <field name="name">Toolbox Dashboard</field>
+        <field name="res_model">toolbox.dashboard</field>
+        <field name="view_mode">kanban</field>
+        <field name="help" type="html">
+            <p>
+                In this <i>sale order report and delivery order report</i> to show.
+            </p>
+            <p>
+                <i>You create any order.</i>
+            </p>
+        </field>
+    </record>
+    <menuitem name="Bigboss" id="bigboss_menu" action="toolbox_dashboard"
+              web_icon="eg_bigboss_toolbox,static/description/icon.png"
+              groups="eg_bigboss_toolbox.bigboss_toolbox_group"/>
+</odoo>

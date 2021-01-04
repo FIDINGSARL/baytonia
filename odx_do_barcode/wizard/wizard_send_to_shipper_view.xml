@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_view_wizard_send_to_shipper_inherit" model="ir.ui.view">
+        <field name="name">wizard.send.to.shipper.form.view</field>
+        <field name="model">wizard.send.to.shipper</field>
+        <field name="inherit_id" ref="eg_send_to_shipper.wizard_view_wizard_send_to_shipper"/>
+        <field name="arch" type="xml">
+            <field name="carrier_id" position="after">
+                <field name="not_ship" invisible="1"/>
+                <field name="not_ship_city" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

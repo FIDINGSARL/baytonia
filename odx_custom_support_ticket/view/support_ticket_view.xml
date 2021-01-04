@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record id="website_support_ticket_view_tree_inherit" model="ir.ui.view">
+            <field name="name">website.support.ticket.tree.inherit</field>
+            <field name="model">website.support.ticket</field>
+            <field name="inherit_id" ref="website_support.website_support_ticket_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category']" position="after">
+                    <field name="sub_category_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="website_support_ticket_view_form_inherit" model="ir.ui.view">
+            <field name="name">website.support.ticket.form.inherit</field>
+            <field name="model">website.support.ticket</field>
+            <field name="inherit_id" ref="website_support.website_support_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="user_email"/>
+                    <field name="state_count" invisible="1"/>
+                </xpath>
+
+                 <xpath expr="//button[@name='request_approval']" position="after">
+                   <button name="next_state" type="object"  string="Next State" groups="website_support.support_manager,website_support.support_staff"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Ticket Timeline">
+                        <field name="ticket_time_line_ids">
+                            <tree>
+                                <field name="user_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="state"/>
+                                <field name="duration" widget="float_time"/>
+                            </tree>
+
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

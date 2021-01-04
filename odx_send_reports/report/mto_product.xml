@@ -1,0 +1,56 @@
+<odoo>
+    <template id="mto_product_template">
+        <t t-set="data_report_dpi" t-value="300"/>
+        <t t-call="web.external_layout">
+            <t class="page">
+                <center>
+                    <h3>
+                        <strong>List Of Mto Product</strong>
+                    </h3>
+                </center>
+                <br/>
+                <center>
+                    <h3>
+                        <strong><span t-esc="date"/></strong>
+                    </h3>
+                </center>
+                <br/>
+
+                <table width="100%" class="table table-bordered mt32">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Serial No</th>
+                            <th class="text-center">Image</th>
+                            <th class="text-center">Product Name</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Category</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data" t-as="result">
+                            <td class="text-center">
+                                <span t-esc="result.get('serial_no')"/>
+                            </td>
+                             <td>
+                                <span t-if="result['image']" t-esc="result['image']" t-options='{"widget": "image"}'/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="result.get('product_name')"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="result.get('qoh')"/>
+                            </td>
+                            <td>
+                                <span t-esc="result.get('category')"/>
+                            </td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,31 @@
+<odoo>
+    <record id="freshchat_template_tree_view" model="ir.ui.view">
+        <field name="name">freshchat.template.tree.view</field>
+        <field name="model">freshchat.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="freshchat_template_form_view" model="ir.ui.view">
+        <field name="name">freshchat.template.form.view</field>
+        <field name="model">freshchat.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_freshchat_template">
+        <field name="name">Freshchat Template</field>
+        <field name="res_model">freshchat.template</field>
+        <field name="view_mode">tree,from</field>
+    </record>
+</odoo>

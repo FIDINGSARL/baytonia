@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_picking_barcode_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.picking.barcode.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block icon d-none d-md-block" data-string="Eg Picking Barcode"
+                     string="Eg Picking Barcode" data-key="eg_barcode">
+                    <h2>Eg Picking Barcode</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="auto_populated_done_qty"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="auto_populated_done_qty"/>
+                                <div class="text-muted">
+                                    Auto populate your done quantity in barcode lines.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_eg_barcode_setting" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_picking_barcode_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'eg_barcode'}</field>
+    </record>
+
+    <menuitem name="Configuration" parent="main_menu_eg_barcode"
+              id="menu_eg_barcode_configuration" sequence="2" groups="base.group_no_one"/>
+
+    <menuitem name="Settings" parent="menu_eg_barcode_configuration"
+              id="menu_eg_barcode_settings" action="action_eg_barcode_setting" sequence="1"/>
+</odoo>

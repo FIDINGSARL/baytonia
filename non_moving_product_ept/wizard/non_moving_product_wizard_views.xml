@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="non_moving_product_wizard_ept_view_wizard" model="ir.ui.view">
+            <field name="name">non.moving.product.wizard.ept.view</field>
+            <field name="model">non.moving.product.wizard.ept</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Non Moving Products">
+                    <group>
+                        <field name="vendor_ids" domain="[('supplier','=',True)]"/>
+                    </group>
+                    <group>
+                        <field name="category_ids"/>
+                    </group>
+                    <group>
+                        <group>
+                            <label string="Sale Price"/>
+                            <div>
+                                <field name="sale_price_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="sale_price" class="oe_inline"
+                                       attrs="{'readonly': [('sale_price_condition', '=', False)]}"/>
+                            </div>
+                            <label string="Cost Price"/>
+                            <div>
+                                <field name="cost_price_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="cost_price" class="oe_inline"
+                                       attrs="{'readonly': [('cost_price_condition', '=', False)]}"/>
+                            </div>
+                            <label string="Quantity On Hand"/>
+                            <div>
+                                <field name="qty_available_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="qty_available" class="oe_inline"
+                                       attrs="{'readonly': [('qty_available_condition', '=', False)]}"/>
+                            </div>
+                            <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <label string="Internal Reference"/>
+                            <div>
+                                <field name="sku_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="default_code" class="oe_inline"
+                                       attrs="{'invisible': [('sku_condition', 'in', ['is_set', 'not_set', False])]}"/>
+                            </div>
+                            <label string="Name"/>
+                            <div>
+                                <field name="name_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="name" class="oe_inline"
+                                       attrs="{'invisible': [('name_condition', 'in', ['is_set', 'not_set', False])]}"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <label string="Duration"/>
+                            <div>
+                                <field name="from_date" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="to_date" class="oe_inline"/>
+                            </div>
+
+                        </group>
+                        <group>
+                            <label string="Create Date"/>
+                            <div>
+                                <field name="create_date_from" class="oe_inline"/>
+                                <field name="create_date_to" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_non_moving_product" string="Excel Report"
+                                class="oe_highlight" type="object"/>
+                        <button name="non_moving_on_screen_report" string="On Screen Report"
+                                class="oe_highlight" type="object"/>
+                        <button colspan="2" special="cancel" string="Cancel" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="non_moving_product_wizard_ept_action" model="ir.actions.act_window">
+            <field name="name">Non Moving Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">non.moving.product.wizard.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="non_moving_product_wizard_ept_view_wizard"/>
+        </record>
+
+        <menuitem id="non_moving_product_wizard_ept_menu_bigboss" parent="eg_bigboss_toolbox.inventory_report_menu"
+                  name="Non Moving Products Report" sequence="1"
+                  action="non_moving_product_wizard_ept_action"/>
+        <menuitem id="non_moving_product_wizard_ept_menu" parent="stock.menu_warehouse_report"
+                  name="Non Moving Products Report" sequence="1"
+                  action="non_moving_product_wizard_ept_action"/>
+        <menuitem name="Non Moving Products Report" id="non_moving_product_wizard_ept_sale_menu" action="non_moving_product_wizard_ept_action"
+                  parent="sale.menu_sale_report"/>
+        <menuitem name="Non Moving Products Report" id="non_moving_product_wizard_ept_bigboss_menu" action="non_moving_product_wizard_ept_action"
+                  parent="eg_bigboss_toolbox.sale_report_menu"/>
+
+    </data>
+</odoo>

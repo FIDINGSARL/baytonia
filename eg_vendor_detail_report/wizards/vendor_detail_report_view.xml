@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vendor_view_report_eg_form" model="ir.ui.view">
+        <field name="name">vendor.detail.report.eg.form</field>
+        <field name="model">vendor.detail.report.eg</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Vendor Detail Report">
+               <field name="vendor_detailed_report_printed" invisible="1"/>
+                  <group attrs="{'invisible':[('vendor_detailed_report_printed','=',True)]}">
+                    <field name="vendor_ids" domain="[('supplier','=',True)]"/>
+                </group>
+
+                 <group attrs="{'invisible':[('vendor_detailed_report_printed','=',False)]}">
+                    <field name="file_name" invisible="1"/>
+                    <field name="vendor_sales_report_file" readonly="1" filename="file_name"/>
+                </group>
+
+                <footer>
+                    <button string='Print' name="action_vendor_detail_report_eg"
+                            type="object" class="btn-primary"  attrs="{'invisible':[('vendor_detailed_report_printed','=',True)]}"
+                           />
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_vendor_detail_report_eg" model="ir.actions.act_window">
+        <field name="name">Vendor Detail Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vendor.detail.report.eg</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="menu_vendor_detail_report_eg" action="action_vendor_detail_report_eg"
+              sequence="206" parent="stock.menu_warehouse_report"/>
+    <menuitem id="menu_vendor_detail_report_eg_bigboss" action="action_vendor_detail_report_eg"
+              sequence="206" parent="eg_bigboss_toolbox.inventory_report_menu"/>
+</odoo>

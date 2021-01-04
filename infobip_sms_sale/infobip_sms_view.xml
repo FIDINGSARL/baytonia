@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="view_infobip_sms_form_inherit_fl" model="ir.ui.view">
+        	<field name="name">fl.infobip.sms.form.inherit.fl</field>
+            <field name="model">fl.infobip.sms</field>
+            <field name="inherit_id" ref="infobip_sms.view_infobip_sms_form" />
+            <field name="arch" type="xml">
+           		<xpath expr="//group[@name='config_info']" position="after">
+           			<notebook>
+           				<page string="Text Messages Info">
+           					<group>
+		                    	<group>
+				                    <field name="confirm_order_message" string="SO Confirm Message" placeholder="e.g. Your order is confirmed."/>
+		                    	</group>
+		                    	<group>
+				                    <field name="delivery_confirm_message" string="Delivery Message" placeholder="e.g. Your order is out for delivery."/>
+		                    	</group>
+		                    </group>
+           				</page>
+           			</notebook>
+            	</xpath>
+        	</field>
+		</record>
+		
+		<!-- Delivery Carrier form inherit -->
+		<record id="view_delivery_carrier_form_fl" model="ir.ui.view">
+	        <field name="name">delivery.carrier.form.inherited.fl</field>
+	        <field name="model">delivery.carrier</field>
+	        <field name="type">form</field>
+	        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+	        <field name="arch" type="xml">
+	        	<xpath expr="//field[@name='margin']/../.." position="after">
+	           		<group>
+		           		<field name='tracking_url' />
+	           		</group>
+	          	</xpath>
+	        </field>
+	    </record>
+		
+		
+	</data>
+</odoo>

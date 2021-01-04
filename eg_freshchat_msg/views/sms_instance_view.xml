@@ -1,0 +1,36 @@
+<odoo>
+    <record model="ir.ui.view" id="sms_instance_freshchat_form_view">
+        <field name="name">sms.instance.freshchat.form.view</field>
+        <field name="model">sms.instance</field>
+        <field name="inherit_id" ref="eg_msg_base.sms_instance_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/separator" position="after">
+                <group attrs="{'invisible':[('provider', '!=', 'freshchat_sms')]}">
+                    <group>
+                        <field name="fc_token"
+                               attrs="{'invisible':[('provider', '!=', 'freshchat_sms')],'required':[('provider', '=', 'freshchat_sms')]}"/>
+                        <field name="fc_url"
+                               attrs="{'invisible':[('provider', '!=', 'freshchat_sms')],'required':[('provider', '=', 'freshchat_sms')]}"/>
+                        <field name="fc_namespace"
+                               attrs="{'invisible':[('provider', '!=', 'freshchat_sms')],'required':[('provider', '=', 'freshchat_sms')]}"/>
+                        <label string=" From Number" attrs="{'invisible':[('provider', '!=', 'freshchat_sms')]}"/>
+                        <div>
+                            <field name="calling_code_from_id" class="oe_inline"/>
+                            <field name="fc_number" class="oe_inline"
+                                   attrs="{'invisible':[('provider', '!=', 'freshchat_sms')],'required':[('provider', '=', 'freshchat_sms')]}"/>
+                        </div>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Template" attrs="{'invisible':[('provider', '!=', 'freshchat_sms')]}">
+                    <field name="template_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

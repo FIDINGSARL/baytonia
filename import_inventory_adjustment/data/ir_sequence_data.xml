@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    	<record id="ir_attachment_import_template_ept" model="ir.attachment">
+	        <field name="name">import_template.xls</field>
+	        <field name="datas_fname">import_template.xls</field>
+	        <field name="datas" type="base64" file="import_inventory_adjustment/data/import_template.xls"></field>
+	        <field name="public">True</field>
+	    </record>
+    </data>
+</odoo>  
+      

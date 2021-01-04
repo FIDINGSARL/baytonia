@@ -1,0 +1,90 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sms_instance_unifonic_form_view">
+            <field name="name">sms.instance.unifonic.form.view</field>
+            <field name="model">sms.instance</field>
+            <field name="inherit_id" ref="eg_msg_base.sms_instance_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/separator" position="after">
+                    <group attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}">
+                        <group>
+                            <field name="app_sid"
+                                   attrs="{'invisible':[('provider', '!=', 'unifonic_sms')],'required':[('provider', '=', 'unifonic_sms')]}"/>
+                            <field name="sender_id"
+                                   attrs="{'invisible':[('provider', '!=', 'unifonic_sms')],'required':[('provider', '=', 'unifonic_sms')]}"/>
+                            <field name="account_balance"
+                                   attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}"/>
+                            <field name="remaining_msg"
+                                   attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}"/>
+                        </group>
+                        <group>
+                            <field name="test_url"
+                                   attrs="{'invisible':[('provider', '!=', 'unifonic_sms')],'required':[('provider', '=', 'unifonic_sms')]}"/>
+                            <field name="live_url"
+                                   attrs="{'invisible':[('provider', '!=', 'unifonic_sms')],'required':[('provider', '=', 'unifonic_sms')]}"/>
+                            <field name="marketing_url"
+                                   attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}"/>
+                        </group>
+                    </group>
+                    <separator string="State Message" attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}"/>
+                    <group attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}">
+                        <group>
+                            <field name="for_draft"/>
+                            <field name="for_sent"/>
+                            <field name="for_sale"/>
+                            <field name="for_done"/>
+                            <field name="for_cancel"/>
+                            <field name="for_tracking_url"/>
+                        </group>
+                        <group>
+                            <field name="draft_msg" attrs="{'invisible':[('for_draft', '!=', True)]}"/>
+                            <field name="sent_msg" attrs="{'invisible':[('for_sent', '!=', True)]}"/>
+                            <field name="sale_msg" attrs="{'invisible':[('for_sale', '!=', True)]}"/>
+                            <field name="done_msg" attrs="{'invisible':[('for_done', '!=', True)]}"/>
+                            <field name="cancel_msg" attrs="{'invisible':[('for_cancel', '!=', True)]}"/>
+                            <field name="tracking_url_msg" attrs="{'invisible':[('for_tracking_url', '!=', True)]}"/>
+                        </group>
+                    </group>
+                    <h3 attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}">
+                        {{order_number}} == Order Number,
+                        {{total_amount}} == Total Amount of Order, {{state}} == State of order, {{tracking_number}} ==
+                        Tracking number, {{carrier_name}} == Carrier Name, {{tracking_url}} == Tracking URL,
+                        {{confirmation_date}} == Date which order confirmed, {{marketing_url}} == URL for marketing
+                    </h3>
+                </xpath>
+                <xpath expr="//sheet/div/button" position="after">
+                    <button name="change_environment" type="object" class="oe_stat_button"
+                            icon="fa-check-square">
+                        <field name="environment" widget="boolean_button" options='{"terminology": {
+                                    "string_true": "Production Environment",
+                                    "hover_true": "Switch to test environment",
+                                    "string_false": "Test Environment",
+                                    "hover_false": "Switch to production environment"
+                                }}'/>
+                    </button>
+                </xpath>
+                <xpath expr="//sheet" position="before">
+                    <header attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}">
+                        <button name="import_sender_id" type="object" string="Import Sender ID" class="oe_highlight"/>
+                        <button name="check_account_balance" type="object" string="Check Balance" class="oe_highlight"/>
+                        <button name="check_account_message" type="object" string="Check Remaining Message"
+                                class="oe_highlight"/>
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='priority']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('provider','=', 'unifonic_sms')]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        <!--        <record model="ir.ui.view" id="sms_instance_unifonic_tree_view">-->
+        <!--            <field name="name">sms.instance.unifonic.tree.view</field>-->
+        <!--            <field name="model">sms.instance</field>-->
+        <!--            <field name="inherit_id" ref="eg_msg_base.sms_instance_tree_view"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <xpath expr="//field[@name='priority']" position="attributes">-->
+        <!--                    <attribute name="attrs">{'invisible': [('provider','=', 'unifonic_sms')]}</attribute>-->
+        <!--                </xpath>-->
+        <!--            </field>-->
+        <!--        </record>-->
+    </data>
+</odoo>

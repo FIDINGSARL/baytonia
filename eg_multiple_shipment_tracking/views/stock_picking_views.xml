@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="stock_picking_multiple_tracking_line">
+            <field name="name">stock.picking.multiple.tracking.line</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='extra']" position='after'>
+                    <page string="Tracking lines">
+                        <field name="delivery_tracking_lines_ids">
+                            <tree editable="bottom">
+                                <field name="carrier_id"/>
+                                <field name="tracking_ref"/>
+                                <field name="status_id" readonly="1"/>
+                                <field name="is_return"/>
+                                <button type="object" name="check_delivery_status" class="oe_stat_button" icon='fa-play'
+                                        string="Fetch Status"/>
+                                <button type="object" name="open_website_url" class="oe_stat_button" icon='fa-truck'
+                                        string="Tracking"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

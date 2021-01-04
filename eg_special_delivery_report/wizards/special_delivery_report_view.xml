@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="special_delivery_report_form_view">
+            <field name="name">special.delivery.report.form.view</field>
+            <field name="model">special.delivery.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="delivery_status_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button type="object" name="make_special_delivery_report" string="Generate Report"
+                                class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_special_delivery_report"
+                    name="Special Delivery Report"
+                    res_model="special.delivery.report"
+                    view_mode="form"
+                    target="new"/>
+        <menuitem name="Special Delivery Report" id="menu_special_delivery_report"
+                  action="action_special_delivery_report"
+                  parent="stock.menu_warehouse_report"/>
+        <menuitem name="Special Delivery Report" id="menu_pspecial_delivery_reportVen_bigboss"
+                  action="action_special_delivery_report"
+                  parent="eg_bigboss_toolbox.inventory_report_menu"/>
+    </data>
+</odoo>

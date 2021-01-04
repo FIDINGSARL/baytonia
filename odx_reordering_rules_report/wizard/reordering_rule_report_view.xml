@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="reordering_rule_report_form_view">
+            <field name="name">reordering.rule.report.form.view</field>
+            <field name="model">reordering.rule.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="vendor_ids" domain="[('supplier','=',True)]"/>
+                    </group>
+                    <group>
+                        <group>
+                            <label string="End Date"/>
+                            <div>
+<!--                                <field name="from_date" class="oe_inline"/>-->
+<!--                                <label string=" " class="oe_inline"/>-->
+                                <field name="to_date" class="oe_inline"/>
+                            </div>
+
+                        </group>
+                    </group>
+                    <footer>
+                        <button type="object" name="generate_stock_product_report" string="Generate XLS Report"
+                                class="oe_highlight"/>
+<!--                        <button type="object" name="generate_stock_product_on_screen_report"-->
+<!--                                string="Generate On Screen Report" class="oe_highlight"/>-->
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_reordering_rule_report"
+                    name="Reordering Rule Report"
+                    res_model="reordering.rule.report"
+                    view_mode="form"
+                    target="new"/>
+
+        <menuitem name="Reordering Rule Report" id="menu_reordering_rule_report" action="launch_reordering_rule_report"
+                  parent="sale.menu_sale_report"/>
+
+    </data>
+</odoo>

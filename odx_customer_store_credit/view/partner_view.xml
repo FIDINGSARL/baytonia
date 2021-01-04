@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_partner_add_substarct_store_credit">
+            <field name="name">res.partner</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='accounting']/group/group[@name='acc_sale']" position="inside">
+                    <field name="store_credit"/>
+                    <field name="add_substract" groups="odx_customer_store_credit.group_store_credit_edit"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Store Credit History">
+                        <field name="payment_odoo_history">
+                            <tree  default_order="id desc" decoration-success="balance_change &gt;= 0" decoration-danger="balance_change &lt;0">
+                                <field name="user_id"/>
+                                <field name="balance_change"/>
+                                <field name="new_balance"/>
+                                <field name="create_date"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

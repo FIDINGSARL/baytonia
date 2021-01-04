@@ -1,0 +1,12 @@
+<odoo noupdate="1">
+    <record model="ir.cron" id="picking_barcode_report_daily_cron">
+        <field name="name">Picking Barcode Report Daily Cron</field>
+        <field name="model_id" ref="model_picking_barcode_report"/>
+        <field name="state">code</field>
+        <field name="code">model.generate_report_for_inventory("Daily")</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+</odoo>

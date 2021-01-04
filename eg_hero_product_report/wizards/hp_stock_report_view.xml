@@ -1,0 +1,105 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hp_stock_report_form_view">
+            <field name="name">hp.stock.report.form.view</field>
+            <field name="model">hp.stock.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="vendor_ids" domain="[('supplier','=',True)]"/>
+                    </group>
+                    <group>
+                        <field name="category_ids"/>
+                    </group>
+                    <group>
+                        <group>
+                            <label string="Sale Price"/>
+                            <div>
+                                <field name="sale_price_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="sale_price" class="oe_inline"
+                                       attrs="{'readonly': [('sale_price_condition', '=', False)]}"/>
+                            </div>
+                            <label string="Cost Price"/>
+                            <div>
+                                <field name="cost_price_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="cost_price" class="oe_inline"
+                                       attrs="{'readonly': [('cost_price_condition', '=', False)]}"/>
+                            </div>
+                            <label string="Quantity On Hand"/>
+                            <div>
+                                <field name="qty_available_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="qty_available" class="oe_inline"
+                                       attrs="{'readonly': [('qty_available_condition', '=', False)]}"/>
+                            </div>
+                        </group>
+                        <group>
+                            <label string="Internal Reference"/>
+                            <div>
+                                <field name="sku_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="default_code" class="oe_inline"
+                                       attrs="{'invisible': [('sku_condition', 'in', ['is_set', 'not_set', False])]}"/>
+                            </div>
+                            <label string="Name"/>
+                            <div>
+                                <field name="name_condition" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="name" class="oe_inline"
+                                       attrs="{'invisible': [('name_condition', 'in', ['is_set', 'not_set', False])]}"/>
+                            </div>
+                            <field name="average_sale_price"/>
+                            <field name="sale_extra_data"/>
+                            <field name="add_custom_filter"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <label string="Duration"/>
+                            <div>
+                                <field name="from_date" class="oe_inline"/>
+                                <label string=" " class="oe_inline"/>
+                                <field name="to_date" class="oe_inline"/>
+                            </div>
+
+                        </group>
+                        <group>
+                            <label string="Create Date"/>
+                            <div>
+                                <field name="create_date_from" class="oe_inline"/>
+                                <field name="create_date_to" class="oe_inline"/>
+                            </div>
+                        </group>
+                        <group attrs="{'invisible': [('add_custom_filter', '=', False)]}">
+                            <label string="Filter"/>
+                            <div>
+                                <field name="filter_option"/>
+                                <field name="filter_range"/>
+                                <field name="filter_value"/>
+                            </div>
+                        </group>
+                    </group>
+                    <footer>
+                        <button type="object" name="generate_stock_product_report" string="Generate XLS Report"
+                                class="oe_highlight"/>
+                        <button type="object" name="generate_stock_product_on_screen_report"
+                                string="Generate On Screen Report" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_hp_stock_report"
+                    name="Hero Product Stock Report"
+                    res_model="hp.stock.report"
+                    view_mode="form"
+                    target="new"/>
+
+        <menuitem name="Hero Product Stock Report" id="menu_hp_stock_report_sale" action="launch_hp_stock_report"
+                  parent="sale.menu_sale_report"/>
+        <menuitem name="Hero Product Stock Report_bigboss" id="menu_hp_stock_report" action="launch_hp_stock_report"
+                  parent="eg_bigboss_toolbox.sale_report_menu"/>
+    </data>
+</odoo>

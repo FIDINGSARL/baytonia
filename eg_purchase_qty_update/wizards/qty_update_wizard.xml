@@ -1,0 +1,31 @@
+<odoo>
+    <record model="ir.ui.view" id="qty_update_wizard_form_view">
+        <field name="name">qty.update.wizard.form</field>
+        <field name="model">qty.update.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="wizard_line_ids">
+                        <tree editable="bottom" create="1">
+                            <field name="product_id" readonly="1" force_save="1"/>
+                            <field name="product_qty" force_save="1"/>
+                            <field name="price_unit" force_save="1"/>
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name="update_quantity_price" string="Process Update" type="object"
+                            class="oe_right oe_highlight"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="launch_qty_update_wizard_action"
+                name="Update Quantity"
+                src_model="purchase.order"
+                res_model="qty.update.wizard"
+                view_mode="form"
+                target="new"/>
+</odoo>

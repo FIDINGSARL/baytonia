@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="status_1" model="delivery.carrier.status">
+            <field name="name">Shipment Money Collected (COD)</field>
+        </record>
+        <record id="status_2" model="delivery.carrier.status">
+            <field name="name">Delivered</field>
+        </record>
+        <record id="status_3" model="delivery.carrier.status">
+            <field name="name">Shipment Delivered</field>
+        </record>
+    </data>
+</odoo>

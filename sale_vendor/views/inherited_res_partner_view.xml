@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_partner_sale_order_button" model="ir.ui.view">
+        <field name="name">res_partner_sale_order_button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div/button" position="after">
+                    <button class="oe_stat_button" name="sale_order_button" type="object" string="Sale Orders" icon="fa-envelope-o">
+                    </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+

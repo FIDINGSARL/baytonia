@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="picking_barcode_report_form_view">
+            <field name="name">picking.barcode.report.form.view</field>
+            <field name="model">picking.barcode.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button type="object" name="generate_report_for_inventory" string="Print Report"
+                                class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="launch_picking_barcode_report">
+            <field name="name">Stock Picking Report</field>
+            <field name="res_model">picking.barcode.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem name="Barcode Scan Report" id="menu_stock_picking_report" action="launch_picking_barcode_report"
+                  parent="stock.menu_warehouse_report" groups="stock.group_stock_manager" sequence="1"/>
+        <menuitem name="Barcode Scan Report" id="menu_stock_picking_report_bigboss" action="launch_picking_barcode_report"
+                  parent="eg_bigboss_toolbox.inventory_report_menu" groups="stock.group_stock_manager" sequence="1"/>
+    </data>
+</odoo>

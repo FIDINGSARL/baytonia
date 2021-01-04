@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_sale_auot_config,access_sale.auot.config,odx_custom_sale_delivery.model_sale_auot_config,,1,1,1,1
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_template_only_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.inherit.do_amount.form.view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="reason_archive"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="product_normal_form_view_inherit">
+            <field name="name">product.product.form.view.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="after">
+                    <field name="reason_archive"/>
+                </field>
+            </field>
+        </record>
+        <menuitem name="Products" id="product_menu_main"
+                  web_icon="odx_product_custom,static/description/odoo-inventory.png" groups="odx_product_custom.group_product_master"/>
+        <menuitem name="Products" id="menu_product_master"
+                  parent="product_menu_main"/>
+        <menuitem id="menu_product" name="Products " action="stock.product_template_action_product"
+                  parent="menu_product_master" sequence="1"/>
+        <menuitem id="menu_product_varients" name="Product Variants " action="product.product_normal_action"
+                  parent="menu_product_master" sequence="1"/>
+    </data>
+</odoo>

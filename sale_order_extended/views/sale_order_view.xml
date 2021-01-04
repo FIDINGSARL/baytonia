@@ -1,0 +1,120 @@
+<odoo>
+    <record id="sale_order_form_inherited" model="ir.ui.view">
+        <field name="name">sale.order.form.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="delivery_carrier_id_eg"/>
+            </field>
+            <!--            <field name="partner_id" position="after">-->
+            <!--                <field name="repeat_count_eg" readonly="1"/>-->
+            <!--            </field>-->
+            <field name="note" position="replace">
+                <h2>
+                    <b style="color:red">
+                        <field name="note" class="oe_inline"
+                               placeholder="Setup default terms and conditions in your sales settings ..."/>
+                    </b>
+                </h2>
+            </field>
+            <!--            <xpath expr="//notebook/page[1]/group" position="attributes">-->
+            <!--                <attribute name="groups">sale_order_extended.sale_order_analysis_group</attribute>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//field[@name='price_total']" position="attributes">-->
+            <!--                <attribute name="groups">sale_order_extended.sale_order_analysis_group</attribute>-->
+            <!--            </xpath>-->
+            <xpath expr="//notebook/page[2]" position="after">
+                <page string="Issue Lines">
+                    <field name="issue_line_ids">
+                        <tree editable="bottom">
+                            <field name="reason_id" required="1"/>
+                            <field name="sale_line_id" domain="[('order_id', '=', parent.id)]" required="1"
+                                   context="{'issue_line': True}"/>
+                            <field name="product_id" readonly="1" force_save="1"/>
+                            <field name="order_id" invisible="1"/>
+                            <field name="order_qty"/>
+                            <field name="unit_price"/>
+                            <field name="generate_date"/>
+                            <field name="responsible_id"/>
+                            <field name="confirm_person_id"/>
+                            <field name="carrier_id"/>
+                            <field name="image_small" widget="image" class="o_image_40_cover" style="width:100px; height:100px;"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="sale_order_re_extended_form_view" model="ir.ui.view">
+        <field name="name">sale.order.hide.purchase.form.extended.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line"/>
+        <field name="arch" type="xml">
+            <field name="purchase_price" position="attributes">
+                <attribute name="groups">sale_order_extended.sale_order_analysis_group</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="sale_order_hide_purchase_extended_inner_tree_view" model="ir.ui.view">
+        <field name="name">sale.order.hide.purchase.extended.tree.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree//field[@name='purchase_price']" position="attributes">
+                <attribute name="groups">sale_order_extended.sale_order_analysis_group</attribute>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="sale_order_hide_margin_extended_inner_tree_view" model="ir.ui.view">
+        <field name="name">sale.order.hide.margin.extended.tree.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order"/>
+        <field name="arch" type="xml">
+            <field name="margin" position="attributes">
+                <attribute name="groups">sale_order_extended.sale_order_analysis_group</attribute>
+            </field>
+            <!--            <xpath expr="//field[@name='order_line']/tree//field[@name='margin']" position="attributes">-->
+            <!--                <attribute name="groups">sale_order_extended.sale_order_analysis_group</attribute>-->
+            <!--            </xpath>-->
+
+        </field>
+    </record>
+
+    <record id="sale_order_tree_inheited" model="ir.ui.view">
+        <field name="name">sale.order.tree.inheited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="delivery_carrier_id_eg"/>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="repeat_count_eg" readonly="1"/>
+            </field>
+            <field name="amount_total" position="attributes">
+                <attribute name="groups">sale_order_extended.sale_order_total_analysis_group</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_sale_order_extended" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="delivery_carrier_id_eg"/>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="repeat_count_eg" readonly="1"/>
+            </field>
+            <field name="amount_total" position="attributes">
+                <attribute name="groups">sale_order_extended.sale_order_total_analysis_group</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

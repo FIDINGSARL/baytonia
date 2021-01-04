@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <!--Send To Ship Wizard View -->
+        <record id="wizard_view_register_payment_wizard" model="ir.ui.view">
+            <field name="name">Register Payment wizard</field>
+            <field name="model">register.payment.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Send To shipper Wizard">
+                    <group>
+                        <field name="journal_id"/>
+                        <field name="sale_order_id" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button string="Register Payment" type="object" name="register_payment"
+                                class="oe_highlight"/>
+                        <button string="_Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--Send To Ship Wizard Action -->
+        <record id="wizard_action_register_payment_wizard" model="ir.actions.act_window">
+            <field name="name">Journal Selection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">register.payment.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="wizard_view_register_payment_wizard"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

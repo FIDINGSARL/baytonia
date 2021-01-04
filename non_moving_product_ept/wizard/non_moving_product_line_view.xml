@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_non_moving_product_line_tree" model="ir.ui.view">
+        <field name="name">non.moving.product.line.tree</field>
+        <field name="model">non.moving.product.line</field>
+        <field name="arch" type="xml">
+            <tree string="Non Moving Product Lines" create="false" edit="false" editable="bottom">
+                <field name="product_id" readonly="1"/>
+                <field name="image_small" widget="image" class="o_image_40_cover" readonly="1"/>
+                <field name="qty_available" readonly="1"/>
+                <field name="rack_location" readonly="1"/>
+<!--                <field name="last_sale_date" readonly="1"/>-->
+                <field name="last_day_oldest" readonly="1"/>
+                <field name="days_lpd" readonly="1"/>
+<!--                <field name="last_purchase_date" readonly="1"/>-->
+<!--                <field name="cost_of_product" readonly="1"/>-->
+                <field name="total_cost" readonly="1"/>
+<!--                <field name="sales_price" readonly="1"/>-->
+                <field name="total_sales_price" readonly="1"/>
+                <field name="sales_of_duration" readonly="1"/>
+                <field name="total_sales" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_non_moving_product_line" model="ir.actions.act_window">
+        <field name="name">Non Moving Product Line</field>
+        <field name="res_model">non.moving.product.line</field>
+        <field name="context">{}</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_non_moving_product_line_tree"/>
+        <field name="target">current</field>
+    </record>
+
+</odoo>

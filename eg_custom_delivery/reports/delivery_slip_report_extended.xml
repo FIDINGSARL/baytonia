@@ -1,0 +1,117 @@
+<odoo>
+
+    <template id="report_eg_custom_delivery_document">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+                <div class="page">
+                    <div class="row" name="customer_address">
+                        <table width="100%">
+                            <th>
+                                <td>
+                                    <h3 >
+                                        <span t-field="o.carrier_id.name"/>
+                                    </h3>
+                                </td>
+                                <td>
+                                    <h3>
+                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.carrier_tracking_ref, 600, 100)" style="width:350px;height:60px"/>
+                                    </h3>
+                                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span t-field="o.carrier_tracking_ref"/>
+                                </td>
+                            </th>
+                        </table>
+
+                        <br/>
+                        <br/>
+                        <div class="col-xs-6 pull-left">
+                            <div>
+                                <span>
+                                    <strong>Shipper:</strong>
+                                </span>
+                            </div>
+                            <t t-set="company"
+                               t-value="res_company.partner_id or (o.move_lines and o.move_lines[0].company_id) or False"/>
+                            <div t-if="company" name="company_header">
+                                <div t-esc="company"
+                                     t-options='{"widget": "contact", "fields": ["address","name"], "no_marker": True}'/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 pull-right">
+                            <span>Contact:</span>
+                            <br/>
+                            <span t-field="o.company_id.partner_id.phone"/>
+                            <h4 style="margin-bottom: 1px;margin-left: 3px;margin-top: 3px;">
+                                <span>ref:</span>
+                                <span t-field="o.name"/>
+                            </h4>
+                            <h4 style="margin-bottom: 1px;margin-left: 3px;margin-top: 3px;">
+                                <span>ref-2:</span>
+                                <span t-field="o.origin"/>
+                            </h4>
+                            <h4 style="margin-bottom: 1px;margin-left: 3px;margin-top: 3px;">
+                                <span>Tracking Reference:</span>
+                                <span t-field="o.carrier_tracking_ref"/>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row" name="customer_address" style="border-top: 1px solid black; font-weight: 600;">
+                        <div class="col-xs-6 pull-left">
+                            <div>
+                                <span>
+                                    <strong style="font-weight: 900;">Receiver:</strong>
+                                </span>
+                            </div>
+                            <t t-set="partner"
+                               t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>
+                            <div t-if="partner" name="partner_header">
+                                <div t-esc="partner"
+                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 pull-right">
+                            <span>Contact:</span>
+                            <br/>
+                            <span t-field="o.partner_id.phone"/>
+                        </div>
+                    </div>
+                    <p t-if="o.backorder_id">
+                        This shipment is a backorder of<t t-esc="o.backorder_id.name"/>.
+                    </p>
+                    <p>
+                        <t t-if="o.search([('backorder_id', '=', o.id), ('state', 'not in', ['cancel', 'done'])])">
+                            All items couldn't be shipped, the remaining ones will be shipped as soon as they become
+                            available.
+                        </t>
+                    </p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_eg_custom_deliveryslip">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="eg_custom_delivery.report_eg_custom_delivery_document" t-lang="o.partner_id.lang"/>
+        </t>
+    </template>
+    <record id="eg_paperformat_delivery_slip" model="report.paperformat">
+        <field name="name">Product Label Format11</field>
+        <field name="default" eval="True"/>
+        <field name="format">A6</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">7</field>
+        <field name="dpi">100</field>
+    </record>
+
+    <report
+            string="Delivery Slip"
+            id="action_report_delivery"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="eg_custom_delivery.report_eg_custom_deliveryslip"
+            file="eg_custom_delivery.report_eg_custom_deliveryslip"
+            print_report_name="'Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)"
+            paperformat="eg_custom_delivery.eg_paperformat_delivery_slip"
+    />
+
+</odoo>

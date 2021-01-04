@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_supplier_report_form_view">
+            <field name="name">product.supplier.report.form.view</field>
+            <field name="model">product.supplier.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="list_without_vendor"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button type="object" name="generate_without_vendor_product" string="Generate Report" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_product_supplier_report"
+                    name="List without Vendor"
+                    res_model="product.supplier.report"
+                    view_mode="form"
+                    target="new"/>
+
+        <menuitem name="List Product without Vendor" id="menu_product_supplier_report" action="launch_product_supplier_report"
+                  parent="stock.menu_warehouse_report"/>
+        <menuitem name="List Product without Vendor" id="menu_product_supplier_report_bigboss" action="launch_product_supplier_report"
+                  parent="eg_bigboss_toolbox.inventory_report_menu"/>
+    </data>
+</odoo>

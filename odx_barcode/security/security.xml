@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_dispatching_barcode" model="res.groups">
+        <field name="name">Dispatching Barcode</field>
+        <field name="sequence">1</field>
+    </record>
+</odoo>

@@ -1,0 +1,5 @@
+<odoo>
+    <record model="res.groups" id="bigboss_toolbox_group">
+        <field name="name">Bigboss</field>
+    </record>
+</odoo>

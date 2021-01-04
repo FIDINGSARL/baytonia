@@ -1,0 +1,59 @@
+<odoo>
+    <record model="ir.ui.view" id="magento_configure_extended_form_view">
+        <field name="name">magento.configure.extended.form.view</field>
+        <field name="model">magento.configure</field>
+        <field name="inherit_id" ref="odoo_magento_connect.magento_configure_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[2]/group/group[3]" position="after">
+                <group>
+                    <label for="category_sync"/>
+                    <b>
+                        <field name="category_sync"/>
+                    </b>
+                </group>
+                <group>
+                    <label for="product_image_sync"/>
+                    <b>
+                        <field name="product_image_sync"/>
+                    </b>
+                </group>
+                <group>
+                    <label for="description_sync"/>
+                    <b>
+                        <field name="description_sync"/>
+                    </b>
+                </group>
+                <group>
+                    <label for="short_description_sync"/>
+                    <b>
+                        <field name="short_description_sync"/>
+                    </b>
+                </group>
+                <group>
+                    <label for="auto_order_status_update"/>
+                    <b>
+                        <field name="auto_order_status_update"/>
+                    </b>
+                </group>
+                <group>
+                    <label for="confirmation_states"/>
+                    <b>
+                        <field name="confirmation_states"/>
+                    </b>
+                </group>
+                <group>
+                    <label for="manage_back_order"/>
+                    <b>
+                        <field name="manage_back_order"/>
+                    </b>
+                </group>
+                <group>
+                    <label for="manage_product_status"/>
+                    <b>
+                        <field name="manage_product_status"/>
+                    </b>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

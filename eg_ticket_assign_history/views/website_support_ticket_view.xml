@@ -1,0 +1,15 @@
+<odoo>
+
+    <record model="ir.ui.view" id="customer_support_form_view_for_ticket_assign_history">
+        <field name="name">customer.support.form.for.ticket.assign.history</field>
+        <field name="model">website.support.ticket</field>
+        <field name="inherit_id" ref="website_support.website_support_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Assigned User">
+                    <field name="ticket_assign_history_ids" readonly="True"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

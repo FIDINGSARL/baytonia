@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="res.groups" id="group_vendor_create">
+            <field name="name">Vendor Create</field>
+        </record>
+
+    </data>
+</odoo>

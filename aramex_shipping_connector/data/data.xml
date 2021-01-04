@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Carrier -->
+
+        <record id="product_product_delivery_vaal" model="product.product">
+            <field name="name">Aramex service</field>
+            <field name="default_code">Delivery</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="list_price">20.0</field>
+        </record>
+
+        <record id="delivery_carrier" model="delivery.carrier">
+            <field name="name">Aramex shipping service</field>
+            <field name="fixed_amount">20.0</field>
+            <field name="sequence">2</field>
+            <field name="delivery_type">Aramex</field>
+            <field name="aramex_product_group">DOM</field>
+            <field name="aramex_service_type">OND</field>
+            <field name="aramex_weight_uom">KG</field>
+            <field name="aramex_payment_type">P</field>
+            <field name="aramex_payment_options">CASH</field>
+            <field name="aramex_unit">CM</field>
+            <field name="product_id" ref="product_product_delivery_vaal"/>
+        </record>
+
+    </data>
+</odoo>

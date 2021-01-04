@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="delivery_tracking_line_form_view" model="ir.ui.view">
+        <field name="name">delivery.tracking.line.form</field>
+        <field name="model">delivery.tracking.line</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Tracking">
+                <header/>
+                <sheet string="Delivery Tracking">
+                    <div class="oe_title">
+                        <h1>
+                            <field name="picking_id"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="carrier_id"/>
+                            <field name="tracking_ref"/>
+                            <field name="status_id"/>
+                        </group>
+                        <group>
+                            <field name="is_return"/>
+                            <field name="sale_id" attrs="{'invisible':[('sale_id','=',False)]}" readonly="1"/>
+                            <field name="purchase_id" attrs="{'invisible':[('purchase_id','=',False)]}" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_delivery_tracking_line_tree" model="ir.ui.view">
+        <field name="name">delivery.tracking.line.tree</field>
+        <field name="model">delivery.tracking.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="picking_id"/>
+                <field name="carrier_id"/>
+                <field name="tracking_ref"/>
+                <field name="status_id"/>
+                <field name="is_return"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_delivery_tracking_line" model="ir.actions.act_window">
+        <field name="name">Delivery Tracking</field>
+        <field name="res_model">delivery.tracking.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_fetch_delivery_tracking_status" model="ir.actions.server">
+        <field name="name">Fetch Status</field>
+        <field name="model_id" ref="model_delivery_tracking_line"/>
+        <field name="binding_model_id" ref="model_delivery_tracking_line"/>
+        <field name="state">code</field>
+        <field name="code">records.check_delivery_status()</field>
+    </record>
+    <menuitem action="action_delivery_tracking_line" id="menu_delivery_tracking_line" name="Delivery Tracking"
+              parent="stock.menu_stock_warehouse_mgmt" groups="stock.group_stock_user"/>
+
+</odoo>

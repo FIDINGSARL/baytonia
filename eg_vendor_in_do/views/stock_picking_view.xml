@@ -1,0 +1,30 @@
+<odoo>
+    <record model="ir.ui.view" id="stock_picking_new_form_view">
+        <field name="name">stock.picking.new.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="partner_ids" widget="many2many_tags" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='quantity_done']" position="after">
+                <field name="purchase_order_id"/>
+                <field name="vendor_id"/>
+            </xpath>
+            <!--            <xpath expr="//header" position="inside">-->
+            <!--                <button name="set_suppliers" string="Set Suppliers" type="object"-->
+            <!--                        class="oe_highlight"/>-->
+            <!--            </xpath>-->
+        </field>
+    </record>
+    <record model="ir.ui.view" id="stock_picking_new_tree_view">
+        <field name="name">stock.picking.new.tree.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="partner_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

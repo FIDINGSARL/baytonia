@@ -1,0 +1,12 @@
+<odoo noupdate="1">
+    <record model="ir.cron" id="sales_state_report_daily_cron">
+        <field name="name">Sales State Report Daily Cron</field>
+        <field name="model_id" ref="model_sale_order_report_wizard"/>
+        <field name="state">code</field>
+        <field name="code">model.generate_report_for_sales_states("Daily")</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+</odoo>

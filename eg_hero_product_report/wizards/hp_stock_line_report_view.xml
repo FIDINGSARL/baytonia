@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_hero_product_stock_line_tree" model="ir.ui.view">
+        <field name="name">hp.stock.line.tree</field>
+        <field name="model">hp.stock.line</field>
+        <field name="arch" type="xml">
+            <tree string="Hero Product Stock Lines" create="false" edit="false" editable="bottom">
+                <!--  <field name="serial_no" readonly="1"/>-->
+                <!--                <field name="product_sku" readonly="1"/>-->
+                <field name="product_id" readonly="1"/>
+                <field name="image_small" widget="image" class="o_image_40_cover" readonly="1"/>
+                <field name="days_since_creation" readonly="1"/>
+                <field name="qty_available" readonly="1" sum="Qty Availbale"/>
+                <field name="vendor" readonly="1"/>
+                <field name="qty_sold" readonly="1" sum="Total Sales"/>
+                <field name="frequency_of_sale" readonly="1"/>
+                <field name="total_out" readonly="1" sum="Total Out"/>
+                <!--                <field name="total_in" readonly="1"/>-->
+                <field name="total_out_scd" readonly="1" sum="Total Out scd"/>
+                <field name="total_in_scd" readonly="1" sum="Total In Scd"/>
+                <field name="total_out_in" readonly="1" sum="Total Out In"/>
+                <field name="revenue" readonly="1" sum="Revenue"/>
+                <field name="lst_price" readonly="1"/>
+                <field name="standard_price" readonly="1"/>
+                <field name="average_sale_price" readonly="1" sum="Avg Sale Price"/>
+                <field name="total_avg_sale_price" readonly="1" sum="Total Avg Sale Price"/>
+                <field name="category" readonly="1"/>
+                <field name="from_date" readonly="1"/>
+                <field name="to_date" readonly="1"/>
+                <field name="avg_sale_day" readonly="1" sum="Avg Sale Day"/>
+                <field name="avg_revenue_day" readonly="1" sum="Avarage Revenue"/>
+                <field name="max_sale_day" readonly="1" sum="Max Sale Qty"/>
+                <field name="min_sale_day" readonly="1" sum="Min Sale Qty"/>
+
+                <!--
+                                <field name="make_to_order" readonly="1"/>
+
+                                <field name="profit" readonly="1"/>
+                -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hero_product_stock_line" model="ir.actions.act_window">
+        <field name="name">Hero Product Stock Line</field>
+        <field name="res_model">hp.stock.line</field>
+        <field name="context">{}</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hero_product_stock_line_tree"/>
+        <field name="target">current</field>
+    </record>
+
+</odoo>

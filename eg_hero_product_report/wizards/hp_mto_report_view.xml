@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hp_mto_report_form_view">
+            <field name="name">hp.mto.report.form.view</field>
+            <field name="model">hp.mto.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <footer>
+                        <button type="object" name="generate_mto_product_report" string="Generate XLS Report"
+                                class="oe_highlight"/>
+                        <button type="object" name="generate_on_screen_report" string="Generate On Screen Report"
+                                class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_hp_mto_report"
+                    name="List MTO Product"
+                    res_model="hp.mto.report"
+                    view_mode="form"
+                    target="new"/>
+
+        <!--        <menuitem name="Hero Product Mto Report" id="menu_hp_mto_report_sale" action="launch_hp_mto_report"-->
+        <!--                  parent="sale.menu_sale_report"/>-->
+        <!--        <menuitem name="Hero Product Mto Report_bigboss" id="menu_hp_mto_report" action="launch_hp_mto_report"-->
+        <!--                  parent="eg_bigboss_toolbox.sale_report_menu"/>-->
+    </data>
+</odoo>

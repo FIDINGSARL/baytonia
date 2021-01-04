@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="support_ticket_report_form_view">
+            <field name="name">support.ticket.report.form.view</field>
+            <field name="model">support.ticket.report.wiz</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <label string="Duration"/>
+                            <div>
+                                <field name="date_from" class="oe_inline"/>
+                                <label string="To" class="oe_inline"/>
+                                <field name="date_to" class="oe_inline"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="category" widget="many2many_tags"/>
+                            <field name="user" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button type="object" name="print_report_xlsx" string="XLSX Report" class="oe_highlight"/>
+                        <button type="object" name="print_report_pdf" string="PDF Report" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="support_ticket_report_acton"
+                    name="Support Ticket Report"
+                    res_model="support.ticket.report.wiz"
+                    view_mode="form"
+                    target="new"/>
+
+        <menuitem id="menu_customer_support_report_main" name="Reporting"
+                  parent="website_support.website_support_parent_menu" sequence="110"/>
+
+        <menuitem id="menu_support_ticket_report" name="Support Ticket Report"
+                  parent="menu_customer_support_report_main" sequence="110" action="support_ticket_report_acton"/>
+
+    </data>
+</odoo>

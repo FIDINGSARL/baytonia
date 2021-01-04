@@ -1,0 +1,5 @@
+<odoo>
+    <record id="in_transit_tracking_status" model="delivery.carrier.status">
+        <field name="name">In Transit</field>
+    </record>
+</odoo>

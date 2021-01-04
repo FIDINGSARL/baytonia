@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="msg_error_log_tree_view">
+            <field name="name">msg.error.log.tree.view</field>
+            <field name="model">msg.error.log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sms_instance_id"/>
+                    <field name="datetime"/>
+                    <field name="process"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="msg_error_log_form_view">
+            <field name="name">msg.error.log.from.view</field>
+            <field name="model">msg.error.log</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="sms_instance_id"/>
+                                <field name="datetime"/>
+                                <field name="process"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="error_message"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+
+        </record>
+
+        <record model="ir.actions.act_window" id="msg_error_log_action">
+            <field name="name">Msg Error Log</field>
+            <field name="res_model">msg.error.log</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Msg Error Log" id="msg_error_log_menu" action="msg_error_log_action" sequence="3"
+                  parent="msg_base_menu" groups="base.group_no_one"/>
+    </data>
+</odoo>

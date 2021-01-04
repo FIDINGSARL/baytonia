@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form_inherit_send_to_shipper_eg" model="ir.ui.view">
+            <field name="name">view.order.form.inherit.send.shipper.eg</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                <button name="send_to_shipper" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': [('state','not in',('done'))]}
+                    </attribute>
+                    <attribute name="context">{'manual':True}</attribute>
+                </button>
+                <button name="send_to_shipper" position="after">
+                    <button name="create_invoice_from_do" type="object" string="Create Invoice"
+                            attrs="{'invisible': [('state','!=','done')]}"/>
+                    <button name="regenerate_delivery_label" type="object" string="ReGen Label"
+                            attrs="{'invisible': [('carrier_tracking_ref','=',False),('state','not in',('done'))]}"/>
+                </button>
+                <field name="location_dest_id" position="after">
+                    <field name="invoice_id"/>
+                    <field name="eg_cod_amount" invisible="1"/>
+                </field>
+                <field name="number_of_packages" position="after">
+                    <field name="return_carrier_id"/>
+                    <field name="return_tracking_ref"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

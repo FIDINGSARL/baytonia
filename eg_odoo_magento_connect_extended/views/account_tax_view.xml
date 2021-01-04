@@ -1,0 +1,12 @@
+<odoo>
+    <record model="ir.ui.view" id="account_tax_magento_form_view">
+        <field name="name">account.tax.magento.form.view</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="default_tax"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

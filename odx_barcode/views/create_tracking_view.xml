@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="dispatching_batch_req" model="ir.sequence">
+            <field name="name">Dispatching Batch</field>
+            <field name="code">create.tracking.barcode</field>
+            <field name="prefix">Batch-</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name="padding">5</field>
+        </record>
+    </data>
+
+    <record id="from_create_tracking_barcode" model="ir.ui.view">
+        <field name="name">create.tracking.barcode.form</field>
+        <field name="model">create.tracking.barcode</field>
+        <field name="arch" type="xml">
+            <form string="Barcode">
+                <header>
+
+<!--                    <button string="Submit" states="start" type="object" name="submit" barcode_trigger="Submit"-->
+<!--                            groups="odx_barcode.group_dispatching_barcode" class="oe_highlight"/>-->
+                    <button string="Print" type="object" states="finish" name="dispatching_report"
+                            class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,start,finish"/>
+                    <button string="Finish" states="start" type="object" name="finish" barcode_trigger="finish"
+                            groups="odx_barcode.group_dispatching_barcode" class="oe_highlight"/>
+                    <button string="Start" states="draft" type="object" name="start" barcode_trigger="start"
+                            groups="odx_barcode.group_dispatching_barcode" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <h1>Scan Barcode</h1>
+                    <!--                                            <field name="_barcode_scanned" widget="barcode_handler" invisible="True"/>-->
+
+                    <field name="_barcode_scanned"/>
+                    <group>
+                        <group>
+                            <!--                            <field name="boxes" readonly="1"/>-->
+                            <!--                            <field name="scaned_boxes" readonly="1"/>-->
+                            <!--                            <field name="scanned_boxes_copy" invisible="1"/>-->
+                            <field name="picking_id" readonly="1"/>
+                            <field name="delivery_tracking_line_id" invisible="1"/>
+                            <field name="tracking_barcode_ids" invisible="1"/>
+                            <field name="start_date" invisible="1"/>
+                            <field name="end_date" invisible="1"/>
+                            <field name="shipping_company_id" invisible="0" readonly="1"/>
+                            <field name="dispatched_user_id" invisible="0" readonly="1"/>
+                              <field name="dispaching_date" invisible="1"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_tracking_barcode" model="ir.actions.act_window">
+        <field name="name">Create Picking Barcode</field>
+        <field name="res_model">create.tracking.barcode</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem name="Scan Barcode" parent="main_menu_tracking_barcode"
+              id="menu_create_tracking_barcode" action="action_create_tracking_barcode" sequence="1"/>
+</odoo>

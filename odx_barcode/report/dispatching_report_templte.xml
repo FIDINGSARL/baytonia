@@ -1,0 +1,61 @@
+<odoo>
+    <template id="dispatching_report_template">
+        <t t-set="data_report_dpi" t-value="300"/>
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <t class="page">
+                    <table width="100%">
+                        <tr>
+                            <th class="text-center">Dispatching Manifest</th>
+                            <th></th>
+                            <th class="text-center">Time Stamp :</th>
+                            <th class="text-center">
+                                <span t-field="o.end_date"/>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Shipping Company :</th>
+                            <th class="text-center">
+                                <span t-field="o.shipping_company_id"/>
+                            </th>
+                            <th class="text-center">Dispatch By :</th>
+                            <th class="text-center">
+                                <span t-field="o.dispatched_user_id"/>
+                            </th>
+                        </tr>
+                    </table>
+                    <table width="100%" class="table table-bordered mt32">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Shipment No</th>
+                                <th class="text-center">Tracking Ref</th>
+                                <th class="text-center">No.of Boxes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.tracking_barcode_ids" t-as="result">
+                                <td class="text-center">
+                                    <span t-field="result.picking_id"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="result.name"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="result.boxes"/>
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <table width="100%">
+                        <tr>
+                            <th class="pull-left">Received by:</th>
+                            <th class="text-center">Signature:</th>
+                        </tr>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

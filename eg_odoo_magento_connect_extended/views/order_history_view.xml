@@ -1,0 +1,41 @@
+<odoo>
+    <record model="ir.ui.view" id="order_history_tree_view">
+        <field name="name">order.history.tree.view</field>
+        <field name="model">order.history</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="process"/>
+                <field name="create_date"/>
+                <field name="mag_order_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="order_history_form_view">
+        <field name="name">order.history.form.view</field>
+        <field name="model">order.history</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="process"/>
+                            <field name="create_date"/>
+                            <field name="text"/>
+                            <field name="mag_order_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="order_history_action">
+        <field name="name">Order History</field>
+        <field name="res_model">order.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Order History" id="order_history_menu" parent="sale.sale_order_menu"
+              action="order_history_action" groups="base.group_no_one"/>
+</odoo>

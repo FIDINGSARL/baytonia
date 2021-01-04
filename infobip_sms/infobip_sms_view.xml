@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- ################### INFOBIP START ##################### -->
+		
+		<record id="view_infobip_sms_tree" model="ir.ui.view">
+            <field name="name">fl.infobip.sms.tree</field>
+            <field name="model">fl.infobip.sms</field>
+            <field name="arch" type="xml">
+                <tree string="Infobip SMS">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_infobip_sms_form" model="ir.ui.view">
+        	<field name="name">fl.infobip.sms.form</field>
+            <field name="model">fl.infobip.sms</field>
+            <field name="arch" type="xml">
+            	<form string="Infobip SMS">
+            		<header>
+	                    <button name="test_sms_fl" type="object" string="Test" class="oe_highlight" />
+	                </header>
+                	<sheet>
+                		<div class="oe_button_box" name="button_box">
+	                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+	                        	<field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+	                        </button>
+	                    </div>
+	                    <div class="oe_title">
+            				<h1>
+                            	<field name="name" default_focus="1" placeholder="Name"/>
+                        	</h1>
+            			</div>
+	                    <group name="config_info">
+	                    	<group>
+			                    <field name="base_url"/>
+			                    <field name="username"/>
+			                    <field name="password" password="1"/>
+			                    <field name="test_no" placeholder="e.g. +919978787878"/>
+	                    	</group>
+	                    	<group></group>
+	                    </group>
+                	</sheet>
+           		</form>
+        	</field>
+		</record>
+		
+		<record id="action_infobip_sms" model="ir.actions.act_window">
+            <field name="name">Infobip SMS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fl.infobip.sms</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create configuration for Infobip SMS.
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_action_infobip_sms" name="Infobip SMS" action=""
+        	parent="base.menu_custom" sequence="1"/>
+        
+        <menuitem id="menu_action_infobip_sms_conf" name="Configuration" action="action_infobip_sms"
+        	parent="menu_action_infobip_sms" sequence="5"/>
+		
+		<!-- ###################  INFOBIP END ##################### -->
+		
+	</data>
+</odoo>

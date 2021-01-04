@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_picking_form_inherited_delivery_note">
+        <field name="name">view_picking_form_inherited_delivery_note</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <h2>
+                    <b style="color:red">
+                        <field name="delivery_note_eg"/>
+                    </b>
+                </h2>
+            </xpath>
+            <xpath expr="//sheet/div" position="inside">
+                <field name="return_picking_ids" invisible="1"/>
+                <field name="have_return" invisible="1"/>
+                <button type="object"
+                        name="view_action_for_return_order"
+                        class="oe_stat_button"
+                        string="Return"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('have_return', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='picking_type_code']" position="before">
+                <button name="cancel_delivery_order" string="Cancel"
+                        groups="sale_stock_extended.stock_manager_cancel_order_group"
+                        type="object"
+                        attrs="{'invisible': ['|', ('state', 'not in', ('assigned', 'confirmed', 'partially_available', 'draft', 'waiting')), ('is_locked', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

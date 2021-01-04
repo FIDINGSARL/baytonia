@@ -1,0 +1,29 @@
+<odoo>
+    <record model="ir.ui.view" id="msg_by_unifonic_form_view">
+        <field name="name">msg.by.unifonic.form.view</field>
+        <field name="model">msg.by.unifonic</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="number"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="message"/>
+                </group>
+                <footer>
+                    <button name="send_msg_customer_by_unifonic" string="Send Msg"
+                            type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="msg_by_unifonic_action">
+        <field name="name">Return Disclaimer Msg</field>
+        <field name="res_model">msg.by.unifonic</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

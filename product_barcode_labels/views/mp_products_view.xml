@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<odoo>
+	<data>
+        <record id="inherit_product_normal_form_view" model="ir.ui.view">
+			<field name="name">product labels inherit form view</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view"/>
+			<field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[@name='inventory']" position="inside">
+                    <group>
+                        <group>
+                            <field name="expiry_date"/>
+                            <field name="batch_no"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

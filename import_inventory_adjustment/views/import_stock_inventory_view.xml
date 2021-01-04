@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_import_inventory_adjustment_form" model="ir.ui.view">
+            <field name="name">import.inventory.adjustment.form.view</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header/button[last()]" position="after">
+                    <button name="import_attachment" string="Import Attachment" type="object"
+                   attrs="{'invisible' : ['|', ('filter', 'not in', ('partial')),('state','=','draft')]}" />
+                    <button name="download_template" string="Download Template" type="object"
+                   attrs="{'invisible' : ['|', ('filter', 'not in', ('partial')),('state','=','draft')]}" />
+                </xpath>
+                <xpath expr="/form/sheet/group/group[2]/field[@name='date']" position="after">
+                    <field name="file_name" invisible="1" />
+                    <field name="attachment_data" filename="file_name" attrs="{'invisible' : ['|', ('filter', 'not in', ('partial')),('state','=','draft')]}"/>
+                </xpath>
+                <xpath expr="/form/sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

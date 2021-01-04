@@ -1,0 +1,8 @@
+<odoo>
+    <record model="res.groups" id="sale_order_analysis_group">
+        <field name="name">Sales Analysis</field>
+    </record>
+    <record model="res.groups" id="sale_order_total_analysis_group">
+        <field name="name">Sales Total</field>
+    </record>
+</odoo>

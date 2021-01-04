@@ -1,0 +1,12 @@
+<odoo>
+    <record model="ir.ui.view" id="sms_instance_moyasar_form_view">
+        <field name="name">sms.instance.moyasar.form.view</field>
+        <field name="model">sms.instance</field>
+        <field name="inherit_id" ref="eg_unifonic_sms.sms_instance_unifonic_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='marketing_url']" position="after">
+                <field name="moyasar_message" attrs="{'invisible':[('provider', '!=', 'unifonic_sms')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

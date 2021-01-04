@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="view_attachment_form_inherit" model="ir.ui.view">
+            <field name="name">ir.attachment.form.view</field>
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref="base.view_attachment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='res_model']" position="after">
+                    <field name="stock_scrap_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_returns" model="res.groups">
+        <field name="name">Returns</field>
+        <field name="sequence">1</field>
+    </record>
+     <record id="group_credit_note" model="res.groups">
+        <field name="name">Credit Note</field>
+        <field name="sequence">1</field>
+    </record>
+</odoo>

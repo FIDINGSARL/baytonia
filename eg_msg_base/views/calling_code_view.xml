@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="calling_code_tree_view">
+            <field name="name">calling.code.tree.view</field>
+            <field name="model">calling.code</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="prefix_number"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="calling_code_form_view">
+            <field name="name">calling.code.from.view</field>
+            <field name="model">calling.code</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="prefix_number"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+
+        </record>
+        <record model="ir.ui.view" id="calling_code_search_view">
+            <field name="name">calling.code.search.view</field>
+            <field name="model">calling.code</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="prefix_number"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="calling_code_action">
+            <field name="name">Calling Code</field>
+            <field name="res_model">calling.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Msg Base" id="msg_base_menu" web_icon="eg_msg_base,static/description/icon.png"/>
+        <menuitem name="Send Msg" id="send_msg_menu" parent="msg_base_menu" sequence="8"/>
+        <menuitem name="Multiple Instance" id="multiple_instance_menu" parent="send_msg_menu"/>
+        <menuitem name="Calling Code" id="calling_code_menu" action="calling_code_action" sequence="5"
+                  parent="msg_base_menu"/>
+    </data>
+</odoo>

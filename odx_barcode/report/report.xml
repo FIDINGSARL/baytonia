@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="dispatching_report"
+                model="create.tracking.barcode"
+                string="Dispaching Report"
+                report_type="qweb-pdf"
+                name="odx_barcode.dispatching_report_template"
+                file="odx_barcode.dispatching_report_template"
+                attachment_use="False"
+                menu="False"
+        />
+        <report
+                id="date_batch_report_xlsx"
+                model="dispatching.order.report"
+                string="Dispaching Report"
+                report_type="xlsx"
+                name="date.batch.report.xlsx"
+                file="Dispatching "
+                attachment_use="False"
+                menu="False"
+        />
+    </data>
+</odoo>

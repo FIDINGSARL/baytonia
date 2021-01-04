@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_favourite_customer_form" model="ir.ui.view">
+        <field name="name">favourite.customer.form</field>
+        <field name="model">favourite.customer</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Favourite customer email list">
+                <group>
+                    <field name="name"/>
+                </group>
+                <group>
+                    <field name="order_count_gt"/>
+                    <field name="total_amount_gt"/>
+                </group>
+                <footer>
+                    <button string='Prepare list' name="action_create_email_list_eg"
+                            type="object" class="btn-primary"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_favourite_customer" model="ir.actions.act_window">
+        <field name="name">Create Favourite Customer List</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">favourite.customer</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="menu_favourite_customer" action="action_favourite_customer"
+              sequence="205" parent="sale.menu_sale_report"/>
+
+
+</odoo>

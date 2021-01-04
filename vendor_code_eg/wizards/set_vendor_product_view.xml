@@ -1,0 +1,33 @@
+<odoo>
+    <record model="ir.ui.view" id="set_vendor_product_form_view">
+        <field name="name">set.vendor.product.form.view</field>
+        <field name="model">set.vendor.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_ids"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="route_ids" domain="[('product_selectable', '=', True)]"
+                                   widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="set_vendor_product" string="Process" type="object" class="oe_highlight"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="set_vendor_product_action">
+        <field name="name">Set Vendor Product</field>
+        <field name="res_model">set.vendor.product</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem name="Set Vendor Product" action="set_vendor_product_action"
+              id="set_vendor_product_menu" parent="stock.menu_stock_inventory_control"/>
+</odoo>

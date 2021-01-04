@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="post_sms_wizard_form_view">
+            <field name="name">post.sms.wizard.form.view</field>
+            <field name="model">post.sms.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="send_msg_to" widget="radio"/>
+                            </group>
+                            <group attrs="{'invisible': [('send_msg_to', '!=', 'group')]}">
+                                <field name="group_msg_id" attrs="{'invisible': [('send_msg_to', '!=', 'group')]}"/>
+                                <field name="message_title" attrs="{'invisible': [('send_msg_to', '!=', 'group')]}"/>
+                            </group>
+                        </group>
+                        <group attrs="{'invisible': [('send_msg_to', '!=', 'individual_number')]}">
+                            <label string="Number"/>
+                            <div>
+                                <field name="calling_code_id" class="oe_inline"/>
+                                <field name="number" class="oe_inline"
+                                       attrs="{'required':[('send_msg_to', '=', 'individual_number')]}"/>
+                            </div>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="message"/>
+                                <field name="message_datetime" invisible="1"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="post_sms" type="object" string="Post Message" class="oe_highlight"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,67 @@
+<odoo>
+    <data>
+        <template id="hp_mto_line_report_template">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <h1 style="text-align: center;">Hero Product MTO Report</h1>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Serial No.</th>
+                                <th>Product</th>
+                                <th>Image</th>
+                                <th>Quantity</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="docs" t-as="o">
+                            <tbody>
+                                <td>
+                                    <span t-field="o.serial_no"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.product_id"/>
+                                </td>
+                                <td style="height:20px !important;width:20px !important;">
+                                    <span t-field="o.product_id.image_small" t-options='{"widget": "image"}'/>
+                                </td>
+                                <td>
+                                    <span t-field="o.qty_available"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.category"/>
+                                </td>
+                            </tbody>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+
+    <record id="eg_paperformat_euro" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+            id="main_hp_mto_line_report"
+            model="hp.mto.line"
+            string="Print Report"
+            report_type="qweb-pdf"
+            name="eg_hero_product_report.hp_mto_line_report_template"
+            file="eg_hero_product_report.hp_mto_line_report_template"
+            paperformat="non_moving_product_ept.eg_paperformat_euro"
+    />
+</odoo>

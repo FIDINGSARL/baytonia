@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_carrier_fastlo" model="ir.ui.view">
+        <field name="name">delivery.carrier.fastlo</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='destination']" position='before'>
+                <page string="Credential" name="Fastlo_Delivery_credential"
+                      attrs="{'invisible': [('delivery_type', '!=', 'fastlo_delivery')],'required': [('delivery_type', '=', 'fastlo_delivery')]}"
+                      group='stock.group_stock_manager'>
+                    <group>
+                        <field name="fastlo_api_key"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

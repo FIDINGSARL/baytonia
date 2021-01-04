@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="edit_product_bulk_wizard_form_view">
+            <field name="name">edit.product.bulk.wizard.form.view</field>
+            <field name="model">edit.product.bulk.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="product_variant_ids"/>
+                            <field name="exclude_from_report"/>
+                        </group>
+                        <footer>
+                            <button name="save_wizard_data" type="object" string="Save" class="oe_highlight"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_edit_product_bulk_wizard"
+                    name="Product Wizard"
+                    src_model="product.product"
+                    res_model="edit.product.bulk.wizard"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"/>
+
+        <menuitem name="Product Wizard" id="menu_edit_product_bulk_wizard" action="launch_edit_product_bulk_wizard"
+                  parent="sale.menu_sale_report"/>
+        <menuitem name="Product Wizard" id="menu_edit_product_bulk_wizard_bigboss" action="launch_edit_product_bulk_wizard"
+                  parent="eg_bigboss_toolbox.sale_report_menu"/>
+    </data>
+</odoo>

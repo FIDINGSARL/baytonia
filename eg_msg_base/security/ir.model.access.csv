@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_calling_code_user,calling.code.user,model_calling_code,msg_base_user_group,1,1,1,0
+access_calling_code_manager,calling.code.manager,model_calling_code,msg_base_manager_group,1,1,1,1
+access_group_msg_user,calling.group.msg.user,model_group_msg,msg_base_user_group,1,1,1,0
+access_group_msg_manager,calling.group.msg.manager,model_group_msg,msg_base_manager_group,1,1,1,1
+access_msg_delivery_report_user,msg.delivery.report.user,model_msg_delivery_report,msg_base_user_group,1,1,1,1
+access_msg_delivery_report_manager,msg.delivery.report.manager,model_msg_delivery_report,msg_base_manager_group,1,1,1,1
+access_msg_error_log_user,msg.error.log.user,model_msg_error_log,msg_base_user_group,1,1,1,0
+access_msg_error_log_manager,msg.error.log.manager,model_msg_error_log,msg_base_manager_group,1,1,1,0
+access_msg_status_user,msg.status.user,model_msg_status,msg_base_user_group,1,1,1,0
+access_msg_status_manager,msg.status.manager,model_msg_status,msg_base_manager_group,1,1,1,1
+access_number_list_user,msg.number.list.user,model_number_list,msg_base_user_group,1,1,1,0
+access_number_list_manager,msg.number.list.manager,model_number_list,msg_base_manager_group,1,1,1,1
+access_sms_instance_user,sms.instance.user,model_sms_instance,msg_base_user_group,1,1,1,0
+access_sms_instance_manager,sms.instance.manager,model_sms_instance,msg_base_manager_group,1,1,1,1
+access_sms_template_user,sms.template.user,model_sms_template,msg_base_user_group,1,1,1,0
+access_sms_template_manager,sms.template.manager,model_sms_template,msg_base_manager_group,1,1,1,1

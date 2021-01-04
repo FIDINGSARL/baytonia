@@ -1,0 +1,13 @@
+<odoo>
+    <record model="ir.ui.view" id="product_product_set_barcode_form_view">
+        <field name="name">product.product.set.barcode.form.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='barcode']" position="after">
+                <button name="set_barcode_product" string="Set Barcode" type="object"
+                        class="oe_inline fa fa-arrow-right oe_link"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

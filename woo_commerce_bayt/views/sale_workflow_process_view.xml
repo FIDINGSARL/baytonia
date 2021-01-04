@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="bayt_sale_workflow_process_view_form" model="ir.ui.view">
+        <field name="name">bayt_sale_workflow_process_view_form</field>
+        <field name="model">sale.workflow.process.ept</field>
+        <field eval="16" name="priority"/>
+        <field name="inherit_id" ref="auto_invoice_workflow_ept.sale_workflow_process_view_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="validate_order" position="after">
+                <field name="validate_order_status_ids" widget="many2many_tags"
+                       attrs="{'invisible':[('validate_order','=',False)]}"
+                       placeholder="Leave empty to validate all"/>
+            </field>
+        </field>
+    </record>
+</odoo>

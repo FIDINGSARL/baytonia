@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_store_credit_edit" model="res.groups">
+        <field name="name">Store Credit Edit</field>
+        <field name="sequence">1</field>
+    </record>
+</odoo>

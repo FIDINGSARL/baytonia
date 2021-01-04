@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+label_configurator_stock_user,label_configurator_stock_user,product_barcode_labels.model_label_configurator,stock.group_stock_user,1,0,0,0
+label_layout_lines_stock_user,label_layout_lines_stock_user,product_barcode_labels.model_label_layout_lines,stock.group_stock_user,1,0,0,0
+
+label_configurator_stock_manager,label_configurator_stock_manager,product_barcode_labels.model_label_configurator,stock.group_stock_manager,1,1,1,1
+label_layout_lines_stock_manager,label_layout_lines_stock_manager,product_barcode_labels.model_label_layout_lines,stock.group_stock_manager,1,1,1,1

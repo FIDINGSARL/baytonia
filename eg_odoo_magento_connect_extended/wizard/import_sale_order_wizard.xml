@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="import_sale_order_wizard_form_view">
+            <field name="name">import.sale.order.wizard.form.view</field>
+            <field name="model">import.sale.order.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h4>Import Remaining Sale Order</h4>
+                        <group>
+                            <group>
+                                <field name="from_date"/>
+                                <field name="to_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button type="object" name="import_sale_order" string="Print" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_import_sale_order_wizard"
+                    name="Import Remaining Sale Order"
+                    res_model="import.sale.order.wizard"
+                    view_mode="form"
+                    target="new"/>
+        <menuitem id="menu_import_sale_order" name="Import Remaining Orders" action="launch_import_sale_order_wizard"
+                  parent="sale.sale_order_menu"/>
+
+    </data>
+</odoo>    

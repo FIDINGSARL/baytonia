@@ -1,0 +1,36 @@
+<odoo>
+    <record id="cron_emails_tree_view" model="ir.ui.view">
+        <field name="name">cron.emails.tree.view</field>
+        <field name="model">cron.emails</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="report_type"/>
+                <field name="emails"/>
+            </tree>
+        </field>
+    </record>
+    <record id="cron_emails_form_view" model="ir.ui.view">
+        <field name="name">cron.emails.form.view</field>
+        <field name="model">cron.emails</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="report_type"/>
+                            <field name="emails"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cron_emails" model="ir.actions.act_window">
+        <field name="name">Cron Emails</field>
+        <field name="res_model">cron.emails</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Cron Emails" id="menu_cron_emails" parent="root_cron_emails" action="action_cron_emails"/>
+
+</odoo>

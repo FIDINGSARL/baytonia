@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="res.groups" id="group_validate_picking">
+            <field name="name">Authorised forcing Delivery order</field>
+        </record>
+
+    </data>
+</odoo>

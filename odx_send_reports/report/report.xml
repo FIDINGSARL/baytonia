@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <report
+            id="orderd_qty_action"
+            model="product.product"
+            string="Orderd Qty"
+            report_type="qweb-pdf"
+            name="odx_send_reports.orderd_qty_template"
+            file="odx_send_reports.orderd_qty_template"
+            attachment_use="False"
+            menu="False"
+        />
+        <report
+            id="product_percent_invoiced_qty_action"
+            model="product.product"
+            string="Product % Invoiced Qty"
+            report_type="qweb-pdf"
+            name="odx_send_reports.invoiced_qty_template"
+            file="odx_send_reports.invoiced_qty_template"
+            attachment_use="False"
+            menu="True"
+        />
+        <report
+            id="product_percent_delivered_qty_action"
+            model="product.product"
+            string="Product % Delivered Qty"
+            report_type="qweb-pdf"
+            name="odx_send_reports.invoiced_qty_template"
+            file="odx_send_reports.invoiced_qty_template"
+            attachment_use="False"
+            menu="False"
+        />
+        <report
+            id="list_of_stock_product_action"
+            model="product.product"
+            string="List Of Stock Product"
+            report_type="qweb-pdf"
+            name="odx_send_reports.stock_product_template"
+            file="odx_send_reports.stock_product_template"
+            attachment_use="False"
+            menu="False"
+        />
+        <report
+            id="list_of_mto_product_action"
+            model="product.product"
+            string="List Of Mto Product"
+            report_type="qweb-pdf"
+            name="odx_send_reports.mto_product_template"
+            file="odx_send_reports.mto_product_template"
+            attachment_use="False"
+            menu="False"
+        />
+        <report
+            id="non_moving_product_action"
+            model="product.product"
+            string="Non Moving Products Report"
+            report_type="qweb-pdf"
+            name="odx_send_reports.non_moving_product_template"
+            file="odx_send_reports.non_moving_product_template"
+            attachment_use="False"
+            menu="False"
+        />
+    </data>
+</odoo>
